@@ -1,0 +1,1296 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text Label 3625 1995 0    50   ~ 0
+ROUT2
+Text Label 3625 2095 0    50   ~ 0
+ROUT3
+Text Label 3625 2195 0    50   ~ 0
+ROUT4
+Text Label 3625 2495 0    50   ~ 0
+ROUT5
+Text Label 3625 2595 0    50   ~ 0
+ROUT6
+Text Label 3625 2695 0    50   ~ 0
+ROUT7
+Text Label 3625 2795 0    50   ~ 0
+ROUT8
+Text Label 3625 2895 0    50   ~ 0
+ROUT9
+Text Label 4015 2995 0    50   ~ 0
+FV
+Text Label 3625 3395 0    50   ~ 0
+MONITOR0
+Text Label 4085 3695 0    50   ~ 0
+LV
+Text Label 4100 3795 0    50   ~ 0
+PXL_CLK
+Wire Wire Line
+	4475 4395 3625 4395
+Text Label 3625 4195 0    50   ~ 0
+DAT2
+Text Label 3625 4295 0    50   ~ 0
+DAT3
+Text Label 3625 4495 0    50   ~ 0
+DAT0
+Text Label 3625 4595 0    50   ~ 0
+DAT1
+Text Label 3625 4395 0    50   ~ 0
+CMD
+Text Label 3625 4095 0    50   ~ 0
+CLK
+Text Label 3625 4895 0    50   ~ 0
+RESET_N
+Text Label 3625 4995 0    50   ~ 0
+TRIGGER0
+Text Label 3625 5195 0    50   ~ 0
+SDA
+Text Label 3625 5295 0    50   ~ 0
+SCL
+Wire Wire Line
+	4475 5695 3625 5695
+Text Label 3625 5395 0    50   ~ 0
+SWDIO
+Text Label 3625 5495 0    50   ~ 0
+SWDCLK
+Text Label 3625 5595 0    50   ~ 0
+XOUT
+Text Label 3625 5695 0    50   ~ 0
+XIN
+Text Label 3625 3495 0    50   ~ 0
+LED_ENT
+Wire Wire Line
+	5125 7495 5125 7570
+$Comp
+L power:GND #PWR046
+U 1 1 5D862ED8
+P 5125 7570
+F 0 "#PWR046" H 5125 7320 50  0001 C CNN
+F 1 "GND" H 5130 7397 50  0000 C CNN
+F 2 "" H 5125 7570 50  0001 C CNN
+F 3 "" H 5125 7570 50  0001 C CNN
+	1    5125 7570
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7725 4895 6875 4895
+Wire Wire Line
+	7725 4995 6875 4995
+Wire Wire Line
+	7725 5095 6875 5095
+Wire Wire Line
+	7725 5295 6875 5295
+Text Label 7725 4895 2    50   ~ 0
+MISO
+Text Label 7725 4995 2    50   ~ 0
+MOSI
+Text Label 7725 5095 2    50   ~ 0
+SCK
+Text Label 7725 5295 2    50   ~ 0
+SS_N
+Wire Wire Line
+	7725 4695 6875 4695
+Wire Wire Line
+	7725 4795 6875 4795
+Text Label 7725 4695 2    50   ~ 0
+IR_REV
+Text Label 7725 4795 2    50   ~ 0
+STATUS_LED
+Wire Wire Line
+	5075 1295 5075 795 
+Wire Wire Line
+	5475 1295 5575 1295
+Connection ~ 5575 1295
+Wire Wire Line
+	5575 1295 5675 1295
+$Comp
+L power:+1V2 #PWR045
+U 1 1 5D8738E9
+P 5075 795
+F 0 "#PWR045" H 5075 645 50  0001 C CNN
+F 1 "+1V2" H 5090 968 50  0000 C CNN
+F 2 "" H 5075 795 50  0001 C CNN
+F 3 "" H 5075 795 50  0001 C CNN
+	1    5075 795 
+	1    0    0    -1  
+$EndComp
+Text Label 5075 1170 1    50   ~ 0
+VDDCORE
+Wire Wire Line
+	5575 1295 5575 795 
+Text Label 5575 1120 1    50   ~ 0
+VDDIO
+Wire Wire Line
+	5925 1295 5925 795 
+Wire Wire Line
+	6125 1295 6125 795 
+Wire Wire Line
+	6225 1295 6225 795 
+Wire Wire Line
+	6325 1295 6325 730 
+Text Label 5925 1170 1    50   ~ 0
+VDDOUT
+$Comp
+L power:+1V2 #PWR048
+U 1 1 5D878E92
+P 5925 795
+F 0 "#PWR048" H 5925 645 50  0001 C CNN
+F 1 "+1V2" H 5940 968 50  0000 C CNN
+F 2 "" H 5925 795 50  0001 C CNN
+F 3 "" H 5925 795 50  0001 C CNN
+	1    5925 795 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6025 1295 6025 855 
+Text Label 6025 1170 1    50   ~ 0
+VDDIN
+Text Label 6125 1170 1    50   ~ 0
+VDDPLL
+Text Label 6225 1170 1    50   ~ 0
+VDDUTMIC
+Text Label 6325 1170 1    50   ~ 0
+VDDUTMII
+Wire Wire Line
+	6425 1295 6425 795 
+Text Label 6425 1170 1    50   ~ 0
+VDDPLLUSB
+$Comp
+L power:+1V8 #PWR050
+U 1 1 5D87BDF2
+P 6325 730
+F 0 "#PWR050" H 6325 580 50  0001 C CNN
+F 1 "+1V8" H 6340 903 50  0000 C CNN
+F 2 "" H 6325 730 50  0001 C CNN
+F 3 "" H 6325 730 50  0001 C CNN
+	1    6325 730 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+1V8 #PWR051
+U 1 1 5D87C5B4
+P 6425 795
+F 0 "#PWR051" H 6425 645 50  0001 C CNN
+F 1 "+1V8" H 6440 968 50  0000 C CNN
+F 2 "" H 6425 795 50  0001 C CNN
+F 3 "" H 6425 795 50  0001 C CNN
+	1    6425 795 
+	1    0    0    -1  
+$EndComp
+Connection ~ 5175 1295
+Connection ~ 5075 1295
+Wire Wire Line
+	5175 1295 5075 1295
+Wire Wire Line
+	5275 1295 5175 1295
+Connection ~ 6125 7495
+Connection ~ 6025 7495
+Wire Wire Line
+	6025 7495 5925 7495
+Wire Wire Line
+	5925 7495 5675 7495
+Connection ~ 5925 7495
+Connection ~ 5675 7495
+Wire Wire Line
+	5675 7495 5575 7495
+Wire Wire Line
+	5575 7495 5475 7495
+Connection ~ 5575 7495
+Connection ~ 5475 7495
+Wire Wire Line
+	5475 7495 5375 7495
+Wire Wire Line
+	5375 7495 5125 7495
+Connection ~ 5375 7495
+Wire Wire Line
+	6125 7495 6025 7495
+Wire Wire Line
+	6225 7495 6125 7495
+Wire Wire Line
+	4475 5795 3625 5795
+Wire Wire Line
+	4475 5595 3625 5595
+Wire Wire Line
+	4475 5495 3625 5495
+Wire Wire Line
+	4475 5395 3625 5395
+Wire Wire Line
+	4475 5295 3625 5295
+Wire Wire Line
+	4475 5195 3625 5195
+Wire Wire Line
+	4475 4995 3625 4995
+Wire Wire Line
+	4475 4895 3625 4895
+Wire Wire Line
+	4475 4595 3625 4595
+Wire Wire Line
+	4475 4495 3625 4495
+Wire Wire Line
+	4475 4295 3625 4295
+Wire Wire Line
+	4475 4195 3625 4195
+Wire Wire Line
+	4475 4095 3625 4095
+Wire Wire Line
+	4475 3395 3625 3395
+Wire Wire Line
+	4475 2895 3625 2895
+Wire Wire Line
+	4475 2795 3625 2795
+Wire Wire Line
+	4475 2695 3625 2695
+Wire Wire Line
+	4475 2595 3625 2595
+Wire Wire Line
+	4475 2495 3625 2495
+Wire Wire Line
+	4475 2195 3625 2195
+Wire Wire Line
+	4475 2095 3625 2095
+Wire Wire Line
+	4475 1995 3625 1995
+$Comp
+L .MCU:ATSAME70N21A-CN U4
+U 1 1 5D85AF53
+P 5725 4595
+F 0 "U4" H 5675 1606 50  0000 C CNN
+F 1 "ATSAME70N21A-CN" H 5675 1515 50  0000 C CNN
+F 2 ".Package_BGA:BGA_100_CP80_10X10_900X900X110B40L" H 5625 4495 50  0001 C CNN
+F 3 "http://www.microchip.com/mymicrochip/filehandler.aspx?ddocname=en589960" H 5725 4595 50  0001 C CNN
+	1    5725 4595
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8355 1400 8755 1400
+Text Label 8355 1400 0    50   ~ 0
+VDDUTMIC
+Wire Wire Line
+	9355 1400 9705 1400
+Text Label 9355 1400 0    50   ~ 0
+VDDPLL
+Wire Wire Line
+	9955 1600 10355 1600
+Text Label 10405 1400 0    50   ~ 0
+VDDCORE
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5D8A9DFC
+P 1390 5550
+AR Path="/5C92D296/5D8A9DFC" Ref="#PWR?"  Part="1" 
+AR Path="/5D8A9DFC" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5D8A9DFC" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5D8A9DFC" Ref="#PWR043"  Part="1" 
+F 0 "#PWR043" H 1390 5400 50  0001 C CNN
+F 1 "+1V8" H 1405 5723 50  0000 C CNN
+F 2 "" H 1390 5550 50  0001 C CNN
+F 3 "" H 1390 5550 50  0001 C CNN
+	1    1390 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5D8A9E02
+P 1390 5700
+AR Path="/5C92D296/5D8A9E02" Ref="R?"  Part="1" 
+AR Path="/5D8A9E02" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E02" Ref="R?"  Part="1" 
+AR Path="/5F304029/5D8A9E02" Ref="R19"  Part="1" 
+F 0 "R19" H 1458 5746 50  0000 L CNN
+F 1 "100K" H 1458 5655 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 1430 5690 50  0001 C CNN
+F 3 "~" H 1390 5700 50  0001 C CNN
+	1    1390 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1390 5550 1740 5550
+Connection ~ 1390 5550
+$Comp
+L Device:R_US R?
+U 1 1 5D8A9E0A
+P 1740 5700
+AR Path="/5C92D296/5D8A9E0A" Ref="R?"  Part="1" 
+AR Path="/5D8A9E0A" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E0A" Ref="R?"  Part="1" 
+AR Path="/5F304029/5D8A9E0A" Ref="R21"  Part="1" 
+F 0 "R21" H 1808 5746 50  0000 L CNN
+F 1 "100K" H 1808 5655 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 1780 5690 50  0001 C CNN
+F 3 "~" H 1740 5700 50  0001 C CNN
+	1    1740 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1390 5850 1390 6050
+Wire Wire Line
+	1390 6050 2190 6050
+Wire Wire Line
+	1740 5850 1740 5950
+Wire Wire Line
+	1740 5950 2190 5950
+Text Label 1940 5950 0    50   ~ 0
+SWDIO
+Text Label 1890 6050 0    50   ~ 0
+SWDCLK
+Text Label 10455 800  0    50   ~ 0
+VDDOUT
+Text Label 9280 800  0    50   ~ 0
+VDDIO
+Wire Wire Line
+	9555 2025 9955 2025
+Text Label 9605 2025 0    50   ~ 0
+VDDUTMII
+Text Label 8830 2050 0    50   ~ 0
+VDDIN
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E2A
+P 8355 2150
+AR Path="/5C92D296/5D8A9E2A" Ref="C?"  Part="1" 
+AR Path="/5D8A9E2A" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E2A" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E2A" Ref="C47"  Part="1" 
+F 0 "C47" H 8447 2196 50  0000 L CNN
+F 1 "0.1uF" H 7965 2320 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 8415 2420 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 8365 2220 50  0001 C CNN
+F 4 "0.1uF" H 8447 2105 50  0000 L CNN "Note"
+F 5 "0201" H 8465 1970 50  0001 C CNN "Size"
+	1    8355 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E32
+P 8355 1500
+AR Path="/5C92D296/5D8A9E32" Ref="C?"  Part="1" 
+AR Path="/5D8A9E32" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E32" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E32" Ref="C46"  Part="1" 
+F 0 "C46" H 8447 1546 50  0000 L CNN
+F 1 "0.1uF" H 7965 1670 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 8415 1770 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 8365 1570 50  0001 C CNN
+F 4 "0.1uF" H 8447 1455 50  0000 L CNN "Note"
+F 5 "0201" H 8465 1320 50  0001 C CNN "Size"
+	1    8355 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E3A
+P 9355 1500
+AR Path="/5C92D296/5D8A9E3A" Ref="C?"  Part="1" 
+AR Path="/5D8A9E3A" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E3A" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E3A" Ref="C51"  Part="1" 
+F 0 "C51" H 9447 1546 50  0000 L CNN
+F 1 "0.1uF" H 8965 1670 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 9415 1770 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9365 1570 50  0001 C CNN
+F 4 "0.1uF" H 9447 1455 50  0000 L CNN "Note"
+F 5 "0201" H 9465 1320 50  0001 C CNN "Size"
+	1    9355 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E42
+P 9555 2125
+AR Path="/5C92D296/5D8A9E42" Ref="C?"  Part="1" 
+AR Path="/5D8A9E42" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E42" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E42" Ref="C52"  Part="1" 
+F 0 "C52" H 9647 2171 50  0000 L CNN
+F 1 "0.1uF" H 9165 2295 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 9615 2395 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9565 2195 50  0001 C CNN
+F 4 "0.1uF" H 9647 2080 50  0000 L CNN "Note"
+F 5 "0201" H 9665 1945 50  0001 C CNN "Size"
+	1    9555 2125
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E4A
+P 10355 1500
+AR Path="/5C92D296/5D8A9E4A" Ref="C?"  Part="1" 
+AR Path="/5D8A9E4A" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E4A" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E4A" Ref="C57"  Part="1" 
+F 0 "C57" H 10447 1546 50  0000 L CNN
+F 1 "0.1uF" H 9965 1670 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 10415 1770 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 10365 1570 50  0001 C CNN
+F 4 "0.1uF" H 10447 1455 50  0000 L CNN "Note"
+F 5 "0201" H 10465 1320 50  0001 C CNN "Size"
+	1    10355 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9955 1400 10355 1400
+Connection ~ 10355 1400
+Wire Wire Line
+	10355 1400 10755 1400
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E56
+P 9955 1500
+AR Path="/5C92D296/5D8A9E56" Ref="C?"  Part="1" 
+AR Path="/5D8A9E56" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E56" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E56" Ref="C55"  Part="1" 
+F 0 "C55" H 10047 1546 50  0000 L CNN
+F 1 "0.1uF" H 9565 1670 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 10015 1770 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9965 1570 50  0001 C CNN
+F 4 "0.1uF" H 10047 1455 50  0000 L CNN "Note"
+F 5 "0201" H 10065 1320 50  0001 C CNN "Size"
+	1    9955 1500
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E5E
+P 8355 900
+AR Path="/5C92D296/5D8A9E5E" Ref="C?"  Part="1" 
+AR Path="/5D8A9E5E" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E5E" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E5E" Ref="C45"  Part="1" 
+F 0 "C45" H 8447 946 50  0000 L CNN
+F 1 "0.1uF" H 7965 1070 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 8415 1170 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 8365 970 50  0001 C CNN
+F 4 "0.1uF" H 8447 855 50  0000 L CNN "Note"
+F 5 "0201" H 8465 720 50  0001 C CNN "Size"
+	1    8355 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8355 800  8755 800 
+Wire Wire Line
+	8355 1000 8755 1000
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E69
+P 8755 900
+AR Path="/5C92D296/5D8A9E69" Ref="C?"  Part="1" 
+AR Path="/5D8A9E69" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E69" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E69" Ref="C48"  Part="1" 
+F 0 "C48" H 8847 946 50  0000 L CNN
+F 1 "0.1uF" H 8365 1070 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 8815 1170 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 8765 970 50  0001 C CNN
+F 4 "0.1uF" H 8847 855 50  0000 L CNN "Note"
+F 5 "0201" H 8865 720 50  0001 C CNN "Size"
+	1    8755 900 
+	1    0    0    -1  
+$EndComp
+Connection ~ 8755 800 
+Connection ~ 8755 1000
+Wire Wire Line
+	8755 800  9155 800 
+Wire Wire Line
+	8755 1000 9155 1000
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E75
+P 9155 900
+AR Path="/5C92D296/5D8A9E75" Ref="C?"  Part="1" 
+AR Path="/5D8A9E75" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E75" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E75" Ref="C50"  Part="1" 
+F 0 "C50" H 9247 946 50  0000 L CNN
+F 1 "0.1uF" H 8765 1070 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 9215 1170 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9165 970 50  0001 C CNN
+F 4 "0.1uF" H 9247 855 50  0000 L CNN "Note"
+F 5 "0201" H 9265 720 50  0001 C CNN "Size"
+	1    9155 900 
+	1    0    0    -1  
+$EndComp
+Connection ~ 9155 800 
+Wire Wire Line
+	9155 800  9505 800 
+Connection ~ 9155 1000
+Wire Wire Line
+	9155 1000 9505 1000
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D8A9E81
+P 9955 900
+AR Path="/5C92D296/5D8A9E81" Ref="C?"  Part="1" 
+AR Path="/5D8A9E81" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E81" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E81" Ref="C54"  Part="1" 
+F 0 "C54" H 10047 946 50  0000 L CNN
+F 1 "0.1uF" H 9565 1070 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 10015 1170 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9965 970 50  0001 C CNN
+F 4 "0.1uF" H 10047 855 50  0000 L CNN "Note"
+F 5 "0201" H 10065 720 50  0001 C CNN "Size"
+	1    9955 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R60J105MEA2D C?
+U 1 1 5D8A9E8A
+P 10355 900
+AR Path="/5C92D296/5D8A9E8A" Ref="C?"  Part="1" 
+AR Path="/5D8A9E8A" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8A9E8A" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8A9E8A" Ref="C56"  Part="1" 
+F 0 "C56" H 10447 946 50  0000 L CNN
+F 1 "1uF" H 9965 1070 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 10465 1170 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R60J105MEA2-02.pdf" H 10365 970 50  0001 C CNN
+F 4 "1uF" H 10447 855 50  0000 L CNN "Note"
+F 5 "0201" H 10465 720 50  0001 C CNN "Size"
+	1    10355 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9955 800  10355 800 
+Wire Wire Line
+	9955 1000 10355 1000
+Connection ~ 10355 800 
+Wire Wire Line
+	10355 800  10755 800 
+Connection ~ 10355 1000
+Wire Wire Line
+	10355 1000 10755 1000
+$Comp
+L power:GND #PWR054
+U 1 1 5D8AC4CD
+P 8355 2250
+F 0 "#PWR054" H 8355 2000 50  0001 C CNN
+F 1 "GND" H 8360 2077 50  0000 C CNN
+F 2 "" H 8355 2250 50  0001 C CNN
+F 3 "" H 8355 2250 50  0001 C CNN
+	1    8355 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR053
+U 1 1 5D8ACC6C
+P 8355 1600
+F 0 "#PWR053" H 8355 1350 50  0001 C CNN
+F 1 "GND" H 8360 1427 50  0000 C CNN
+F 2 "" H 8355 1600 50  0001 C CNN
+F 3 "" H 8355 1600 50  0001 C CNN
+	1    8355 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR057
+U 1 1 5D8ACF65
+P 9355 1600
+F 0 "#PWR057" H 9355 1350 50  0001 C CNN
+F 1 "GND" H 9360 1427 50  0000 C CNN
+F 2 "" H 9355 1600 50  0001 C CNN
+F 3 "" H 9355 1600 50  0001 C CNN
+	1    9355 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR058
+U 1 1 5D8AD2A0
+P 9505 1000
+F 0 "#PWR058" H 9505 750 50  0001 C CNN
+F 1 "GND" H 9510 827 50  0000 C CNN
+F 2 "" H 9505 1000 50  0001 C CNN
+F 3 "" H 9505 1000 50  0001 C CNN
+	1    9505 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR064
+U 1 1 5D8AD632
+P 10755 1000
+F 0 "#PWR064" H 10755 750 50  0001 C CNN
+F 1 "GND" H 10760 827 50  0000 C CNN
+F 2 "" H 10755 1000 50  0001 C CNN
+F 3 "" H 10755 1000 50  0001 C CNN
+	1    10755 1000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR062
+U 1 1 5D8AD9BE
+P 10355 1600
+F 0 "#PWR062" H 10355 1350 50  0001 C CNN
+F 1 "GND" H 10360 1427 50  0000 C CNN
+F 2 "" H 10355 1600 50  0001 C CNN
+F 3 "" H 10355 1600 50  0001 C CNN
+	1    10355 1600
+	1    0    0    -1  
+$EndComp
+Connection ~ 10355 1600
+$Comp
+L power:GND #PWR059
+U 1 1 5D8ADE0B
+P 9555 2225
+F 0 "#PWR059" H 9555 1975 50  0001 C CNN
+F 1 "GND" H 9560 2052 50  0000 C CNN
+F 2 "" H 9555 2225 50  0001 C CNN
+F 3 "" H 9555 2225 50  0001 C CNN
+	1    9555 2225
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8355 1400 8280 1400
+Connection ~ 8355 1400
+$Comp
+L .Inductor:BLM18PG471SN1D L?
+U 1 1 5D8B882E
+P 8180 1400
+AR Path="/5C92D296/5D8B882E" Ref="L?"  Part="1" 
+AR Path="/5D8B882E" Ref="L?"  Part="1" 
+AR Path="/5EA167A9/5D8B882E" Ref="L?"  Part="1" 
+AR Path="/5F304029/5D8B882E" Ref="L9"  Part="1" 
+F 0 "L9" V 8228 1446 50  0001 L BNN
+F 1 "BLM18PG471SN1D" H 8230 1250 50  0001 L CNN
+F 2 ".Inductor:L_0603_1608Metric_L" H 8230 1700 50  0001 C CNN
+F 3 "https://www.murata.com/en-us/products/productdata/8796738650142/ENFA0003.pdf" H 8180 1400 50  0001 C CNN
+F 4 "0603" H 8330 1150 50  0001 C CNN "Size"
+	1    8180 1400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8080 1400 7955 1400
+Wire Wire Line
+	9355 1400 9305 1400
+Connection ~ 9355 1400
+$Comp
+L .Inductor:BLM18PG471SN1D L?
+U 1 1 5D8C0560
+P 9205 1400
+AR Path="/5C92D296/5D8C0560" Ref="L?"  Part="1" 
+AR Path="/5D8C0560" Ref="L?"  Part="1" 
+AR Path="/5EA167A9/5D8C0560" Ref="L?"  Part="1" 
+AR Path="/5F304029/5D8C0560" Ref="L10"  Part="1" 
+F 0 "L10" V 9253 1446 50  0001 L BNN
+F 1 "BLM18PG471SN1D" H 9255 1250 50  0001 L CNN
+F 2 ".Inductor:L_0603_1608Metric_L" H 9255 1700 50  0001 C CNN
+F 3 "https://www.murata.com/en-us/products/productdata/8796738650142/ENFA0003.pdf" H 9205 1400 50  0001 C CNN
+F 4 "0603" H 9355 1150 50  0001 C CNN "Size"
+	1    9205 1400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	9105 1400 9055 1400
+$Comp
+L power:+1V2 #PWR052
+U 1 1 5D8C5E32
+P 7955 1400
+F 0 "#PWR052" H 7955 1250 50  0001 C CNN
+F 1 "+1V2" H 7970 1573 50  0000 C CNN
+F 2 "" H 7955 1400 50  0001 C CNN
+F 3 "" H 7955 1400 50  0001 C CNN
+	1    7955 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+1V2 #PWR056
+U 1 1 5D8C6551
+P 9055 1400
+F 0 "#PWR056" H 9055 1250 50  0001 C CNN
+F 1 "+1V2" H 9070 1573 50  0000 C CNN
+F 2 "" H 9055 1400 50  0001 C CNN
+F 3 "" H 9055 1400 50  0001 C CNN
+	1    9055 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM155R60J475ME87D C?
+U 1 1 5D8C7EB3
+P 8755 2150
+AR Path="/5C92D296/5D8C7EB3" Ref="C?"  Part="1" 
+AR Path="/5D8C7EB3" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D8C7EB3" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D8C7EB3" Ref="C49"  Part="1" 
+F 0 "C49" H 8847 2196 50  0000 L CNN
+F 1 "4.7uF" H 8365 2320 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 8865 2420 50  0001 C CNN
+F 3 "" H 8765 2220 50  0001 C CNN
+F 4 "4.7uF" H 8847 2105 50  0000 L CNN "Note"
+F 5 "0402" H 8865 1970 50  0001 C CNN "Size"
+	1    8755 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Oscillator:ABM8G-12.000MHZ-4Y-T3 Y?
+U 1 1 5D8D378D
+P 1565 6650
+AR Path="/5C92D296/5D8D378D" Ref="Y?"  Part="1" 
+AR Path="/5D8D378D" Ref="Y?"  Part="1" 
+AR Path="/5EA167A9/5D8D378D" Ref="Y?"  Part="1" 
+AR Path="/5F304029/5D8D378D" Ref="Y1"  Part="1" 
+F 0 "Y1" V 1611 6816 50  0000 L CNN
+F 1 "ABM8G-12.000MHZ-4Y-T3" V 1865 6200 50  0000 L CNN
+F 2 ".Oscillator:OSCCC320X250X100L80X100" H 1515 6725 50  0001 C CNN
+F 3 "https://abracon.com/Resonators/ABM8G.pdf" H 1565 6650 50  0001 C CNN
+	1    1565 6650
+	0    1    -1   0   
+$EndComp
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5D8F092C
+P 1315 4425
+AR Path="/5C92D296/5D8F092C" Ref="#PWR?"  Part="1" 
+AR Path="/5D8F092C" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5D8F092C" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5D8F092C" Ref="#PWR041"  Part="1" 
+F 0 "#PWR041" H 1315 4275 50  0001 C CNN
+F 1 "+1V8" H 1330 4598 50  0000 C CNN
+F 2 "" H 1315 4425 50  0001 C CNN
+F 3 "" H 1315 4425 50  0001 C CNN
+	1    1315 4425
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5D8F0932
+P 1315 4575
+AR Path="/5C92D296/5D8F0932" Ref="R?"  Part="1" 
+AR Path="/5D8F0932" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5D8F0932" Ref="R?"  Part="1" 
+AR Path="/5F304029/5D8F0932" Ref="R18"  Part="1" 
+F 0 "R18" H 1383 4621 50  0000 L CNN
+F 1 "2K" H 1383 4530 50  0000 L CNN
+F 2 ".Resistor:R_0201_0603Metric_ERJ_L" V 1355 4565 50  0001 C CNN
+F 3 "~" H 1315 4575 50  0001 C CNN
+	1    1315 4575
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1315 4425 1665 4425
+Connection ~ 1315 4425
+$Comp
+L Device:R_US R?
+U 1 1 5D8F093A
+P 1665 4575
+AR Path="/5C92D296/5D8F093A" Ref="R?"  Part="1" 
+AR Path="/5D8F093A" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5D8F093A" Ref="R?"  Part="1" 
+AR Path="/5F304029/5D8F093A" Ref="R20"  Part="1" 
+F 0 "R20" H 1733 4621 50  0000 L CNN
+F 1 "2K" H 1733 4530 50  0000 L CNN
+F 2 ".Resistor:R_0201_0603Metric_ERJ_L" V 1705 4565 50  0001 C CNN
+F 3 "~" H 1665 4575 50  0001 C CNN
+	1    1665 4575
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1315 4725 1315 4925
+Wire Wire Line
+	1315 4925 2115 4925
+Wire Wire Line
+	1665 4725 1665 4825
+Wire Wire Line
+	1665 4825 2115 4825
+Text Label 1865 4825 0    50   ~ 0
+SDA
+Text Label 1815 4925 0    50   ~ 0
+SCL
+Wire Wire Line
+	1440 6650 1315 6650
+Wire Wire Line
+	1690 6650 1840 6650
+Wire Wire Line
+	1565 6550 1565 6475
+Wire Wire Line
+	1840 6650 1840 6875
+Wire Wire Line
+	1840 6875 1315 6875
+Wire Wire Line
+	1315 6875 1315 6650
+$Comp
+L power:GND #PWR042
+U 1 1 5D913129
+P 1315 6875
+F 0 "#PWR042" H 1315 6625 50  0001 C CNN
+F 1 "GND" H 1320 6702 50  0000 C CNN
+F 2 "" H 1315 6875 50  0001 C CNN
+F 3 "" H 1315 6875 50  0001 C CNN
+	1    1315 6875
+	1    0    0    -1  
+$EndComp
+Connection ~ 1315 6875
+$Comp
+L .Capacitor:GRM1555C1H120JA01D C?
+U 1 1 5D91389E
+P 1965 6850
+AR Path="/5C92D296/5D91389E" Ref="C?"  Part="1" 
+AR Path="/5D91389E" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D91389E" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D91389E" Ref="C43"  Part="1" 
+F 0 "C43" H 2057 6896 50  0000 L CNN
+F 1 "12pF" H 1575 7020 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 2025 7120 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 1975 6920 50  0001 C CNN
+F 4 "12pF" H 2057 6805 50  0000 L CNN "Note"
+F 5 "0402" H 2075 6670 50  0001 C CNN "Size"
+	1    1965 6850
+	1    0    0    1   
+$EndComp
+$Comp
+L .Capacitor:GRM1555C1H120JA01D C?
+U 1 1 5D914418
+P 2315 6850
+AR Path="/5C92D296/5D914418" Ref="C?"  Part="1" 
+AR Path="/5D914418" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D914418" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D914418" Ref="C44"  Part="1" 
+F 0 "C44" H 2407 6896 50  0000 L CNN
+F 1 "12pF" H 1925 7020 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 2375 7120 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 2325 6920 50  0001 C CNN
+F 4 "12pF" H 2407 6805 50  0000 L CNN "Note"
+F 5 "0402" H 2425 6670 50  0001 C CNN "Size"
+	1    2315 6850
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	1565 6750 1965 6750
+Wire Wire Line
+	2315 6475 2315 6750
+Wire Wire Line
+	1565 6475 2315 6475
+$Comp
+L power:GND #PWR044
+U 1 1 5D92005F
+P 1965 6950
+F 0 "#PWR044" H 1965 6700 50  0001 C CNN
+F 1 "GND" H 1970 6777 50  0000 C CNN
+F 2 "" H 1965 6950 50  0001 C CNN
+F 3 "" H 1965 6950 50  0001 C CNN
+	1    1965 6950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1965 6950 2315 6950
+Connection ~ 1965 6950
+Text Label 1890 6475 0    50   ~ 0
+XOUT
+Text Label 1890 6750 0    50   ~ 0
+XIN
+Wire Wire Line
+	8355 2050 8755 2050
+Connection ~ 8755 2050
+Wire Wire Line
+	8755 2050 9005 2050
+Connection ~ 8355 2250
+Wire Wire Line
+	8355 2250 8755 2250
+$Comp
+L .Connector:0475710001 J?
+U 1 1 5D9AB199
+P 10400 4000
+AR Path="/5C92D2A1/5D9AB199" Ref="J?"  Part="1" 
+AR Path="/5D9AB199" Ref="J?"  Part="1" 
+AR Path="/5EA167A9/5D9AB199" Ref="J?"  Part="1" 
+AR Path="/5F304029/5D9AB199" Ref="J8"  Part="1" 
+F 0 "J8" H 10727 3990 50  0000 L CNN
+F 1 "0475710001" H 10727 3899 50  0000 L CNN
+F 2 ".Connector:0475710001" H 10200 4000 50  0001 C CNN
+F 3 "https://www.molex.com/pdm_docs/sd/475710001_sd.pdf" H 10200 4000 50  0001 C CNN
+	1    10400 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 4450 9800 4450
+Wire Wire Line
+	9800 4800 10400 4800
+Wire Wire Line
+	10600 4800 10600 4650
+Wire Wire Line
+	9800 4450 9800 4800
+Wire Wire Line
+	10500 4650 10500 4800
+Connection ~ 10500 4800
+Wire Wire Line
+	10500 4800 10600 4800
+Wire Wire Line
+	10400 4650 10400 4800
+Connection ~ 10400 4800
+Wire Wire Line
+	10400 4800 10500 4800
+NoConn ~ 9950 4250
+NoConn ~ 9950 4350
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5D9AB1D0
+P 9650 3000
+AR Path="/5C92D2A1/5D9AB1D0" Ref="#PWR?"  Part="1" 
+AR Path="/5D9AB1D0" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5D9AB1D0" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5D9AB1D0" Ref="#PWR060"  Part="1" 
+F 0 "#PWR060" H 9650 2850 50  0001 C CNN
+F 1 "+3V3" H 9665 3173 50  0000 C CNN
+F 2 "" H 9650 3000 50  0001 C CNN
+F 3 "" H 9650 3000 50  0001 C CNN
+	1    9650 3000
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM033R61A104ME15D C?
+U 1 1 5D9AB221
+P 9650 3100
+AR Path="/5C92D2A1/5D9AB221" Ref="C?"  Part="1" 
+AR Path="/5D9AB221" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5D9AB221" Ref="C?"  Part="1" 
+AR Path="/5F304029/5D9AB221" Ref="C53"  Part="1" 
+F 0 "C53" H 9742 3146 50  0000 L CNN
+F 1 "0.1uF" H 9260 3270 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 9710 3370 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 9660 3170 50  0001 C CNN
+F 4 "0.1uF" H 9742 3055 50  0000 L CNN "Note"
+F 5 "0201" H 9760 2920 50  0001 C CNN "Size"
+	1    9650 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9500 4150 9950 4150
+$Comp
+L power:GND #PWR061
+U 1 1 5DA0A790
+P 9650 3200
+F 0 "#PWR061" H 9650 2950 50  0001 C CNN
+F 1 "GND" H 9655 3027 50  0000 C CNN
+F 2 "" H 9650 3200 50  0001 C CNN
+F 3 "" H 9650 3200 50  0001 C CNN
+	1    9650 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR063
+U 1 1 5DA0ABDC
+P 10600 4800
+F 0 "#PWR063" H 10600 4550 50  0001 C CNN
+F 1 "GND" H 10605 4627 50  0000 C CNN
+F 2 "" H 10600 4800 50  0001 C CNN
+F 3 "" H 10600 4800 50  0001 C CNN
+	1    10600 4800
+	1    0    0    -1  
+$EndComp
+Connection ~ 10600 4800
+Wire Wire Line
+	9950 3000 9950 3550
+$Comp
+L power:+1V8 #PWR?
+U 1 1 5DA3FB39
+P 1235 3445
+AR Path="/5C92D2A9/5DA3FB39" Ref="#PWR?"  Part="1" 
+AR Path="/5DA3FB39" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5DA3FB39" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5DA3FB39" Ref="#PWR039"  Part="1" 
+F 0 "#PWR039" H 1235 3295 50  0001 C CNN
+F 1 "+1V8" H 1250 3618 50  0000 C CNN
+F 2 "" H 1235 3445 50  0001 C CNN
+F 3 "" H 1235 3445 50  0001 C CNN
+	1    1235 3445
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Connector:Conn_01x01 J?
+U 1 1 5DA3FB45
+P 1785 3445
+AR Path="/5C92D2A9/5DA3FB45" Ref="J?"  Part="1" 
+AR Path="/5DA3FB45" Ref="J?"  Part="1" 
+AR Path="/5EA167A9/5DA3FB45" Ref="J?"  Part="1" 
+AR Path="/5F304029/5DA3FB45" Ref="J4"  Part="1" 
+F 0 "J4" H 1865 3487 50  0000 L CNN
+F 1 "Conn_01x01" H 1865 3396 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_700_Circular_Pad" H 1785 3445 50  0001 C CNN
+F 3 "~" H 1785 3445 50  0001 C CNN
+	1    1785 3445
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Connector:Conn_01x01 J?
+U 1 1 5DA3FB4B
+P 1785 3545
+AR Path="/5C92D2A9/5DA3FB4B" Ref="J?"  Part="1" 
+AR Path="/5DA3FB4B" Ref="J?"  Part="1" 
+AR Path="/5EA167A9/5DA3FB4B" Ref="J?"  Part="1" 
+AR Path="/5F304029/5DA3FB4B" Ref="J5"  Part="1" 
+F 0 "J5" H 1865 3587 50  0000 L CNN
+F 1 "Conn_01x01" H 1865 3496 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_700_Circular_Pad" H 1785 3545 50  0001 C CNN
+F 3 "~" H 1785 3545 50  0001 C CNN
+	1    1785 3545
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Connector:Conn_01x01 J?
+U 1 1 5DA3FB51
+P 1785 3645
+AR Path="/5C92D2A9/5DA3FB51" Ref="J?"  Part="1" 
+AR Path="/5DA3FB51" Ref="J?"  Part="1" 
+AR Path="/5EA167A9/5DA3FB51" Ref="J?"  Part="1" 
+AR Path="/5F304029/5DA3FB51" Ref="J6"  Part="1" 
+F 0 "J6" H 1865 3687 50  0000 L CNN
+F 1 "Conn_01x01" H 1865 3596 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_700_Circular_Pad" H 1785 3645 50  0001 C CNN
+F 3 "~" H 1785 3645 50  0001 C CNN
+	1    1785 3645
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Connector:Conn_01x01 J?
+U 1 1 5DA3FB57
+P 1785 3745
+AR Path="/5C92D2A9/5DA3FB57" Ref="J?"  Part="1" 
+AR Path="/5DA3FB57" Ref="J?"  Part="1" 
+AR Path="/5EA167A9/5DA3FB57" Ref="J?"  Part="1" 
+AR Path="/5F304029/5DA3FB57" Ref="J7"  Part="1" 
+F 0 "J7" H 1865 3787 50  0000 L CNN
+F 1 "Conn_01x01" H 1865 3696 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_700_Circular_Pad" H 1785 3745 50  0001 C CNN
+F 3 "~" H 1785 3745 50  0001 C CNN
+	1    1785 3745
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1285 3645 1585 3645
+Wire Wire Line
+	1585 3545 1285 3545
+Wire Wire Line
+	1235 3445 1585 3445
+Wire Wire Line
+	1285 3745 1585 3745
+Text Notes 1135 3095 0    50   ~ 0
+SWD Programming Connections
+$Comp
+L power:GND #PWR040
+U 1 1 5DB46D08
+P 1285 3745
+F 0 "#PWR040" H 1285 3495 50  0001 C CNN
+F 1 "GND" H 1290 3572 50  0000 C CNN
+F 2 "" H 1285 3745 50  0001 C CNN
+F 3 "" H 1285 3745 50  0001 C CNN
+	1    1285 3745
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4475 3495 3625 3495
+Connection ~ 9650 3000
+Wire Wire Line
+	9650 3000 9950 3000
+Text Label 9500 3650 0    50   ~ 0
+DAT0
+Text Label 9500 3750 0    50   ~ 0
+DAT1
+Text Label 9500 3850 0    50   ~ 0
+DAT2
+Text Label 9500 3950 0    50   ~ 0
+DAT3
+Text Label 9500 4050 0    50   ~ 0
+CMD
+Text Label 9500 4150 0    50   ~ 0
+CLK
+$Comp
+L power:+3.3V #PWR047
+U 1 1 5F44DB44
+P 5575 795
+F 0 "#PWR047" H 5575 645 50  0001 C CNN
+F 1 "+3.3V" H 5590 968 50  0000 C CNN
+F 2 "" H 5575 795 50  0001 C CNN
+F 3 "" H 5575 795 50  0001 C CNN
+	1    5575 795 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5F4657EE
+P 9250 3395
+AR Path="/5C92D296/5F4657EE" Ref="R?"  Part="1" 
+AR Path="/5F4657EE" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F4657EE" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F4657EE" Ref="R26"  Part="1" 
+F 0 "R26" H 9318 3441 50  0000 L CNN
+F 1 "100K" H 9318 3350 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 9290 3385 50  0001 C CNN
+F 3 "~" H 9250 3395 50  0001 C CNN
+	1    9250 3395
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 3545 9250 3650
+Wire Wire Line
+	9250 3650 9950 3650
+$Comp
+L Device:R_US R?
+U 1 1 5F4717F1
+P 8955 3395
+AR Path="/5C92D296/5F4717F1" Ref="R?"  Part="1" 
+AR Path="/5F4717F1" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F4717F1" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F4717F1" Ref="R25"  Part="1" 
+F 0 "R25" H 9023 3441 50  0000 L CNN
+F 1 "100K" H 9023 3350 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 8995 3385 50  0001 C CNN
+F 3 "~" H 8955 3395 50  0001 C CNN
+	1    8955 3395
+	1    0    0    -1  
+$EndComp
+Connection ~ 8955 3245
+Wire Wire Line
+	8955 3245 9250 3245
+$Comp
+L Device:R_US R?
+U 1 1 5F48EB0B
+P 8670 3395
+AR Path="/5C92D296/5F48EB0B" Ref="R?"  Part="1" 
+AR Path="/5F48EB0B" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F48EB0B" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F48EB0B" Ref="R24"  Part="1" 
+F 0 "R24" H 8738 3441 50  0000 L CNN
+F 1 "100K" H 8738 3350 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 8710 3385 50  0001 C CNN
+F 3 "~" H 8670 3395 50  0001 C CNN
+	1    8670 3395
+	1    0    0    -1  
+$EndComp
+Connection ~ 8670 3245
+Wire Wire Line
+	8670 3245 8955 3245
+$Comp
+L Device:R_US R?
+U 1 1 5F48F04E
+P 8380 3395
+AR Path="/5C92D296/5F48F04E" Ref="R?"  Part="1" 
+AR Path="/5F48F04E" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F48F04E" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F48F04E" Ref="R23"  Part="1" 
+F 0 "R23" H 8448 3441 50  0000 L CNN
+F 1 "100K" H 8448 3350 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 8420 3385 50  0001 C CNN
+F 3 "~" H 8380 3395 50  0001 C CNN
+	1    8380 3395
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8380 3245 8670 3245
+Wire Wire Line
+	8380 3245 8380 3170
+Connection ~ 8380 3245
+$Comp
+L power:+3.3V #PWR055
+U 1 1 5F49C021
+P 8380 3170
+F 0 "#PWR055" H 8380 3020 50  0001 C CNN
+F 1 "+3.3V" H 8395 3343 50  0000 C CNN
+F 2 "" H 8380 3170 50  0001 C CNN
+F 3 "" H 8380 3170 50  0001 C CNN
+	1    8380 3170
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8955 3750 9950 3750
+Wire Wire Line
+	8955 3545 8955 3750
+Wire Wire Line
+	8670 3850 8670 3545
+Wire Wire Line
+	8670 3850 9950 3850
+Wire Wire Line
+	8380 3950 8380 3545
+Wire Wire Line
+	8380 3950 9950 3950
+Wire Wire Line
+	8380 3245 8085 3245
+$Comp
+L Device:R_US R?
+U 1 1 5F4C7B96
+P 8085 3395
+AR Path="/5C92D296/5F4C7B96" Ref="R?"  Part="1" 
+AR Path="/5F4C7B96" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F4C7B96" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F4C7B96" Ref="R22"  Part="1" 
+F 0 "R22" H 8153 3441 50  0000 L CNN
+F 1 "10K" H 8153 3350 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 8125 3385 50  0001 C CNN
+F 3 "~" H 8085 3395 50  0001 C CNN
+	1    8085 3395
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8085 4050 8085 3545
+Wire Wire Line
+	8085 4050 9950 4050
+Text Notes 8520 3950 0    50   ~ 10
+CHECK CONNECTIONS!\nCHECK PULLUPS!
+Text Notes 4215 3230 1    50   ~ 10
+CHECK PARALLEL BUS/PIO CAP!
+Entry Wire Line
+	3625 1995 3525 2095
+Entry Wire Line
+	3625 2095 3525 2195
+Entry Wire Line
+	3625 2195 3525 2295
+Entry Wire Line
+	3625 2495 3525 2595
+Entry Wire Line
+	3625 2595 3525 2695
+Entry Wire Line
+	3625 2695 3525 2795
+Entry Wire Line
+	3625 2795 3525 2895
+Entry Wire Line
+	3625 2895 3525 2995
+Wire Bus Line
+	3520 2095 3305 2095
+Text HLabel 3305 2095 0    50   Input ~ 0
+ROUT[0..11]
+Wire Wire Line
+	4475 2995 3920 2995
+Text HLabel 3920 2995 0    50   Input ~ 0
+VSYNC
+Wire Wire Line
+	4475 3695 3995 3695
+Text HLabel 3995 3695 0    50   Input ~ 0
+HSYNC
+Wire Wire Line
+	4475 3795 3995 3795
+Text HLabel 3995 3795 0    50   Input ~ 0
+PCLK
+Text Label 1285 3545 0    50   ~ 0
+SWDIO
+Text Label 1285 3645 0    50   ~ 0
+SWDCLK
+Text HLabel 3625 5195 0    50   BiDi ~ 0
+SDA
+Text HLabel 3625 5295 0    50   BiDi ~ 0
+SCL
+Wire Bus Line
+	3525 2095 3525 2995
+$Comp
+L power:+3.3V #PWR049
+U 1 1 5F53B087
+P 6025 855
+F 0 "#PWR049" H 6025 705 50  0001 C CNN
+F 1 "+3.3V" H 6040 1028 50  0000 C CNN
+F 2 "" H 6025 855 50  0001 C CNN
+F 3 "" H 6025 855 50  0001 C CNN
+	1    6025 855 
+	1    0    0    -1  
+$EndComp
+Text Notes 6935 2015 1    50   ~ 10
+MISSING 2.2ohmRES AND 10uF - 60mA INDUCT ON USBPLL
+$EndSCHEMATC
