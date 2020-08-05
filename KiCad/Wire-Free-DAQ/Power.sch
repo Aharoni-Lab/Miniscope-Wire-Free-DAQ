@@ -21,7 +21,7 @@ AR Path="/5F303416" Ref="J?"  Part="1"
 AR Path="/5F2FDF24/5F303416" Ref="J3"  Part="1" 
 F 0 "J3" H 3833 1538 50  0000 C CNN
 F 1 "SMA-J-P-H-RA-TH1" H 3833 1447 50  0000 C CNN
-F 2 "Connector_Coaxial:SMA_Amphenol_132134-10_Vertical" H 3955 800 50  0001 C CNN
+F 2 "Connector_Coaxial:U.FL_Hirose_U.FL-R-SMT-1_Vertical" H 3955 800 50  0001 C CNN
 F 3 "http://suddendocs.samtec.com/catalog_english/sma.pdf" H 3905 1300 50  0001 C CNN
 F 4 "	CONSMA001-SMD-G-T" H 3905 1300 50  0001 C CNN "Part Number"
 	1    3905 1300
@@ -628,6 +628,75 @@ $EndComp
 Text HLabel 4430 1025 2    50   BiDi ~ 0
 COAX+
 $Comp
+L power:+BATT #PWR?
+U 1 1 5F4033DF
+P 1265 4040
+AR Path="/5C92D2A9/5F4033DF" Ref="#PWR?"  Part="1" 
+AR Path="/5F4033DF" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5F4033DF" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5F4033DF" Ref="#PWR?"  Part="1" 
+AR Path="/5F2FDF24/5F4033DF" Ref="#PWR026"  Part="1" 
+F 0 "#PWR026" H 1265 3890 50  0001 C CNN
+F 1 "+BATT" H 1280 4213 50  0000 C CNN
+F 2 "" H 1265 4040 50  0001 C CNN
+F 3 "" H 1265 4040 50  0001 C CNN
+	1    1265 4040
+	1    0    0    -1  
+$EndComp
+Text Notes 1015 3740 0    50   ~ 0
+Battery Power Input
+Text Notes 3120 1355 0    50   ~ 10
+CHANGE TO U.FL?
+$Comp
+L .Device:LED_Small_ALT D?
+U 1 1 5F570567
+P 1355 5800
+AR Path="/5F570567" Ref="D?"  Part="1" 
+AR Path="/5F2FDF24/5F570567" Ref="D1"  Part="1" 
+F 0 "D1" V 1401 5732 50  0000 R CNN
+F 1 "LED_Small_ALT" V 1310 5732 50  0000 R CNN
+F 2 ".LED:LED_SC80X160X65L40L" V 1355 5800 50  0001 C CNN
+F 3 "~" V 1355 5800 50  0001 C CNN
+F 4 "LTST-C190KRKT" H 1355 5800 50  0001 C CNN "Part Number"
+	1    1355 5800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L .Device:R_Small_US R?
+U 1 1 5F57056E
+P 1355 5425
+AR Path="/5F57056E" Ref="R?"  Part="1" 
+AR Path="/5F2FDF24/5F57056E" Ref="R1"  Part="1" 
+F 0 "R1" H 1423 5471 50  0000 L CNN
+F 1 "500" H 1423 5380 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" H 1355 5425 50  0001 C CNN
+F 3 "~" H 1355 5425 50  0001 C CNN
+F 4 "ERJ-2RKF4990X" H 1355 5425 50  0001 C CNN "Part Number"
+	1    1355 5425
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1355 5525 1355 5700
+Wire Wire Line
+	1355 5900 1355 6025
+Wire Wire Line
+	1355 5325 1355 5175
+$Comp
+L power:GND #PWR?
+U 1 1 5F57057D
+P 1355 6025
+AR Path="/5F57057D" Ref="#PWR?"  Part="1" 
+AR Path="/5F2FDF24/5F57057D" Ref="#PWR0101"  Part="1" 
+F 0 "#PWR0101" H 1355 5775 50  0001 C CNN
+F 1 "GND" H 1360 5852 50  0000 C CNN
+F 2 "" H 1355 6025 50  0001 C CNN
+F 3 "" H 1355 6025 50  0001 C CNN
+	1    1355 6025
+	1    0    0    -1  
+$EndComp
+Text GLabel 1355 5175 1    50   Input ~ 0
+V_OUT
+$Comp
 L .Connector:Conn_01x01 J?
 U 1 1 5F4033D3
 P 1465 4040
@@ -660,24 +729,6 @@ F 3 "~" H 1465 4140 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+BATT #PWR?
-U 1 1 5F4033DF
-P 1265 4040
-AR Path="/5C92D2A9/5F4033DF" Ref="#PWR?"  Part="1" 
-AR Path="/5F4033DF" Ref="#PWR?"  Part="1" 
-AR Path="/5EA167A9/5F4033DF" Ref="#PWR?"  Part="1" 
-AR Path="/5F304029/5F4033DF" Ref="#PWR?"  Part="1" 
-AR Path="/5F2FDF24/5F4033DF" Ref="#PWR026"  Part="1" 
-F 0 "#PWR026" H 1265 3890 50  0001 C CNN
-F 1 "+BATT" H 1280 4213 50  0000 C CNN
-F 2 "" H 1265 4040 50  0001 C CNN
-F 3 "" H 1265 4040 50  0001 C CNN
-	1    1265 4040
-	1    0    0    -1  
-$EndComp
-Text Notes 1015 3740 0    50   ~ 0
-Battery Power Input
-$Comp
 L power:GND #PWR?
 U 1 1 5F4033E6
 P 1265 4140
@@ -690,6 +741,4 @@ F 3 "" H 1265 4140 50  0001 C CNN
 	1    1265 4140
 	1    0    0    -1  
 $EndComp
-Text Notes 3120 1355 0    50   ~ 10
-CHANGE TO U.FL?
 $EndSCHEMATC
