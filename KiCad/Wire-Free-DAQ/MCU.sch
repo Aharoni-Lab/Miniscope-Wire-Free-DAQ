@@ -286,21 +286,6 @@ Wire Wire Line
 Text Label 10405 1400 0    50   ~ 0
 VDDCORE
 $Comp
-L power:+1V8 #PWR?
-U 1 1 5D8A9DFC
-P 1390 5550
-AR Path="/5C92D296/5D8A9DFC" Ref="#PWR?"  Part="1" 
-AR Path="/5D8A9DFC" Ref="#PWR?"  Part="1" 
-AR Path="/5EA167A9/5D8A9DFC" Ref="#PWR?"  Part="1" 
-AR Path="/5F304029/5D8A9DFC" Ref="#PWR043"  Part="1" 
-F 0 "#PWR043" H 1390 5400 50  0001 C CNN
-F 1 "+1V8" H 1405 5723 50  0000 C CNN
-F 2 "" H 1390 5550 50  0001 C CNN
-F 3 "" H 1390 5550 50  0001 C CNN
-	1    1390 5550
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_US R?
 U 1 1 5D8A9E02
 P 1390 5700
@@ -317,7 +302,6 @@ F 3 "~" H 1390 5700 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1390 5550 1740 5550
-Connection ~ 1390 5550
 $Comp
 L Device:R_US R?
 U 1 1 5D8A9E0A
@@ -748,21 +732,6 @@ F 3 "https://abracon.com/Resonators/ABM8G.pdf" H 1565 6650 50  0001 C CNN
 	0    1    -1   0   
 $EndComp
 $Comp
-L power:+1V8 #PWR?
-U 1 1 5D8F092C
-P 1315 4425
-AR Path="/5C92D296/5D8F092C" Ref="#PWR?"  Part="1" 
-AR Path="/5D8F092C" Ref="#PWR?"  Part="1" 
-AR Path="/5EA167A9/5D8F092C" Ref="#PWR?"  Part="1" 
-AR Path="/5F304029/5D8F092C" Ref="#PWR041"  Part="1" 
-F 0 "#PWR041" H 1315 4275 50  0001 C CNN
-F 1 "+1V8" H 1330 4598 50  0000 C CNN
-F 2 "" H 1315 4425 50  0001 C CNN
-F 3 "" H 1315 4425 50  0001 C CNN
-	1    1315 4425
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R_US R?
 U 1 1 5D8F0932
 P 1315 4575
@@ -779,7 +748,6 @@ F 3 "~" H 1315 4575 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	1315 4425 1665 4425
-Connection ~ 1315 4425
 $Comp
 L Device:R_US R?
 U 1 1 5D8F093A
@@ -991,21 +959,6 @@ $EndComp
 Connection ~ 10600 4800
 Wire Wire Line
 	9950 3000 9950 3550
-$Comp
-L power:+1V8 #PWR?
-U 1 1 5DA3FB39
-P 1235 3445
-AR Path="/5C92D2A9/5DA3FB39" Ref="#PWR?"  Part="1" 
-AR Path="/5DA3FB39" Ref="#PWR?"  Part="1" 
-AR Path="/5EA167A9/5DA3FB39" Ref="#PWR?"  Part="1" 
-AR Path="/5F304029/5DA3FB39" Ref="#PWR039"  Part="1" 
-F 0 "#PWR039" H 1235 3295 50  0001 C CNN
-F 1 "+1V8" H 1250 3618 50  0000 C CNN
-F 2 "" H 1235 3445 50  0001 C CNN
-F 3 "" H 1235 3445 50  0001 C CNN
-	1    1235 3445
-	1    0    0    -1  
-$EndComp
 $Comp
 L .Connector:Conn_01x01 J?
 U 1 1 5DA3FB45
@@ -1278,8 +1231,6 @@ Text HLabel 3625 5195 0    50   BiDi ~ 0
 SDA
 Text HLabel 3625 5295 0    50   BiDi ~ 0
 SCL
-Wire Bus Line
-	3525 2095 3525 2995
 $Comp
 L power:+3.3V #PWR049
 U 1 1 5F53B087
@@ -1293,4 +1244,41 @@ F 3 "" H 6025 855 50  0001 C CNN
 $EndComp
 Text Notes 6935 2015 1    50   ~ 10
 MISSING 2.2ohmRES AND 10uF - 60mA INDUCT ON USBPLL
+Wire Bus Line
+	3525 2095 3525 2995
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F609F72
+P 1235 3445
+F 0 "#PWR?" H 1235 3295 50  0001 C CNN
+F 1 "+3.3V" H 1250 3618 50  0000 C CNN
+F 2 "" H 1235 3445 50  0001 C CNN
+F 3 "" H 1235 3445 50  0001 C CNN
+	1    1235 3445
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F60AA55
+P 1315 4425
+F 0 "#PWR?" H 1315 4275 50  0001 C CNN
+F 1 "+3.3V" H 1330 4598 50  0000 C CNN
+F 2 "" H 1315 4425 50  0001 C CNN
+F 3 "" H 1315 4425 50  0001 C CNN
+	1    1315 4425
+	1    0    0    -1  
+$EndComp
+Connection ~ 1315 4425
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5F60AFE3
+P 1390 5550
+F 0 "#PWR?" H 1390 5400 50  0001 C CNN
+F 1 "+3.3V" H 1405 5723 50  0000 C CNN
+F 2 "" H 1390 5550 50  0001 C CNN
+F 3 "" H 1390 5550 50  0001 C CNN
+	1    1390 5550
+	1    0    0    -1  
+$EndComp
+Connection ~ 1390 5550
 $EndSCHEMATC
