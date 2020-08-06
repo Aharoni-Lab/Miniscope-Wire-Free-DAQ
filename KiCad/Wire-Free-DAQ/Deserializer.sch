@@ -1366,8 +1366,6 @@ F 3 "" H 7825 3175 50  0001 C CNN
 	1    7825 3175
 	1    0    0    -1  
 $EndComp
-Wire Bus Line
-	4930 2710 4930 3810
 $Comp
 L power:+3.3V #PWR018
 U 1 1 5F3E09F1
@@ -1379,4 +1377,6 @@ F 3 "" H 7850 2700 50  0001 C CNN
 	1    7850 2700
 	1    0    0    -1  
 $EndComp
+Wire Bus Line
+	4930 2710 4930 3810
 $EndSCHEMATC
