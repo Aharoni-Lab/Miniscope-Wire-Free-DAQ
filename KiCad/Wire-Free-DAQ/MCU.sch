@@ -98,7 +98,7 @@ Text Label 7725 4995 2    50   ~ 0
 MOSI
 Text Label 7725 5095 2    50   ~ 0
 SCK
-Text Label 7725 5295 2    50   ~ 0
+Text Label 7685 5295 2    50   ~ 0
 SS_N
 Wire Wire Line
 	7725 4695 6875 4695
@@ -167,28 +167,6 @@ Wire Wire Line
 	6425 1295 6425 795 
 Text Label 6425 1170 1    50   ~ 0
 VDDPLLUSB
-$Comp
-L power:+1V8 #PWR050
-U 1 1 5D87BDF2
-P 6325 730
-F 0 "#PWR050" H 6325 580 50  0001 C CNN
-F 1 "+1V8" H 6340 903 50  0000 C CNN
-F 2 "" H 6325 730 50  0001 C CNN
-F 3 "" H 6325 730 50  0001 C CNN
-	1    6325 730 
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+1V8 #PWR051
-U 1 1 5D87C5B4
-P 6425 795
-F 0 "#PWR051" H 6425 645 50  0001 C CNN
-F 1 "+1V8" H 6440 968 50  0000 C CNN
-F 2 "" H 6425 795 50  0001 C CNN
-F 3 "" H 6425 795 50  0001 C CNN
-	1    6425 795 
-	1    0    0    -1  
-$EndComp
 Connection ~ 5175 1295
 Connection ~ 5075 1295
 Wire Wire Line
@@ -1223,9 +1201,9 @@ Wire Wire Line
 	4475 3795 3995 3795
 Text HLabel 3995 3795 0    50   Input ~ 0
 PCLK
-Text Label 1285 3545 0    50   ~ 0
-SWDIO
 Text Label 1285 3645 0    50   ~ 0
+SWDIO
+Text Label 1285 3545 0    50   ~ 0
 SWDCLK
 Text HLabel 3625 5195 0    50   BiDi ~ 0
 SDA
@@ -1376,12 +1354,56 @@ F 3 "https://www.kingbrightusa.com/images/catalog/SPEC/APHF1608SEEQBDZGKC.pdf" H
 	1    9085 5620
 	-1   0    0    1   
 $EndComp
-Wire Bus Line
-	3525 2095 3525 2995
 Text Label 9715 5820 2    50   ~ 0
 LED_R
 Text Label 9715 5620 2    50   ~ 0
 LED_G
 Text Label 9715 5420 2    50   ~ 0
 LED_B
+$Comp
+L power:+3.3V #PWR0105
+U 1 1 5F35B0C0
+P 6325 730
+F 0 "#PWR0105" H 6325 580 50  0001 C CNN
+F 1 "+3.3V" H 6340 903 50  0000 C CNN
+F 2 "" H 6325 730 50  0001 C CNN
+F 3 "" H 6325 730 50  0001 C CNN
+	1    6325 730 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0106
+U 1 1 5F35B484
+P 6425 795
+F 0 "#PWR0106" H 6425 645 50  0001 C CNN
+F 1 "+3.3V" H 6440 968 50  0000 C CNN
+F 2 "" H 6425 795 50  0001 C CNN
+F 3 "" H 6425 795 50  0001 C CNN
+	1    6425 795 
+	1    0    0    -1  
+$EndComp
+Text HLabel 7725 3595 2    50   Input ~ 0
+LOCK
+Wire Wire Line
+	7725 3595 6875 3595
+Text HLabel 3625 3495 0    50   Output ~ 0
+GPO0
+Text HLabel 3625 3295 0    50   Output ~ 0
+GPO1
+Text HLabel 3625 3595 0    50   Output ~ 0
+GPO2
+Text HLabel 3625 3395 0    50   Output ~ 0
+GPO3
+Wire Wire Line
+	7725 5195 6875 5195
+Wire Wire Line
+	7725 5395 6875 5395
+Wire Wire Line
+	7725 5495 6875 5495
+Wire Wire Line
+	4475 3595 3625 3595
+Wire Wire Line
+	4475 3295 3625 3295
+Wire Bus Line
+	3525 2095 3525 2995
 $EndSCHEMATC
