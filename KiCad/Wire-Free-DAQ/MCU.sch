@@ -1220,8 +1220,6 @@ F 3 "" H 6025 855 50  0001 C CNN
 	1    6025 855 
 	1    0    0    -1  
 $EndComp
-Text Notes 6935 2015 1    50   ~ 10
-MISSING 2.2ohmRES AND 10uF - 60mA INDUCT ON USBPLL
 $Comp
 L power:+3.3V #PWR0102
 U 1 1 5F609F72
@@ -1374,12 +1372,12 @@ $EndComp
 $Comp
 L power:+3.3V #PWR0106
 U 1 1 5F35B484
-P 6425 795
-F 0 "#PWR0106" H 6425 645 50  0001 C CNN
-F 1 "+3.3V" H 6440 968 50  0000 C CNN
-F 2 "" H 6425 795 50  0001 C CNN
-F 3 "" H 6425 795 50  0001 C CNN
-	1    6425 795 
+P 7815 750
+F 0 "#PWR0106" H 7815 600 50  0001 C CNN
+F 1 "+3.3V" H 7830 923 50  0000 C CNN
+F 2 "" H 7815 750 50  0001 C CNN
+F 3 "" H 7815 750 50  0001 C CNN
+	1    7815 750 
 	1    0    0    -1  
 $EndComp
 Text HLabel 7725 3595 2    50   Input ~ 0
@@ -1404,6 +1402,378 @@ Wire Wire Line
 	4475 3595 3625 3595
 Wire Wire Line
 	4475 3295 3625 3295
+Wire Wire Line
+	4475 6295 4145 6295
+$Comp
+L Device:R_US R?
+U 1 1 5F2E6573
+P 4145 6445
+AR Path="/5C92D296/5F2E6573" Ref="R?"  Part="1" 
+AR Path="/5F2E6573" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F2E6573" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F2E6573" Ref="R27"  Part="1" 
+F 0 "R27" H 4213 6491 50  0000 L CNN
+F 1 "5.62K" H 4213 6400 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 4185 6435 50  0001 C CNN
+F 3 "~" H 4145 6445 50  0001 C CNN
+	1    4145 6445
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4145 6295 3835 6295
+Wire Wire Line
+	3835 6295 3835 6365
+Connection ~ 4145 6295
+$Comp
+L power:GND #PWR0107
+U 1 1 5F3087B6
+P 3970 6595
+F 0 "#PWR0107" H 3970 6345 50  0001 C CNN
+F 1 "GND" H 3975 6422 50  0000 C CNN
+F 2 "" H 3970 6595 50  0001 C CNN
+F 3 "" H 3970 6595 50  0001 C CNN
+	1    3970 6595
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Capacitor:GRM1555C1H120JA01D C?
+U 1 1 5F2E689B
+P 3835 6465
+AR Path="/5C92D296/5F2E689B" Ref="C?"  Part="1" 
+AR Path="/5F2E689B" Ref="C?"  Part="1" 
+AR Path="/5EA167A9/5F2E689B" Ref="C?"  Part="1" 
+AR Path="/5F304029/5F2E689B" Ref="C58"  Part="1" 
+F 0 "C58" H 3927 6511 50  0000 L CNN
+F 1 "12pF" H 3445 6635 50  0001 L CNN
+F 2 ".Capacitor:C_0402_1005Metric_L" H 3895 6735 50  0001 C CNN
+F 3 "http://search.murata.co.jp/Ceramy/image/img/A01X/G101/ENG/GRM033R61A104ME15-01.pdf" H 3845 6535 50  0001 C CNN
+F 4 "10pF" H 3927 6420 50  0000 L CNN "Note"
+F 5 "0402" H 3945 6285 50  0001 C CNN "Size"
+	1    3835 6465
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3835 6565 3835 6595
+Wire Wire Line
+	3835 6595 3970 6595
+Connection ~ 3970 6595
+Wire Wire Line
+	3970 6595 4145 6595
+$Comp
+L Connector:USB_B_Micro J2
+U 1 1 5F322B51
+P 985 1265
+F 0 "J2" H 1042 1732 50  0000 C CNN
+F 1 "USB_B_Micro" H 1042 1641 50  0000 C CNN
+F 2 "Connector_USB:USB_Micro-B_Amphenol_10104110_Horizontal" H 1135 1215 50  0001 C CNN
+F 3 "~" H 1135 1215 50  0001 C CNN
+	1    985  1265
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	985  1665 985  1690
+Wire Wire Line
+	985  1690 940  1690
+Wire Wire Line
+	885  1690 885  1665
+$Comp
+L power:GND #PWR0108
+U 1 1 5F32CEFC
+P 940 1690
+F 0 "#PWR0108" H 940 1440 50  0001 C CNN
+F 1 "GND" H 945 1517 50  0000 C CNN
+F 2 "" H 940 1690 50  0001 C CNN
+F 3 "" H 940 1690 50  0001 C CNN
+	1    940  1690
+	1    0    0    -1  
+$EndComp
+Connection ~ 940  1690
+Wire Wire Line
+	940  1690 885  1690
+Wire Wire Line
+	1285 1365 1490 1365
+Wire Wire Line
+	1285 1265 1490 1265
+Wire Wire Line
+	1285 1065 1490 1065
+Text Label 1490 1265 2    50   ~ 0
+D+
+Text Label 1490 1365 2    50   ~ 0
+D-
+$Comp
+L power:+5V #PWR0109
+U 1 1 5F349A90
+P 1490 1065
+F 0 "#PWR0109" H 1490 915 50  0001 C CNN
+F 1 "+5V" H 1505 1238 50  0000 C CNN
+F 2 "" H 1490 1065 50  0001 C CNN
+F 3 "" H 1490 1065 50  0001 C CNN
+	1    1490 1065
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4475 6095 4270 6095
+Wire Wire Line
+	4475 6195 4270 6195
+Text Label 4270 6195 0    50   ~ 0
+D-
+Text Label 4270 6095 0    50   ~ 0
+D+
+$Comp
+L .Device:C_Small C?
+U 1 1 5F36EBD6
+P 3480 1245
+AR Path="/5F36EBD6" Ref="C?"  Part="1" 
+AR Path="/5F2FDF24/5F36EBD6" Ref="C?"  Part="1" 
+AR Path="/5F304029/5F36EBD6" Ref="C60"  Part="1" 
+F 0 "C60" H 3572 1291 50  0000 L CNN
+F 1 "10uF" H 3572 1200 50  0000 L CNN
+F 2 ".Capacitor:C_0603_1608Metric_L" H 3480 1245 50  0001 C CNN
+F 3 "~" H 3480 1245 50  0001 C CNN
+F 4 "GRM188R61A106KE69J" H 3480 1245 50  0001 C CNN "Part Number"
+	1    3480 1245
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Device:C_Small C?
+U 1 1 5F3784D5
+P 1910 995
+AR Path="/5F3784D5" Ref="C?"  Part="1" 
+AR Path="/5F2FDF24/5F3784D5" Ref="C?"  Part="1" 
+AR Path="/5F304029/5F3784D5" Ref="C59"  Part="1" 
+F 0 "C59" H 2002 1041 50  0000 L CNN
+F 1 "10uF" H 2002 950 50  0000 L CNN
+F 2 ".Capacitor:C_0603_1608Metric_L" H 1910 995 50  0001 C CNN
+F 3 "~" H 1910 995 50  0001 C CNN
+F 4 "GRM188R61A106KE69J" H 1910 995 50  0001 C CNN "Part Number"
+	1    1910 995 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5F38229A
+P 2080 1495
+AR Path="/5C92D296/5F38229A" Ref="R?"  Part="1" 
+AR Path="/5F38229A" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F38229A" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F38229A" Ref="R28"  Part="1" 
+F 0 "R28" H 2148 1541 50  0000 L CNN
+F 1 "2K" H 2148 1450 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 2120 1485 50  0001 C CNN
+F 3 "~" H 2080 1495 50  0001 C CNN
+	1    2080 1495
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2580 945  2580 825 
+Wire Wire Line
+	1910 825  1910 895 
+Wire Wire Line
+	1910 825  2580 825 
+Wire Wire Line
+	2980 1145 3480 1145
+$Comp
+L Device:R_US R?
+U 1 1 5F3DED76
+P 3040 1585
+AR Path="/5C92D296/5F3DED76" Ref="R?"  Part="1" 
+AR Path="/5F3DED76" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F3DED76" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F3DED76" Ref="R29"  Part="1" 
+F 0 "R29" H 3108 1631 50  0000 L CNN
+F 1 "10K" H 3108 1540 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 3080 1575 50  0001 C CNN
+F 3 "~" H 3040 1585 50  0001 C CNN
+	1    3040 1585
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2980 1345 3040 1345
+Wire Wire Line
+	3040 1345 3040 1435
+Wire Wire Line
+	3155 1735 3040 1735
+Wire Wire Line
+	3480 1345 3480 1440
+Wire Wire Line
+	2180 1345 2080 1345
+Wire Wire Line
+	2580 1645 2080 1645
+Wire Wire Line
+	2580 1545 2580 1645
+Wire Wire Line
+	1910 1095 1910 1130
+$Comp
+L power:GND #PWR0110
+U 1 1 5F44CB87
+P 1910 1130
+F 0 "#PWR0110" H 1910 880 50  0001 C CNN
+F 1 "GND" H 1915 957 50  0000 C CNN
+F 2 "" H 1910 1130 50  0001 C CNN
+F 3 "" H 1910 1130 50  0001 C CNN
+	1    1910 1130
+	1    0    0    -1  
+$EndComp
+$Comp
+L Battery_Management:MCP73832-2-OT U5
+U 1 1 5F35C898
+P 2580 1245
+F 0 "U5" H 2860 1495 50  0000 C CNN
+F 1 "MCP73832-2-OT" H 2925 1625 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-5" H 2630 995 50  0001 L CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf" H 2430 1195 50  0001 C CNN
+	1    2580 1245
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0111
+U 1 1 5F44D2AA
+P 2580 1645
+F 0 "#PWR0111" H 2580 1395 50  0001 C CNN
+F 1 "GND" H 2585 1472 50  0000 C CNN
+F 2 "" H 2580 1645 50  0001 C CNN
+F 3 "" H 2580 1645 50  0001 C CNN
+	1    2580 1645
+	1    0    0    -1  
+$EndComp
+Connection ~ 2580 1645
+$Comp
+L power:GND #PWR0112
+U 1 1 5F44DA09
+P 3480 1440
+F 0 "#PWR0112" H 3480 1190 50  0001 C CNN
+F 1 "GND" H 3485 1267 50  0000 C CNN
+F 2 "" H 3480 1440 50  0001 C CNN
+F 3 "" H 3480 1440 50  0001 C CNN
+	1    3480 1440
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0113
+U 1 1 5F44ECAD
+P 3155 1735
+F 0 "#PWR0113" H 3155 1585 50  0001 C CNN
+F 1 "+3.3V" H 3170 1908 50  0000 C CNN
+F 2 "" H 3155 1735 50  0001 C CNN
+F 3 "" H 3155 1735 50  0001 C CNN
+	1    3155 1735
+	1    0    0    -1  
+$EndComp
+Text Label 2995 1345 0    50   ~ 0
+CHR_STAT
+$Comp
+L power:+5V #PWR0114
+U 1 1 5F456C6C
+P 1910 825
+F 0 "#PWR0114" H 1910 675 50  0001 C CNN
+F 1 "+5V" H 1925 998 50  0000 C CNN
+F 2 "" H 1910 825 50  0001 C CNN
+F 3 "" H 1910 825 50  0001 C CNN
+	1    1910 825 
+	1    0    0    -1  
+$EndComp
+Connection ~ 1910 825 
+Wire Wire Line
+	3480 1145 3745 1145
+Connection ~ 3480 1145
+$Comp
+L power:+BATT #PWR0115
+U 1 1 5F463E51
+P 3745 1145
+F 0 "#PWR0115" H 3745 995 50  0001 C CNN
+F 1 "+BATT" H 3760 1318 50  0000 C CNN
+F 2 "" H 3745 1145 50  0001 C CNN
+F 3 "" H 3745 1145 50  0001 C CNN
+	1    3745 1145
+	1    0    0    -1  
+$EndComp
+Text Notes 1730 1785 0    50   ~ 0
+I_charge = 1kV/R
+$Comp
+L .Device:L_Small L11
+U 1 1 5F474913
+P 7205 795
+F 0 "L11" V 7390 795 50  0000 C CNN
+F 1 "MLZ1608N100LT000" V 7299 795 50  0000 C CNN
+F 2 ".Inductor:L_0603_1608Metric_L" H 7205 795 50  0001 C CNN
+F 3 "~" H 7205 795 50  0001 C CNN
+	1    7205 795 
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5F496699
+P 7610 795
+AR Path="/5C92D296/5F496699" Ref="R?"  Part="1" 
+AR Path="/5F496699" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F496699" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F496699" Ref="R30"  Part="1" 
+F 0 "R30" V 7530 770 50  0000 L CNN
+F 1 "2.2" V 7690 740 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 7650 785 50  0001 C CNN
+F 3 "~" H 7610 795 50  0001 C CNN
+	1    7610 795 
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7305 795  7460 795 
+Wire Wire Line
+	7760 795  7815 795 
+Wire Wire Line
+	7815 795  7815 750 
+$Comp
+L .Device:C_Small C?
+U 1 1 5F4AF93B
+P 6870 895
+AR Path="/5F4AF93B" Ref="C?"  Part="1" 
+AR Path="/5F2FDF24/5F4AF93B" Ref="C?"  Part="1" 
+AR Path="/5F304029/5F4AF93B" Ref="C61"  Part="1" 
+F 0 "C61" H 6962 941 50  0000 L CNN
+F 1 "10uF" H 6962 850 50  0000 L CNN
+F 2 ".Capacitor:C_0603_1608Metric_L" H 6870 895 50  0001 C CNN
+F 3 "~" H 6870 895 50  0001 C CNN
+F 4 "GRM188R61A106KE69J" H 6870 895 50  0001 C CNN "Part Number"
+	1    6870 895 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6425 795  6870 795 
+Connection ~ 6870 795 
+Wire Wire Line
+	6870 795  7105 795 
+Wire Wire Line
+	6870 995  6870 1060
+$Comp
+L power:GND #PWR0116
+U 1 1 5F4C9469
+P 6870 1060
+F 0 "#PWR0116" H 6870 810 50  0001 C CNN
+F 1 "GND" H 6875 887 50  0000 C CNN
+F 2 "" H 6870 1060 50  0001 C CNN
+F 3 "" H 6870 1060 50  0001 C CNN
+	1    6870 1060
+	1    0    0    -1  
+$EndComp
+$Comp
+L .Device:C_Small C?
+U 1 1 5F4FD1C0
+P 9360 3100
+AR Path="/5F4FD1C0" Ref="C?"  Part="1" 
+AR Path="/5F2FDF24/5F4FD1C0" Ref="C?"  Part="1" 
+AR Path="/5F304029/5F4FD1C0" Ref="C62"  Part="1" 
+F 0 "C62" H 9452 3146 50  0000 L CNN
+F 1 "10uF" H 9452 3055 50  0000 L CNN
+F 2 ".Capacitor:C_0603_1608Metric_L" H 9360 3100 50  0001 C CNN
+F 3 "~" H 9360 3100 50  0001 C CNN
+F 4 "GRM188R61A106KE69J" H 9360 3100 50  0001 C CNN "Part Number"
+	1    9360 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9360 3000 9650 3000
+Wire Wire Line
+	9360 3200 9650 3200
+Connection ~ 9650 3200
 Wire Bus Line
 	3525 2095 3525 2995
 $EndSCHEMATC

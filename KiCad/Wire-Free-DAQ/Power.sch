@@ -632,17 +632,6 @@ Battery Power Input
 Text Notes 3120 1355 0    50   ~ 10
 CHANGE TO U.FL?
 $Comp
-L Connector_Generic:Conn_01x02 J1
-U 1 1 5F3027F4
-P 1465 4040
-F 0 "J1" H 1545 4032 50  0000 L CNN
-F 1 "SM02B-SRSS-TB(LF)(SN)" H 1545 3941 50  0000 L CNN
-F 2 "Connector_JST:JST_SH_SM02B-SRSS-TB_1x02-1MP_P1.00mm_Horizontal" H 1465 4040 50  0001 C CNN
-F 3 "https://www.lipolbattery.com/li-po-battery-connectors.html" H 1465 4040 50  0001 C CNN
-	1    1465 4040
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR?
 U 1 1 5F4033E6
 P 1265 4140
@@ -669,6 +658,32 @@ F 1 "+BATT" H 1280 4213 50  0000 C CNN
 F 2 "" H 1265 4040 50  0001 C CNN
 F 3 "" H 1265 4040 50  0001 C CNN
 	1    1265 4040
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5F565BC6
+P 1465 4340
+AR Path="/5F304029/5F565BC6" Ref="#PWR?"  Part="1" 
+AR Path="/5F2FDF24/5F565BC6" Ref="#PWR?"  Part="1" 
+F 0 "#PWR?" H 1465 4090 50  0001 C CNN
+F 1 "GND" H 1470 4167 50  0000 C CNN
+F 2 "" H 1465 4340 50  0001 C CNN
+F 3 "" H 1465 4340 50  0001 C CNN
+	1    1465 4340
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic_MountingPin:Conn_01x02_MountingPin J?
+U 1 1 5F5642C3
+P 1465 4040
+AR Path="/5F304029/5F5642C3" Ref="J?"  Part="1" 
+AR Path="/5F2FDF24/5F5642C3" Ref="J1"  Part="1" 
+F 0 "J1" H 1553 3954 50  0000 L CNN
+F 1 "SM02B-SRSS-TB" H 1553 3863 50  0000 L CNN
+F 2 "Connector_JST:JST_SH_SM02B-SRSS-TB_1x02-1MP_P1.00mm_Horizontal" H 1465 4040 50  0001 C CNN
+F 3 "~" H 1465 4040 50  0001 C CNN
+	1    1465 4040
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
