@@ -1774,6 +1774,79 @@ Wire Wire Line
 Wire Wire Line
 	9360 3200 9650 3200
 Connection ~ 9650 3200
+Wire Wire Line
+	7725 4395 6875 4395
+Text Label 7725 4395 2    50   ~ 0
+CHR_STAT
+$Comp
+L Device:R_US R?
+U 1 1 5F65D02C
+P 1475 2145
+AR Path="/5C92D296/5F65D02C" Ref="R?"  Part="1" 
+AR Path="/5F65D02C" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F65D02C" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F65D02C" Ref="R31"  Part="1" 
+F 0 "R31" H 1543 2191 50  0000 L CNN
+F 1 "15K" H 1543 2100 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 1515 2135 50  0001 C CNN
+F 3 "~" H 1475 2145 50  0001 C CNN
+	1    1475 2145
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R?
+U 1 1 5F65D30F
+P 1475 2535
+AR Path="/5C92D296/5F65D30F" Ref="R?"  Part="1" 
+AR Path="/5F65D30F" Ref="R?"  Part="1" 
+AR Path="/5EA167A9/5F65D30F" Ref="R?"  Part="1" 
+AR Path="/5F304029/5F65D30F" Ref="R32"  Part="1" 
+F 0 "R32" H 1543 2581 50  0000 L CNN
+F 1 "22K" H 1543 2490 50  0000 L CNN
+F 2 ".Resistor:R_0402_1005Metric_ERJ_L" V 1515 2525 50  0001 C CNN
+F 3 "~" H 1475 2535 50  0001 C CNN
+	1    1475 2535
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1475 2295 1475 2340
+Wire Wire Line
+	1475 2340 1630 2340
+Connection ~ 1475 2340
+Wire Wire Line
+	1475 2340 1475 2385
+Text Label 1550 2340 0    50   ~ 0
+VBUS_DET
+Wire Wire Line
+	1475 1995 1475 1930
+Wire Wire Line
+	1475 2685 1475 2755
+$Comp
+L power:GND #PWR02
+U 1 1 5F69075E
+P 1475 2755
+F 0 "#PWR02" H 1475 2505 50  0001 C CNN
+F 1 "GND" H 1480 2582 50  0000 C CNN
+F 2 "" H 1475 2755 50  0001 C CNN
+F 3 "" H 1475 2755 50  0001 C CNN
+	1    1475 2755
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR01
+U 1 1 5F690D1B
+P 1475 1930
+F 0 "#PWR01" H 1475 1780 50  0001 C CNN
+F 1 "+5V" H 1490 2103 50  0000 C CNN
+F 2 "" H 1475 1930 50  0001 C CNN
+F 3 "" H 1475 1930 50  0001 C CNN
+	1    1475 1930
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4475 4795 3625 4795
 Wire Bus Line
 	3525 2095 3525 2995
+Text Label 3625 4795 0    50   ~ 0
+VBUS_DET
 $EndSCHEMATC
