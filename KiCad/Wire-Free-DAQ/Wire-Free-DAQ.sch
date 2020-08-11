@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Wire-Free-DAQ"
+Date "2020-08-10"
+Rev "v0.1"
+Comp "Aharoni Lab"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -79,4 +79,26 @@ Wire Wire Line
 	5560 3890 5805 3890
 Wire Wire Line
 	5560 3960 5805 3960
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5F39A62B
+P 3590 5910
+F 0 "H1" H 3690 5956 50  0000 L CNN
+F 1 "MountingHole" H 3690 5865 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_250x750_Pad" H 3590 5910 50  0001 C CNN
+F 3 "~" H 3590 5910 50  0001 C CNN
+	1    3590 5910
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H2
+U 1 1 5F39A937
+P 3590 6145
+F 0 "H2" H 3690 6191 50  0000 L CNN
+F 1 "MountingHole" H 3690 6100 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_250x750_Pad" H 3590 6145 50  0001 C CNN
+F 3 "~" H 3590 6145 50  0001 C CNN
+	1    3590 6145
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

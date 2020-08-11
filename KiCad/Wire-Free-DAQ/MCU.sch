@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 4
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Wire-Free-DAQ"
+Date "2020-08-10"
+Rev "v0.1"
+Comp "Aharoni Lab"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -1845,8 +1845,77 @@ F 3 "" H 1475 1930 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4475 4795 3625 4795
-Wire Bus Line
-	3525 2095 3525 2995
 Text Label 3625 4795 0    50   ~ 0
 VBUS_DET
+$Comp
+L Connector_Generic:Conn_01x01 J9
+U 1 1 5F33281A
+P 10660 5420
+F 0 "J9" H 10740 5462 50  0000 L CNN
+F 1 "Conn_01x01" H 10740 5371 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_250x750_Pad" H 10660 5420 50  0001 C CNN
+F 3 "~" H 10660 5420 50  0001 C CNN
+	1    10660 5420
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J10
+U 1 1 5F333504
+P 10660 5525
+F 0 "J10" H 10740 5567 50  0000 L CNN
+F 1 "Conn_01x01" H 10740 5476 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_250x750_Pad" H 10660 5525 50  0001 C CNN
+F 3 "~" H 10660 5525 50  0001 C CNN
+	1    10660 5525
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J11
+U 1 1 5F33378B
+P 10660 5625
+F 0 "J11" H 10740 5667 50  0000 L CNN
+F 1 "Conn_01x01" H 10740 5576 50  0000 L CNN
+F 2 ".Connector:Conn_1x1_250x750_Pad" H 10660 5625 50  0001 C CNN
+F 3 "~" H 10660 5625 50  0001 C CNN
+	1    10660 5625
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10460 5420 10260 5420
+Wire Wire Line
+	10460 5525 10260 5525
+Wire Wire Line
+	10460 5625 10175 5625
+Text Label 10175 5625 0    50   ~ 0
+IR_OUT
+$Comp
+L power:GND #PWR0118
+U 1 1 5F35AD4B
+P 10260 5525
+F 0 "#PWR0118" H 10260 5275 50  0001 C CNN
+F 1 "GND" H 10265 5352 50  0000 C CNN
+F 2 "" H 10260 5525 50  0001 C CNN
+F 3 "" H 10260 5525 50  0001 C CNN
+	1    10260 5525
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 5F35B723
+P 10260 5420
+AR Path="/5C92D2A1/5F35B723" Ref="#PWR?"  Part="1" 
+AR Path="/5F35B723" Ref="#PWR?"  Part="1" 
+AR Path="/5EA167A9/5F35B723" Ref="#PWR?"  Part="1" 
+AR Path="/5F304029/5F35B723" Ref="#PWR0119"  Part="1" 
+F 0 "#PWR0119" H 10260 5270 50  0001 C CNN
+F 1 "+3V3" H 10275 5593 50  0000 C CNN
+F 2 "" H 10260 5420 50  0001 C CNN
+F 3 "" H 10260 5420 50  0001 C CNN
+	1    10260 5420
+	0    -1   -1   0   
+$EndComp
+Wire Bus Line
+	3525 2095 3525 2995
+Text Notes 10200 5860 0    50   ~ 0
+Pads for TSOP38238
 $EndSCHEMATC

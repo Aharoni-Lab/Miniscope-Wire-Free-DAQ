@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 3 4
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Wire-Free-DAQ"
+Date "2020-08-10"
+Rev "v0.1"
+Comp "Aharoni Lab"
 Comment1 ""
 Comment2 ""
 Comment3 ""
