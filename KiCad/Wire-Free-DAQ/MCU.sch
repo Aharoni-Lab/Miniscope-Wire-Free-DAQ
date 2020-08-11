@@ -53,8 +53,6 @@ Text Label 3625 4095 0    50   ~ 0
 CLK
 Text Label 3625 4895 0    50   ~ 0
 RESET_N
-Text Label 3625 4995 0    50   ~ 0
-TRIGGER0
 Text Label 3625 5195 0    50   ~ 0
 SDA
 Text Label 3625 5295 0    50   ~ 0
@@ -1918,4 +1916,6 @@ Wire Bus Line
 	3525 2095 3525 2995
 Text Notes 10200 5860 0    50   ~ 0
 Pads for TSOP38238
+Text Label 3625 4995 0    50   ~ 0
+IR_OUT
 $EndSCHEMATC
