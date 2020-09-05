@@ -80,16 +80,11 @@
 
 // ===== PLL0 (A) Options   (Fpll = (Fclk * PLL_mul) / PLL_div)
 // Use mul and div effective values here.
-#define CONFIG_PLL0_SOURCE          PLL_SRC_MAINCK_XTAL //PLL_SRC_MAINCK_12M_RC //PLL_SRC_MAINCK_XTAL
-#ifdef EV76C454
-	#define CONFIG_PLL0_MUL             24 // This was decreased from 25 to make CMOS clk = 48MHz. This means ARM is running at 144MHz not 150MHz
-#endif
-#ifdef EV76C454_SUBSAMP
-	#define CONFIG_PLL0_MUL             12 // This was decreased from 25 to make CMOS clk = 48MHz. This means ARM is running at 72MHz not 150MHz
-#endif
-#ifdef EV76C541
-	#define CONFIG_PLL0_MUL             12 // This was decreased from 25 to make CMOS clk = 48MHz. This means ARM is running at 72MHz not 150MHz
-#endif
+#define CONFIG_PLL0_SOURCE          PLL_SRC_MAINCK_XTAL
+#define CONFIG_PLL0_MUL				25 // ARM will run at 150MHz
+//#define CONFIG_PLL0_MUL             24 // This was decreased from 25 to make CMOS clk = 48MHz. This means ARM is running at 144MHz not 150MHz
+//#define CONFIG_PLL0_MUL             12 // This was decreased from 25 to make CMOS clk = 48MHz. This means ARM is running at 72MHz not 150MHz
+
 
 #define CONFIG_PLL0_DIV             1
 

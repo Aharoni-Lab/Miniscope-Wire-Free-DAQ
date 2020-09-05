@@ -591,7 +591,13 @@
     <None Include="src\ASF\sam\drivers\wdt\wdt.h">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="src\sdImaging.h">
+    <Compile Include="src\definitions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\image_sensor_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\sd_card_interface.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\time_tick.h">
