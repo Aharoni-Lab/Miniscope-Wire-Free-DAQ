@@ -62,26 +62,34 @@ void setStatusLED(char color, bool ledOn) {
 	// Color options: 'W', 'R', 'G', 'B', 'M', 'Y', 'C'
 	
 	if (color >= 97) // is lower case
-		color-= 32 // make upper case
+		color-= 32; // make upper case
 	
 	switch (color)
 	{
 		case ('R'):
-		case ('W'):
-		case ('M'):
-		case ('Y'):
 			ioport_set_pin_level(LED_R_PIN, !ledOn);
 			break;
 		case ('G'):
-		case ('W'):
-		case ('Y'):
-		case ('C'):
 			ioport_set_pin_level(LED_G_PIN, !ledOn);
 			break;
 		case ('B'):
-		case ('W'):
+			ioport_set_pin_level(LED_B_PIN, !ledOn);
+			break;
 		case ('M'):
+			ioport_set_pin_level(LED_R_PIN, !ledOn);
+			ioport_set_pin_level(LED_B_PIN, !ledOn);
+			break;
+		case ('Y'):
+			ioport_set_pin_level(LED_R_PIN, !ledOn);
+			ioport_set_pin_level(LED_G_PIN, !ledOn);
+			break;
 		case ('C'):
+			ioport_set_pin_level(LED_G_PIN, !ledOn);
+			ioport_set_pin_level(LED_B_PIN, !ledOn);
+			break;
+		case ('W'):
+			ioport_set_pin_level(LED_R_PIN, !ledOn);
+			ioport_set_pin_level(LED_G_PIN, !ledOn);
 			ioport_set_pin_level(LED_B_PIN, !ledOn);
 			break;
 	}
@@ -183,7 +191,7 @@ int main (void)
 				// Actual writing of good buffers
 				bufferToWrite = dataBuffer + ((writeBufferCount + droppedBufferCount) % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
 				numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
-				sd_mmc_start_write_blocks(bufferToWrite, numBlocks)
+				sd_mmc_start_write_blocks(bufferToWrite, numBlocks);
 			
 				sd_mmc_wait_end_of_write_blocks(false); // blocking function till sd card write has finished
 			
@@ -198,7 +206,7 @@ int main (void)
 				}
 			}
 					
-			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader[HEADER_RECORD_LENGTH_POS] * 1000){
+			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader(HEADER_RECORD_LENGTH_POS) * 1000){
 				// Recording time has elapsed
 				deviceState = DEVICE_STATE_STOP_RECORDING;
 				
@@ -210,21 +218,9 @@ int main (void)
 				sd_mmc_start_write_blocks(configBlock,1);
 				sd_mmc_wait_end_of_write_blocks(false);
 				
-				while (1) {} // This just freezes the MCU at the end of recording. Can change this if we need to retrigger recording later.
+				while (1) {} // This just freezes the MCU at the end of recording. Can change this if we need to re-trigger recording later.
+			}
 			
-		//
 		}
-
-//
-		//if (time_tick_calc_delay(tick_start, time_tick_get())>=numFramesToRecord*1000){
-			////sd_mmc_init_write_blocks(SD_SLOT_NB,STARTING_BLOCK-1,1);
-			////sd_mmc_start_write_blocks(&test[0],1);//NB_BLOCKS_PER_WRITE
-			////sd_mmc_wait_end_of_write_blocks(false);
-			//ioport_set_pin_level(LED_PIN, 0);
-			//ioport_set_pin_level(ENT_PIN, 0);
-			//while(1){}
-		//}
-					
 	}
-	
 }
