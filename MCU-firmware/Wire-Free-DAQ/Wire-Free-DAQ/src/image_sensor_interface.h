@@ -79,39 +79,39 @@ volatile uint32_t bufferCount = 0;
 volatile uint32_t startTime;
 
 // ---------------- Functions 
-void imageCaptureSetup();
-void imageCaptureEnable();
-void imageCaptureDisable();
-void imageIntInit();
-void imageCaptureDMAInit();
-void imageCaptureParamInit();
-void vSyncIntInit();
-void miniscopeInit();
-void imageCaptureDMAStart();
-void imageCaptureDMAStop();
-void linkedListInit();
-void updateLinkedLists();
+void imageCaptureSetup(void);
+void imageCaptureEnable(void);
+void imageCaptureDisable(void);
+void imageIntInit(void);
+void imageCaptureDMAInit(void);
+void imageCaptureParamInit(void);
+void vSyncIntInit(void);
+void miniscopeInit(void);
+void imageCaptureDMAStart(uint32_t *linkedList);
+void imageCaptureDMAStop(void);
+void linkedListInit(void);
+void updateLinkedLists(void);
 
 void setExcitationLED(uint32_t value);
 void setGain(uint32_t value);
 void setFPS(uint32_t value);
 void setEWL(uint32_t value);
 
-void handleEndOfFrame();
-void setBufferHeader();
+void handleEndOfFrame(void);
+void setBufferHeader(void);
 
-void setStartTime();
-uint32_t getStartTime();
+void setStartTime(void);
+uint32_t getStartTime(void);
 // -------------------------------------------------
 
-void setStartTime() {
+void setStartTime(void) {
 	startTime = time_tick_get();
 }
 
-uint32_t getStartTime() {
+uint32_t getStartTime(void) {
 	return startTime;
 }
-void imageCaptureSetup() {
+void imageCaptureSetup(void) {
 	imageCaptureDisable();//makes sure PIo Capture is disabled
 	
 	pmc_enable_periph_clk( ID_PIOA ); //Sets PIO clock
@@ -128,19 +128,19 @@ void imageCaptureSetup() {
 
 }
 
-void imageCaptureEnable() {
+void imageCaptureEnable(void) {
 	PIOA->PIO_PCMR |= PIO_PCMR_PCEN ;	
 }
 
-void imageCaptureDisable() {
+void imageCaptureDisable(void) {
 	PIOA->PIO_PCMR &= (uint32_t)(~PIO_PCMR_PCEN) ;
 }
 
-void imageIntInit() {
+void imageIntInit(void) {
 	PIOA->PIO_PCIDR |= (PIO_PCIDR_DRDY)|(PIO_PCIDR_RXBUFF)|(PIO_PCIDR_ENDRX)|(PIO_PCIDR_OVRE); //Makes sure other interrupts are disabled
 }
 
-void imageCaptureDMAInit() {
+void imageCaptureDMAInit(void) {
 	/* Initialize and enable DMA controller */
 	pmc_enable_periph_clk(ID_XDMAC);
 
@@ -150,7 +150,7 @@ void imageCaptureDMAInit() {
 	NVIC_EnableIRQ(XDMAC_IRQn);
 }
 
-void imageCaptureParamInit() {
+void imageCaptureParamInit(void) {
 	PIOA->PIO_PCMR |= PIO_PCMR_DSIZE(D_SIZE);
 	if (ALWYS == 1)
 	PIOA->PIO_PCMR |= PIO_PCMR_ALWYS;
@@ -172,7 +172,7 @@ void vSyncIntInit() {
 	
 }
 
-void miniscopeInit() {
+void miniscopeInit(void) {
 	twihs_packet_t twiPacket;
 	uint8_t twiBuffer[4];
 	twiPacket.buffer = twiBuffer;
@@ -284,9 +284,9 @@ void setFPS(uint32_t value) {
 void setEWL(uint32_t value) {
 	
 }
-void linkedListInit() {
+void linkedListInit(void) {
 	// We are using View 1 Structure for Linked Lists
-	linkedList[0][0] = &linkedList[1][0]; //Next Descriptor Address
+	linkedList[0][0] = (uint32_t)&linkedList[1][0]; //Next Descriptor Address
 	linkedList[0][1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
 						XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
 						XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
@@ -295,7 +295,7 @@ void linkedListInit() {
 	linkedList[0][2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
 	linkedList[0][3] = dataBuffer + BUFFER_HEADER_LENGTH; // Destination Address
 
-	linkedList[1][0] = &linkedList[0][0]; //Next Descriptor Address
+	linkedList[1][0] = (uint32_t)&linkedList[0][0]; //Next Descriptor Address
 	linkedList[1][1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
 	XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
 	XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
@@ -304,10 +304,11 @@ void linkedListInit() {
 	linkedList[1][2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
 	linkedList[1][3] = dataBuffer + (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS) + BUFFER_HEADER_LENGTH; // Destination Address
 }
+
 void imageCaptureDMAStart(uint32_t *linkedList) {
-	uint32_t channelStatus = 0;
+//	uint32_t channelStatus = 0;
 	XDMAC->XDMAC_GD =(XDMAC_GD_DI1); //disables DMA channel
-	channelStatus = XDMAC->XDMAC_GS; //Global status of XDMAC channels. Should make sure IMAGING_SENSOR_XDMAC_CH is available
+//	channelStatus = XDMAC->XDMAC_GS; //Global status of XDMAC channels. Should make sure IMAGING_SENSOR_XDMAC_CH is available
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CIS;//clears interrupt status bit
 	
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CC = XDMAC_CC_TYPE_PER_TRAN |
@@ -340,11 +341,11 @@ void imageCaptureDMAStart(uint32_t *linkedList) {
 
 }
 
-void imageCaptureDMAStop() {
+void imageCaptureDMAStop(void) {
 	XDMAC->XDMAC_GD |= XDMAC_GD_DI1;
 }
 
-void updateLinkedLists() {
+void updateLinkedLists(void) {
 	// Updates the buffer address for the next linked list that will be used
 	// If bufferCount is even then we want to update linkedList[0][X]
 	// If bufferCount is off then we want to update linkedList[1][X]
@@ -355,7 +356,7 @@ void updateLinkedLists() {
 	
 }
 
-void setBufferHeader() {
+void setBufferHeader(void) {
 	uint32_t *bufferAddress;
 	bufferAddress = dataBuffer + (bufferCount%NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
 	bufferAddress[BUFFER_HEADER_FRAME_NUM_POS] = frameNum;
@@ -363,7 +364,7 @@ void setBufferHeader() {
 	bufferAddress[BUFFER_HEADER_TIMESTAMP_POS] = time_tick_calc_delay(startTime, time_tick_get());
 	bufferAddress[BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS) * 4; // In bytes
 }
-void handleEndOfFrame() {
+void handleEndOfFrame(void) {
 	// TODO:
 	// disable DMA
 	// set buffer header

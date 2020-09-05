@@ -37,15 +37,15 @@ volatile uint8_t configBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the device co
 volatile uint32_t currentBlock = STARTING_BLOCK;
 
 // ------------ Functions
-void waitForCardDetect();
+void waitForCardDetect(void);
 bool checkCardType(uint32_t cardType);
-uint32_t getSDCardCapacity();
-void loadSDCardHeader();
+uint32_t getSDCardCapacity(void);
+void loadSDCardHeader(void);
 uint32_t getPropFromHeader(uint8_t headerPos);
 void setConfigBlockProp(uint8_t position, uint32_t value);
 
 //--------------------------------------------
-void waitForCardDetect() {
+void waitForCardDetect(void) {
 	while (sd_mmc_check(SD_SLOT_NB) != SD_MMC_OK) {}
 }
 
@@ -54,11 +54,11 @@ bool checkCardType(uint32_t cardType) {
 	return (sd_mmc_get_type(SD_SLOT_NB) == cardType);
 }
 
-uint32_t getSDCardCapacity() {
+uint32_t getSDCardCapacity(void) {
 	return sd_mmc_get_capacity(SD_SLOT_NB);
 }
 
-void loadSDCardHeader(){	
+void loadSDCardHeader(void){	
 	sd_mmc_init_read_blocks(SD_SLOT_NB,HEADER_BLOCK,1);
 	sd_mmc_start_read_blocks(headerBlock,1);
 	sd_mmc_wait_end_of_read_blocks(false);
