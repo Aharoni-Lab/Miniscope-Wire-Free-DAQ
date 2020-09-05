@@ -35,6 +35,7 @@ volatile uint8_t headerBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the 512 bytes
 volatile uint8_t configBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the device config information to be written to the starting block
 	
 volatile uint32_t currentBlock = STARTING_BLOCK;
+volatile uint32_t lastInitBlock;
 
 // ------------ Functions
 void waitForCardDetect(void);

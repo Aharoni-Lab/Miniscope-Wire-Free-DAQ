@@ -41,11 +41,11 @@ void GPIO_init() {
 	
 	// ----------- RGB Status LED Pins
 	ioport_set_pin_dir(LED_R_PIN, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_level(LED_R_PIN, 0);
+	ioport_set_pin_level(LED_R_PIN, 1);
 	ioport_set_pin_dir(LED_G_PIN, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_level(LED_G_PIN, 0);
+	ioport_set_pin_level(LED_G_PIN, 1);
 	ioport_set_pin_dir(LED_B_PIN, IOPORT_DIR_OUTPUT);
-	ioport_set_pin_level(LED_B_PIN, 0);
+	ioport_set_pin_level(LED_B_PIN, 1);
 	
 	// ----------- GPO Pins
 	ioport_set_pin_dir(GPO0_PIN, IOPORT_DIR_OUTPUT);
@@ -58,6 +58,35 @@ void GPIO_init() {
 	ioport_set_pin_level(GPO3_PIN, 0);
 }
 
+void setStatusLED(char color, bool ledOn) {
+	// Color options: 'W', 'R', 'G', 'B', 'M', 'Y', 'C'
+	
+	if (color >= 97) // is lower case
+		color-= 32 // make upper case
+	
+	switch (color)
+	{
+		case ('R'):
+		case ('W'):
+		case ('M'):
+		case ('Y'):
+			ioport_set_pin_level(LED_R_PIN, !ledOn);
+			break;
+		case ('G'):
+		case ('W'):
+		case ('Y'):
+		case ('C'):
+			ioport_set_pin_level(LED_G_PIN, !ledOn);
+			break;
+		case ('B'):
+		case ('W'):
+		case ('M'):
+		case ('C'):
+			ioport_set_pin_level(LED_B_PIN, !ledOn);
+			break;
+	}
+}
+
 void mSleep(uint32_t mSec) {
 	uint32_t tick = time_tick_get();
 	while (time_tick_calc_delay(tick, time_tick_get()) < mSec) {}
@@ -66,9 +95,12 @@ void mSleep(uint32_t mSec) {
 int main (void)
 {
 
-	uint32_t writeNum = 0;
-	uint32_t writeCount = 0;
+	uint32_t writeBufferCount = 0;
 	uint32_t writeFrameNum = 0;
+	
+	uint32_t *bufferToWrite;
+	uint32_t numBlocks;
+	
 	WDT->WDT_MR = WDT_MR_WDDIS; //Disables WDT
 
 	//SCB_EnableICache();
@@ -111,86 +143,59 @@ int main (void)
 	setConfigBlockProp(CONFIG_BLOCK_FRAME_RATE_POS, FRAME_RATE);
 	setConfigBlockProp(CONFIG_BLOCK_BUFFER_SIZE_POS, BUFFER_BLOCK_LENGTH * SDMMC_BLOCK_SIZE);
 	
-	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, 1);
+	sd_mmc_init_write_blocks(SD_SLOT_NB, STARTING_BLOCK, 1);
 	sd_mmc_start_write_blocks(configBlock, 1);
 	sd_mmc_wait_end_of_write_blocks(false);
-	currentBlock++;
+	currentBlock = STARTING_BLOCK + 2; // Leaves space for end of recording meta data block at STARTING_BLOCK + 1
 	
 	mSleep(5000); // Sleep for 5s before recording begins
 	
 	// This gets the next set of blocks ready to be written into
 	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
+	lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;
 	
 	
 	setStartTime();
 	deviceState = DEVICE_STATE_START_RECORDING; // This lets everyone know we want to begin recording
+	writeFrameNum = 0;
+	writeBufferCount = 0;
 
 	while (1) {
-		//if (frameNumber > writeFrameNum) {
-			//
-			//#ifdef EV76C454
-				//imageBuffer[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-				//sd_mmc_start_write_blocks(&imageBuffer[0*NB_BLOCKS_PER_WRITE*128],NB_BLOCKS_PER_WRITE*5);//NB_BLOCKS_PER_WRITE
-			//#endif
-//
-			//#ifdef EV76C454_SUBSAMP
-				//switch (writeFrameNum%3)
-				//{
-				//case (0):
-					//imageBuffer0[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer0[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-				//case (1):
-					//imageBuffer1[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer1[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-				//case (2):
-					//imageBuffer2[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer2[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-				//}				
-			//#endif
-//
-			//#ifdef EV76C541
-				//switch (writeFrameNum%3)
-				//{
-					//case (0):
-					//imageBuffer0[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer0[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-					//case (1):
-					//imageBuffer1[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer1[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-					//case (2):
-					//imageBuffer2[buffSize-2] = time_tick_calc_delay(tick_start, time_tick_get());
-					//sd_mmc_start_write_blocks(&imageBuffer2[0],NB_BLOCKS_PER_WRITE);//NB_BLOCKS_PER_WRITE
-					//break;
-				//}			
-			//#endif
-//
-			//sd_mmc_wait_end_of_write_blocks(false);
-			//writeFrameNum++;	
-			//sdImageWriteFrameNum = writeFrameNum;
-//
-			//#ifdef EV76C541
-				//startRecording = 1;
-			//#endif
-			//#ifdef EV76C454_SUBSAMP
-				////if (frameNumber>sdImageWriteFrameNum +1) {
-					//startRecording = 1;
-				////}
-			//#endif
-			//#ifdef EV76C454
-				//startRecording = 1;
-			//#endif
-			//
-			//if (writeFrameNum%50 == 0) {
-				//curBlock+= 50*NB_BLOCKS_PER_FRAME;
-				//sd_mmc_init_write_blocks(SD_SLOT_NB,curBlock,50*NB_BLOCKS_PER_FRAME);
-			//}
-//
-		//}
+		if (bufferCount > writeBufferCount) {
+			// This means there are filled buffer(s) ready to be written to SD card
+			bufferToWrite = dataBuffer + (writeBufferCount % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
+			numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
+			sd_mmc_start_write_blocks(bufferToWrite, numBlocks)
+			
+			sd_mmc_wait_end_of_write_blocks(false); // blocking function till sd card write has finished
+			
+			currentBlock += numBlocks;
+			writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
+			writeBufferCount++;
+			
+			if ((lastInitBlock - currentBlock) < BUFFER_BLOCK_LENGTH) { 
+				// There are not enough blocks initialized for a full buffer write so lets initialize a new chunk of blocks
+				sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
+				lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;				
+			}
+			
+			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader[HEADER_RECORD_LENGTH_POS] * 1000){
+				// Recording time has elapsed
+				deviceState = DEVICE_STATE_STOP_RECORDING;
+				
+				// TODO: Change status LEDs
+				
+				// Write end of recording info to a block
+				// TODO: Add more meta data to this (frames dropped?, blocks written?, overall time, data starting block?)!
+				sd_mmc_init_write_blocks(SD_SLOT_NB,STARTING_BLOCK + 1,1);
+				sd_mmc_start_write_blocks(configBlock,1);
+				sd_mmc_wait_end_of_write_blocks(false);
+				
+				while (1) {} // This just freezes the MCU at the end of recording. Can change this if we need to retrigger recording later.
+			
+		//
+		}
+
 //
 		//if (time_tick_calc_delay(tick_start, time_tick_get())>=numFramesToRecord*1000){
 			////sd_mmc_init_write_blocks(SD_SLOT_NB,STARTING_BLOCK-1,1);

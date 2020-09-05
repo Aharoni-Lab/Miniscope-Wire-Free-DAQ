@@ -59,12 +59,13 @@ COMPILER_ALIGNED(8)
 #define DEVICE_STATE_STOP_RECORDING		3
 
 // ---------- Buffer Header position definitions
-#define BUFFER_HEADER_LENGTH			4
+#define BUFFER_HEADER_LENGTH			5
 
-#define BUFFER_HEADER_FRAME_NUM_POS		0
-#define BUFFER_HEADER_BUFFER_COUNT_POS	1
-#define BUFFER_HEADER_TIMESTAMP_POS		2
-#define BUFFER_HEADER_DATA_LENGTH_POS	3
+#define BUFFER_HEADER_BUFFER_LENGTH_POS	0
+#define BUFFER_HEADER_FRAME_NUM_POS		1
+#define BUFFER_HEADER_BUFFER_COUNT_POS	2
+#define BUFFER_HEADER_TIMESTAMP_POS		3
+#define BUFFER_HEADER_DATA_LENGTH_POS	4
 
 // ------------ Allocate memory for DMA image buffer
 volatile uint32_t dataBuffer[NUM_BUFFERS * BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS];
@@ -359,6 +360,7 @@ void updateLinkedLists(void) {
 void setBufferHeader(void) {
 	uint32_t *bufferAddress;
 	bufferAddress = dataBuffer + (bufferCount%NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
+	bufferAddress[BUFFER_HEADER_BUFFER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
 	bufferAddress[BUFFER_HEADER_FRAME_NUM_POS] = frameNum;
 	bufferAddress[BUFFER_HEADER_BUFFER_COUNT_POS] = bufferCount;
 	bufferAddress[BUFFER_HEADER_TIMESTAMP_POS] = time_tick_calc_delay(startTime, time_tick_get());
