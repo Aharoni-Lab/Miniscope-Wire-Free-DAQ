@@ -51,16 +51,21 @@ COMPILER_ALIGNED(8)
 #define CONFIG_BLOCK_FRAME_RATE		2
 #define CONFIG_BLOCK_BUFFER_SIZE	3
 
+// ---------- Device State Definitions
+#define DEVICE_STATE_IDLE				0
+#define DEVICE_STATE_START_RECORDING	1
+#define DEVICE_STATE_RECORDING			2
+#define DEVICE_STATE_STOP_RECORDING		3
+
 // ------------ Allocate memory for DMA image buffer
 volatile uint32_t dataBuffer[NUM_BUFFERS * BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS];
 
 // ---------------- Variables
-volatile bool	recording = false;
-volatile uint32_t linkedList0[4];
-volatile uint32_t linkedList1[4];
+volatile uint8_t	deviceState = DEVICE_STATE_IDLE;
+volatile uint32_t linkedList[2][4];
 
 volatile uint32_t frameNum = 0;
-volatile uint32_t bufferNum = 0;
+volatile uint32_t bufferCount = 0;
 
 
 // ---------------- Functions 
@@ -73,12 +78,16 @@ void imageCaptureParamInit();
 void vSyncIntInit();
 void miniscopeInit();
 void imageCaptureDMAStart();
+void imageCaptureDMAStop();
 void linkedListInit();
+void updateLinkedLists();
 
 void setExcitationLED(uint32_t value);
 void setGain(uint32_t value);
 void setFPS(uint32_t value);
 void setEWL(uint32_t value);
+
+void handleEndOfFrame();
 // -------------------------------------------------
 
 void imageCaptureSetup() {
@@ -256,23 +265,23 @@ void setEWL(uint32_t value) {
 }
 void linkedListInit() {
 	// We are using View 1 Structure for Linked Lists
-	linkedList0[0] = linkedList1; //Next Descriptor Address
-	linkedList0[1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
+	linkedList[0][0] = (uint32_t *)linkedList[1][0]; //Next Descriptor Address
+	linkedList[0][1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
 						XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
 						XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
 						XDMAC_UBC_NDE_FETCH_EN | // Next desc. enabled
 						XDMAC_UBC_UBLEN(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS); // Microblock Control Member
-	linkedList0[2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
-	linkedList0[3] = dataBuffer; // Destination Address
+	linkedList[0][2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
+	linkedList[0][3] = dataBuffer; // Destination Address
 
-	linkedList1[0] = linkedList0; //Next Descriptor Address
-	linkedList1[1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
+	linkedList[1][0] = (uint32_t *)linkedList[0][0]; //Next Descriptor Address
+	linkedList[1][1] =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
 	XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
 	XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
 	XDMAC_UBC_NDE_FETCH_EN | // Next desc. enabled
 	XDMAC_UBC_UBLEN(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS); // Microblock Control Member
-	linkedList1[2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
-	linkedList1[3] = dataBuffer + (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS); // Destination Address
+	linkedList[1][2] = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
+	linkedList[1][3] = dataBuffer + (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS); // Destination Address
 }
 void imageCaptureDMAStart(uint32_t *linkedList) {
 	uint32_t channelStatus = 0;
@@ -307,11 +316,65 @@ void imageCaptureDMAStart(uint32_t *linkedList) {
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CIE |= XDMAC_CIE_BIE | XDMAC_CIE_LIE; // Sets interrupts
 	XDMAC->XDMAC_GIE |= XDMAC_GIE_IE1; // Probably not needed
 	XDMAC->XDMAC_GE |= XDMAC_GE_EN1; // Enables DMA channel
-	
 
+}
 
+void imageCaptureDMAStop() {
+	XDMAC->XDMAC_GD |= XDMAC_GD_DI1;
+}
+
+void updateLinkedLists() {
+	// Updates the buffer address for the next linked list that will be used
+	// If bufferCount is even then we want to update linkedList[0][X]
+	// If bufferCount is off then we want to update linkedList[1][X]
+	uint32_t numBuffer = (bufferCount+2)%NUM_BUFFERS;
+	linkedList[bufferCount&0x0001][3] = dataBuffer + numBuffer * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
 	
 }
+void handleEndOfFrame() }{
+	// TODO:
+	// disable DMA
+	// set buffer header
+	// update linked list
+	// startDMA
+	
+	if (deviceState == DEVICE_STATE_RECORDING || deviceState == DEVICE_STATE_STOP_RECORDING) {
+		// At the end of frame the current buffer is likely only partially filled. 
+		// Disable DMA to flush DMA FIFO then start DMA again but with the next linked list
+		
+		imageCaptureDisable();
+		imageCaptureDMAStop();
+		
+		// Update buffer header
+		
+		bufferCount++; // A buffer has been filled (likely partially) and is ready for writing to SD card
+		frameNum++; // Zero-Indexed
+		
+		if (deviceState == DEVICE_STATE_RECORDING) { // Keep recording
+			// Update Linked List
+		
+			// TODO: Not sure if this needs to be odd or even or !
+			imageCaptureDMAStart((uint32_t *)linkedList[bufferCount&0x0001][0]);
+			imageCaptureEnable();
+			updateLinkedLists();
+		}
+		if (deviceState == DEVICE_STATE_STOP_RECORDING) {
+			// Reset linked lists so we will be ready to start recording again in the future
+			linkedListInit();
+		}
+	}
+	else if (deviceState == DEVICE_STATE_START_RECORDING) {
+		// We wait till !FV to enable recording so the first buffer starts at the beginning and not middle of a frame
+		
+		frameNum = 0;
+		bufferCount = 0;
+		imageCaptureDMAStart((uint32_t *)linkedList[0][0]); // Let's always start a new recording at the initialized Linked List 0
+		imageCaptureEnable();
+		updateLinkedLists(); // Update buffer address for next linked list that will be used
+		deviceState = DEVICE_STATE_RECORDING;
+	}
+}
+
 void PIOA_Handler(void) {
 	uint32_t pcISR = 0;
 	
@@ -319,124 +382,9 @@ void PIOA_Handler(void) {
 	
 	if (pcISR & VSYNC_MASK) {
 		// Frame Valid signal interrupt
-		
-		// TODO:
-		// disable DMA
-		// set buffer header
-		// update linked list
-		// startDMA
-		
+		handleEndOfFrame();		
 	}
-//	checkVSync();
 }
-
-//void checkVSync() {
-	//if (pcISR & VSYNC_MASK) { //VSync signal is detected. End of frame capture
-		////printf("VSYNC!\n");
-		////while(pcISR & VSYNC_MASK) {}
-		//
-		////frameNumber++;
-		////if (frameNumber%10==1)
-		////	ioport_toggle_pin_level(PIO_PD1_IDX);
-//
-		//if (captureEnabled && startRecording) {
-			//
-			//// -------------- For initial testing ------------
-			//captureEnabled = 0;
-			//startRecording = 0;
-			//imageCaptureDisable();
-			//
-			//#ifdef EV76C454
-			//imageBuffer[buffSize-1] = frameNumber;
-			//imageBuffer[buffSize-3] = lineCount;
-			//imageBuffer[buffSize-4] = xferDMAComplete; //Overflow flag
-			//#endif
-//
-			//#ifdef EV76C454_SUBSAMP
-			//switch (frameNumber%3)
-			//{
-				//case (0):
-				//imageBuffer0[buffSize-1] = frameNumber;
-				//imageBuffer0[buffSize-3] = lineCount;
-				//imageBuffer0[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-				//case (1):
-				//imageBuffer1[buffSize-1] = frameNumber;
-				//imageBuffer1[buffSize-3] = lineCount;
-				//imageBuffer1[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-				//case (2):
-				//imageBuffer2[buffSize-1] = frameNumber;
-				//imageBuffer2[buffSize-3] = lineCount;
-				//imageBuffer2[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-			//}
-			//#endif
-//
-			//#ifdef EV76C541
-			//switch (frameNumber%3)
-			//{
-				//case (0):
-				//imageBuffer0[buffSize-1] = frameNumber;
-				//imageBuffer0[buffSize-3] = lineCount;
-				//imageBuffer0[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-				//case (1):
-				//imageBuffer1[buffSize-1] = frameNumber;
-				//imageBuffer1[buffSize-3] = lineCount;
-				//imageBuffer1[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-				//case (2):
-				//imageBuffer2[buffSize-1] = frameNumber;
-				//imageBuffer2[buffSize-3] = lineCount;
-				//imageBuffer2[buffSize-4] = xferDMAComplete; //Overflow flag
-				//break;
-			//}
-			//#endif
-//
-			//lineCount = 0;
-			//frameNumber++;
-			//overflowCount = 0;
-			//xferDMAComplete = 0;
-			//
-			//#ifdef EV76C541 //immediately start recording of next frame
-			//if (frameNumber<=sdImageWriteFrameNum +2) {
-				//startRecording = 1;
-				//captureEnabled = 1;
-				//imagingSensorStartDMA();
-				//imageCaptureEnable();
-			//}
-//
-			//#endif
-//
-			//#ifdef EV76C454_SUBSAMP //immediately start recording of next frame
-			//if (frameNumber<=sdImageWriteFrameNum +2) {
-				//startRecording = 1;
-				//captureEnabled = 1;
-				//imagingSensorStartDMA();
-				//imageCaptureEnable();
-			//}
-//
-			//#endif
-			////testPoint = 1;
-			////------------------------------------------------
-		//}
-		//else if(startRecording) { //waits for the first VSync to start capture. This makes sure we capture a full first frame
-			//captureEnabled = 1;
-			//
-			////frameNumber = 0;
-			//lineCount = 0;
-			//overflowCount = 0;
-			//imagingSensorStartDMA();
-			//imageCaptureEnable();
-		//}
-//
-//
-		////Need to add an overflow check.
-		////Added a check to make sure pixelWordCount == NUM_PIXEL/4
-		////Consider adding HSync to label each row in case missing pixels is an issue
-	//}
-//}
 
 void XDMAC_Handler(void)
 {
@@ -447,10 +395,10 @@ void XDMAC_Handler(void)
 	if (dma_status & XDMAC_CIS_BIS) {
 		// DMA block interrupt
 		
-		// TODO:
-		// update next linked list buffer address
 		// add header to current buffer
-		// increment counters
+		
+		bufferCount++;// increment counters
+		updateLinkedLists(); // update next linked list buffer address
 	}
 }
 

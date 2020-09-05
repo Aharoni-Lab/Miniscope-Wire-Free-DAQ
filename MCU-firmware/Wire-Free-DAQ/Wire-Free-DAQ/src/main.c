@@ -124,11 +124,9 @@ int main (void)
 	
 	
 	tick_start = time_tick_get();
-	recording = true; // This lets everyone know we want to begin recording
+	deviceState = DEVICE_STATE_START_RECORDING; // This lets everyone know we want to begin recording
 
 	while (1) {
-		dataBuffer[0]++;
-		dataBuffer[2039]++;
 		//if (frameNumber > writeFrameNum) {
 			//
 			//#ifdef EV76C454
