@@ -97,6 +97,9 @@ int main (void)
 
 	uint32_t writeBufferCount = 0;
 	uint32_t writeFrameNum = 0;
+	uint32_t droppedBufferCount = 0;
+	uint32_t droppedFrameCount;
+	uint32_t framesToDrop;
 	
 	uint32_t *bufferToWrite;
 	uint32_t numBlocks;
@@ -159,26 +162,42 @@ int main (void)
 	deviceState = DEVICE_STATE_START_RECORDING; // This lets everyone know we want to begin recording
 	writeFrameNum = 0;
 	writeBufferCount = 0;
+	droppedBufferCount = 0;
+	droppedFrameCount = 0;
+	framesToDrop = 0;
 
 	while (1) {
-		if (bufferCount > writeBufferCount) {
+		if (bufferCount > (writeBufferCount + droppedBufferCount)) {
 			// This means there are filled buffer(s) ready to be written to SD card
-			bufferToWrite = dataBuffer + (writeBufferCount % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
-			numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
-			sd_mmc_start_write_blocks(bufferToWrite, numBlocks)
 			
-			sd_mmc_wait_end_of_write_blocks(false); // blocking function till sd card write has finished
-			
-			currentBlock += numBlocks;
-			writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
-			writeBufferCount++;
-			
-			if ((lastInitBlock - currentBlock) < BUFFER_BLOCK_LENGTH) { 
-				// There are not enough blocks initialized for a full buffer write so lets initialize a new chunk of blocks
-				sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
-				lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;				
+			// We need to check if the writing to sd card of data buffers has fallen too far behind where we are at risk
+			// of writing overwritten data. We need to detect this and decide what to do in this case
+			if (bufferCount > (writeBufferCount + droppedBufferCount + NUM_BUFFERS)) {
+				// We  are at risk of at least the current buffer that we want to write to SD card being overflown with new image data
+				// We are going to just drop writing the rest of this frame
+				
+				// Let's figure out how many buffers need to be dropped
+				droppedBufferCount += (NUM_BUFFERS - bufferCount % NUM_BUFFERS);
 			}
+			else {
+				// Actual writing of good buffers
+				bufferToWrite = dataBuffer + ((writeBufferCount + droppedBufferCount) % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
+				numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
+				sd_mmc_start_write_blocks(bufferToWrite, numBlocks)
 			
+				sd_mmc_wait_end_of_write_blocks(false); // blocking function till sd card write has finished
+			
+				currentBlock += numBlocks;
+				writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
+				writeBufferCount++;
+				
+				if ((lastInitBlock - currentBlock) < BUFFER_BLOCK_LENGTH) { 
+					// There are not enough blocks initialized for a full buffer write so lets initialize a new chunk of blocks
+					sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
+					lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;				
+				}
+			}
+					
 			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader[HEADER_RECORD_LENGTH_POS] * 1000){
 				// Recording time has elapsed
 				deviceState = DEVICE_STATE_STOP_RECORDING;
