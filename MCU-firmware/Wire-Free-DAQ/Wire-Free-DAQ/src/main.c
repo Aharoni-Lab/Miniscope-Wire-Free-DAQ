@@ -14,7 +14,6 @@
 
 #include "time_tick.h"
 
-volatile uint32_t time_ms;
 volatile uint32_t tick_start;
 
 
@@ -61,7 +60,7 @@ void GPIO_init() {
 
 void mSleep(uint32_t mSec) {
 	uint32_t tick = time_tick_get();
-	while (time_tick_calc_delay(tick, time_tick_get()) <mSec) {}
+	while (time_tick_calc_delay(tick, time_tick_get()) < mSec) {}
 }
 
 int main (void)
@@ -107,10 +106,10 @@ int main (void)
 	setFPS(getPropFromHeader(HEADER_FRAME_RATE));
 
 	// Write the first sd card block with parameters of the recording (resolution, FPS, and so on)
-	setConfigBlockProp(CONFIG_BLOCK_WIDTH, WIDTH);
-	setConfigBlockProp(CONFIG_BLOCK_HEIGHT, HEIGHT);
-	setConfigBlockProp(CONFIG_BLOCK_FRAME_RATE, FRAME_RATE);
-	setConfigBlockProp(CONFIG_BLOCK_BUFFER_SIZE, BUFFER_BLOCK_LENGTH * SDMMC_BLOCK_SIZE);
+	setConfigBlockProp(CONFIG_BLOCK_WIDTH_POS, WIDTH);
+	setConfigBlockProp(CONFIG_BLOCK_HEIGHT_POS, HEIGHT);
+	setConfigBlockProp(CONFIG_BLOCK_FRAME_RATE_POS, FRAME_RATE);
+	setConfigBlockProp(CONFIG_BLOCK_BUFFER_SIZE_POS, BUFFER_BLOCK_LENGTH * SDMMC_BLOCK_SIZE);
 	
 	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, 1);
 	sd_mmc_start_write_blocks(configBlock, 1);
@@ -123,7 +122,7 @@ int main (void)
 	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
 	
 	
-	tick_start = time_tick_get();
+	setStartTime();
 	deviceState = DEVICE_STATE_START_RECORDING; // This lets everyone know we want to begin recording
 
 	while (1) {
