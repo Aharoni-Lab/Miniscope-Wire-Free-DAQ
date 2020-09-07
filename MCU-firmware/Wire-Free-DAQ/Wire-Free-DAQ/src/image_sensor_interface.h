@@ -79,6 +79,8 @@ volatile uint32_t bufferCount = 0;
 
 volatile uint32_t startTime;
 
+volatile uint32_t debugCounter = 0; // Used for debugging. Can be removed
+
 // ---------------- Functions 
 void imageCaptureSetup(void);
 void imageCaptureEnable(void);
@@ -524,6 +526,11 @@ void XDMAC_Handler(void)
 	if (dma_status & XDMAC_CIS_BIS) {
 		// DMA block interrupt
 		
+		//debugCounter++;
+		//if (debugCounter%50 == 0) {
+			//ioport_toggle_pin_level(LED_B_PIN);
+		//}
+				
 		// add header to current buffer
 		setBufferHeader();
 		bufferCount++;// increment counters

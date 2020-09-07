@@ -169,6 +169,7 @@ int main (void)
 	miniscopeInit(); //I2C config sensor
 	
 	setExcitationLED(10);
+	setFPS(10);
 	setStatusLED('B',1);
 	//setExcitationLED(getPropFromHeader(HEADER_LED_POS));
 	//setGain(getPropFromHeader(HEADER_GAIN_POS));
@@ -184,7 +185,7 @@ int main (void)
 	sd_mmc_init_write_blocks(SD_SLOT_NB, STARTING_BLOCK, 1);
 	sd_mmc_start_write_blocks(configBlock, 1);
 	sd_mmc_wait_end_of_write_blocks(false);
-	currentBlock = STARTING_BLOCK + 2; // Leaves space for end of recording meta data block at STARTING_BLOCK + 1
+	currentBlock = STARTING_BLOCK + 1; // Leaves space for end of recording meta data block at STARTING_BLOCK + 1
 	
 	mSleep(5000); // Sleep for 5s before recording begins
 	
@@ -233,7 +234,7 @@ int main (void)
 				}
 			}
 			
-			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader(HEADER_RECORD_LENGTH_POS) * 1000){
+			if ((time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader(HEADER_RECORD_LENGTH_POS) * 1000) & (getPropFromHeader(HEADER_RECORD_LENGTH_POS) != 0)){
 				// Recording time has elapsed
 				deviceState = DEVICE_STATE_STOP_RECORDING;
 				
