@@ -168,10 +168,12 @@ int main (void)
 
 	miniscopeInit(); //I2C config sensor
 	
-	setExcitationLED(getPropFromHeader(HEADER_LED_POS));
-	setGain(getPropFromHeader(HEADER_GAIN_POS));
-	setEWL(getPropFromHeader(HEADER_EWL_POS));
-	setFPS(getPropFromHeader(HEADER_FRAME_RATE));
+	setExcitationLED(10);
+	setStatusLED('B',1);
+	//setExcitationLED(getPropFromHeader(HEADER_LED_POS));
+	//setGain(getPropFromHeader(HEADER_GAIN_POS));
+	//setEWL(getPropFromHeader(HEADER_EWL_POS));
+	//setFPS(getPropFromHeader(HEADER_FRAME_RATE));
 
 	// Write the first sd card block with parameters of the recording (resolution, FPS, and so on)
 	setConfigBlockProp(CONFIG_BLOCK_WIDTH_POS, WIDTH);

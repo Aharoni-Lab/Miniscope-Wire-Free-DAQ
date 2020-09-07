@@ -180,7 +180,7 @@ void miniscopeInit(void) {
 	
 #ifdef V4_Miniscope
 	// "Speed up i2c bus timer to 50us max"
-	twiPacket.chip = 0xC0;
+	twiPacket.chip = 0xC0>>1;
 	twiPacket.addr[0] = 0x22;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00000010;
@@ -188,7 +188,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
  
 	// Decrease BCC timeout, units in 2ms XX
-	twiPacket.chip = 0xC0;
+	twiPacket.chip = 0xC0>>1;
 	twiPacket.addr[0] = 0x20;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00001010;
@@ -196,7 +196,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 
 	// Make sure DES has SER ADDR
-	twiPacket.chip = 0xC0;
+	twiPacket.chip = 0xC0>>1;
 	twiPacket.addr[0] = 0x07;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0xB0;
@@ -204,7 +204,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 
 	// Speed up I2c bus timer to 50u Max
-	twiPacket.chip = 0xB0;
+	twiPacket.chip = 0xB0>>1;
 	twiPacket.addr[0] = 0x0F;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00000010;
@@ -212,7 +212,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 		
 	// Decrease BCC timeout, units in 2ms
-	twiPacket.chip = 0xB0;
+	twiPacket.chip = 0xB0>>1;
 	twiPacket.addr[0] = 0x1E;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00001010;
@@ -220,7 +220,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 	
 	// sets allowable i2c addresses to send through serializer
-	twiPacket.chip = 0xC0;
+	twiPacket.chip = 0xC0>>1;
 	twiPacket.addr[0] = 0x08;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00100000; //MCU
@@ -231,7 +231,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 	
 	// sets sudo allowable i2c addresses to send through serializer
-	twiPacket.chip = 0xC0;
+	twiPacket.chip = 0xC0>>1;
 	twiPacket.addr[0] = 0x10;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00100000; //MCU
@@ -242,7 +242,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 	
 	// Remap BNO axes, and sign
-	twiPacket.chip = 0b01010000;
+	twiPacket.chip = 0b01010000>>1;
 	twiPacket.addr[0] = 0x41;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00001001;
@@ -251,7 +251,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 
 	// Set BNO operation mode to NDOF
-	twiPacket.chip = 0b01010000;
+	twiPacket.chip = 0b01010000>>1;
 	twiPacket.addr[0] = 0x3D;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0b00001100;
@@ -259,7 +259,7 @@ void miniscopeInit(void) {
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 		
 	// Enable EWL Driver
-	twiPacket.chip = 0b11101110;
+	twiPacket.chip = 0b11101110>>1;
 	twiPacket.addr[0] = 0x03;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0x03;
@@ -274,6 +274,7 @@ void miniscopeInit(void) {
 }
 
 void setExcitationLED(uint32_t value) {
+	// values between 0 and 100
 	twihs_packet_t twiPacket;
 	uint8_t twiBuffer[4];
 	twiPacket.buffer = twiBuffer;
@@ -282,14 +283,14 @@ void setExcitationLED(uint32_t value) {
 	uint16_t regVal;
 	regVal = ((100 - value) * 255)/100;
 	
-	twiPacket.chip = 0b00100000;
+	twiPacket.chip = 0b00100000>>1;
 	twiPacket.addr[0] = 0x01;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = (uint8_t)regVal&0x00FF;
 	twiPacket.length = 1;
 	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
 
-	twiPacket.chip = 0b01011000;
+	twiPacket.chip = 0b01011000>>1;
 	twiPacket.addr[0] = 0x00;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 114;
@@ -315,7 +316,7 @@ void setGain(uint32_t value) {
 			regVal = 228;
 			break;
 	}
-	twiPacket.chip = 0b00100000;
+	twiPacket.chip = 0b00100000>>1;
 	twiPacket.addr[0] = 0x05;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0x00;
@@ -351,7 +352,7 @@ void setFPS(uint32_t value) {
 			regVal = 3300;
 			break;
 	}
-	twiPacket.chip = 0b00100000;
+	twiPacket.chip = 0b00100000>>1;
 	twiPacket.addr[0] = 0x05;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = 0x00;
@@ -370,7 +371,7 @@ void setEWL(uint32_t value) {
 #ifdef V4_Miniscope
 	uint16_t regVal;
 	regVal = value; //0 to 255
-	twiPacket.chip = 0b11101110;
+	twiPacket.chip = 0b11101110>>1;
 	twiPacket.addr[0] = 0x08;
 	twiPacket.addr_length = 1;
 	twiBuffer[0] = (uint8_t)regVal&0x00FF;
