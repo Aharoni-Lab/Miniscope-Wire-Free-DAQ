@@ -1,11 +1,33 @@
 /**
  * \file
  *
- * Wire-Free-DAQ for Miniscope applications
+ * \brief Empty user application template
  *
  */
 
+/**
+ * \mainpage User Application template doxygen documentation
+ *
+ * \par Empty user application template
+ *
+ * Bare minimum empty user application template
+ *
+ * \par Content
+ *
+ * -# Include the ASF header files (through asf.h)
+ * -# "Insert system clock initialization code here" comment
+ * -# Minimal main function that starts with a call to board_init()
+ * -# "Insert application code here" comment
+ *
+ */
 
+/*
+ * Include header files for all drivers that have been imported from
+ * Atmel Software Framework (ASF).
+ */
+/*
+ * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
+ */
 #include <asf.h>
 
 #include "definitions.h"
@@ -14,10 +36,7 @@
 
 #include "time_tick.h"
 
-volatile uint32_t tick_start;
-
-
-void TWIHS_init() { //Make sure you have correct TWIHS 
+void TWIHS_init() { //Make sure you have correct TWIHS
 	twihs_options_t twihsOpt;
 	twihsOpt.master_clk = sysclk_get_cpu_hz()/2; //make sure this is the correct clock to be checking
 	twihsOpt.speed = TWI_SPEED;
@@ -34,7 +53,7 @@ void TWIHS_init() { //Make sure you have correct TWIHS
 
 void GPIO_init() {
 	// ----------- Input pins
-	ioport_set_pin_dir(SERDES_LOCK_PIN, IOPORT_DIR_INPUT);	
+	ioport_set_pin_dir(SERDES_LOCK_PIN, IOPORT_DIR_INPUT);
 	ioport_set_pin_dir(CHARGER_STATE_PIN, IOPORT_DIR_INPUT);
 	ioport_set_pin_dir(IR_RECEIVER_PIN, IOPORT_DIR_INPUT);
 	ioport_set_pin_dir(VBUS_DETECT_PIN, IOPORT_DIR_INPUT);
@@ -62,36 +81,36 @@ void setStatusLED(char color, bool ledOn) {
 	// Color options: 'W', 'R', 'G', 'B', 'M', 'Y', 'C'
 	
 	if (color >= 97) // is lower case
-		color-= 32; // make upper case
+	color-= 32; // make upper case
 	
 	switch (color)
 	{
 		case ('R'):
-			ioport_set_pin_level(LED_R_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_R_PIN, !ledOn);
+		break;
 		case ('G'):
-			ioport_set_pin_level(LED_G_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_G_PIN, !ledOn);
+		break;
 		case ('B'):
-			ioport_set_pin_level(LED_B_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_B_PIN, !ledOn);
+		break;
 		case ('M'):
-			ioport_set_pin_level(LED_R_PIN, !ledOn);
-			ioport_set_pin_level(LED_B_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_R_PIN, !ledOn);
+		ioport_set_pin_level(LED_B_PIN, !ledOn);
+		break;
 		case ('Y'):
-			ioport_set_pin_level(LED_R_PIN, !ledOn);
-			ioport_set_pin_level(LED_G_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_R_PIN, !ledOn);
+		ioport_set_pin_level(LED_G_PIN, !ledOn);
+		break;
 		case ('C'):
-			ioport_set_pin_level(LED_G_PIN, !ledOn);
-			ioport_set_pin_level(LED_B_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_G_PIN, !ledOn);
+		ioport_set_pin_level(LED_B_PIN, !ledOn);
+		break;
 		case ('W'):
-			ioport_set_pin_level(LED_R_PIN, !ledOn);
-			ioport_set_pin_level(LED_G_PIN, !ledOn);
-			ioport_set_pin_level(LED_B_PIN, !ledOn);
-			break;
+		ioport_set_pin_level(LED_R_PIN, !ledOn);
+		ioport_set_pin_level(LED_G_PIN, !ledOn);
+		ioport_set_pin_level(LED_B_PIN, !ledOn);
+		break;
 	}
 }
 
@@ -192,20 +211,20 @@ int main (void)
 				bufferToWrite = dataBuffer + ((writeBufferCount + droppedBufferCount) % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
 				numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
 				sd_mmc_start_write_blocks(bufferToWrite, numBlocks);
-			
+				
 				sd_mmc_wait_end_of_write_blocks(false); // blocking function till sd card write has finished
-			
+				
 				currentBlock += numBlocks;
 				writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
 				writeBufferCount++;
 				
-				if ((lastInitBlock - currentBlock) < BUFFER_BLOCK_LENGTH) { 
+				if ((lastInitBlock - currentBlock) < BUFFER_BLOCK_LENGTH) {
 					// There are not enough blocks initialized for a full buffer write so lets initialize a new chunk of blocks
 					sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
-					lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;				
+					lastInitBlock = currentBlock + BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;
 				}
 			}
-					
+			
 			if (time_tick_calc_delay(getStartTime(), time_tick_get()) >= getPropFromHeader(HEADER_RECORD_LENGTH_POS) * 1000){
 				// Recording time has elapsed
 				deviceState = DEVICE_STATE_STOP_RECORDING;

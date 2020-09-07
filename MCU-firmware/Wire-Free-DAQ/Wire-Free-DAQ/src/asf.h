@@ -81,9 +81,6 @@
 #include <pmc.h>
 #include <sleep.h>
 
-// From module: PWM - Pulse Width Modulation
-#include <pwm.h>
-
 // From module: Part identification macros
 #include <parts.h>
 
@@ -98,6 +95,12 @@
 
 // From module: TWI - Two-wire Interface High Speed
 #include <twihs.h>
+
+// From module: TWIHS - Two-Wire Interface High Speed- SAM implementation
+#include <sam_twihs/twihs_master.h>
+#include <sam_twihs/twihs_slave.h>
+#include <twihs_master.h>
+#include <twihs_slave.h>
 
 // From module: WDT - Watchdog Timer
 #include <wdt.h>

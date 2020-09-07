@@ -323,7 +323,7 @@ void imageCaptureDMAStart(uint32_t *linkedList) {
 		XDMAC_CC_DIF_AHB_IF0 | //not sure about this
 		XDMAC_CC_SAM_FIXED_AM | //fixed source memory
 		XDMAC_CC_DAM_INCREMENTED_AM | //increment destination memory
-		XDMAC_CC_PERID(XDAMC_CHANNEL_HWID_PIOA); // Peripheral ID for Parallel Capture
+		XDMAC_CC_PERID(XDMAC_CHANNEL_HWID_PIOA); // Peripheral ID for Parallel Capture
 	
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CBC = 0; // micro-block length of 1
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CDS_MSP = 0; // stride setting

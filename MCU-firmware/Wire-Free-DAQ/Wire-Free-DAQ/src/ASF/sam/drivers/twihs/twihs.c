@@ -3,45 +3,35 @@
  *
  * \brief Two-Wire Interface (TWIHS) driver for SAM.
  *
- * Copyright (c) 2013-2015 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2013-2018 Microchip Technology Inc. and its subsidiaries.
  *
  * \asf_license_start
  *
  * \page License
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
+ * Subject to your compliance with these terms, you may use Microchip
+ * software and any derivatives exclusively with Microchip products.
+ * It is your responsibility to comply with third party license terms applicable
+ * to your use of third party software (including open source software) that
+ * may accompany Microchip software.
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. The name of Atmel may not be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * 4. This software may only be redistributed and used in connection with an
- *    Atmel microcontroller product.
- *
- * THIS SOFTWARE IS PROVIDED BY ATMEL "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT ARE
- * EXPRESSLY AND SPECIFICALLY DISCLAIMED. IN NO EVENT SHALL ATMEL BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
- * STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
- * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
+ * THIS SOFTWARE IS SUPPLIED BY MICROCHIP "AS IS". NO WARRANTIES,
+ * WHETHER EXPRESS, IMPLIED OR STATUTORY, APPLY TO THIS SOFTWARE,
+ * INCLUDING ANY IMPLIED WARRANTIES OF NON-INFRINGEMENT, MERCHANTABILITY,
+ * AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL MICROCHIP BE
+ * LIABLE FOR ANY INDIRECT, SPECIAL, PUNITIVE, INCIDENTAL OR CONSEQUENTIAL
+ * LOSS, DAMAGE, COST OR EXPENSE OF ANY KIND WHATSOEVER RELATED TO THE
+ * SOFTWARE, HOWEVER CAUSED, EVEN IF MICROCHIP HAS BEEN ADVISED OF THE
+ * POSSIBILITY OR THE DAMAGES ARE FORESEEABLE.  TO THE FULLEST EXTENT
+ * ALLOWED BY LAW, MICROCHIP'S TOTAL LIABILITY ON ALL CLAIMS IN ANY WAY
+ * RELATED TO THIS SOFTWARE WILL NOT EXCEED THE AMOUNT OF FEES, IF ANY,
+ * THAT YOU HAVE PAID DIRECTLY TO MICROCHIP FOR THIS SOFTWARE.
  *
  * \asf_license_stop
  *
  */
 /*
- * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
+ * Support and FAQ: visit <a href="https://www.microchip.com/support/">Microchip Support</a>
  */
 
 #include "twihs.h"
@@ -78,9 +68,11 @@ extern "C" {
  * @{
  */
 
+/* Low level time limit of I2C Fast Mode. */
+#define LOW_LEVEL_TIME_LIMIT   384000
 #define I2C_FAST_MODE_SPEED    400000
 #define TWIHS_CLK_DIVIDER      2
-#define TWIHS_CLK_CALC_ARGU    4
+#define TWIHS_CLK_CALC_ARGU    3
 #define TWIHS_CLK_DIV_MAX      0xFF
 #define TWIHS_CLK_DIV_MIN      7
 
@@ -156,26 +148,54 @@ uint32_t twihs_set_speed(Twihs *p_twihs, uint32_t ul_speed, uint32_t ul_mck)
 {
 	uint32_t ckdiv = 0;
 	uint32_t c_lh_div;
+	uint32_t cldiv, chdiv;
 
 	/* High-Speed can be only used in slave mode, 400k is the max speed allowed for master */
 	if (ul_speed > I2C_FAST_MODE_SPEED) {
 		return FAIL;
 	}
 
-	c_lh_div = ul_mck / (ul_speed * TWIHS_CLK_DIVIDER) - TWIHS_CLK_CALC_ARGU;
+	/* Low level time not less than 1.3us of I2C Fast Mode. */
+	if (ul_speed > LOW_LEVEL_TIME_LIMIT) {
+		/* Low level of time fixed for 1.3us. */
+		cldiv = ul_mck / (LOW_LEVEL_TIME_LIMIT * TWIHS_CLK_DIVIDER) - TWIHS_CLK_CALC_ARGU;
+		chdiv = ul_mck / ((ul_speed + (ul_speed - LOW_LEVEL_TIME_LIMIT)) * TWIHS_CLK_DIVIDER) - TWIHS_CLK_CALC_ARGU;
+		
+		/* cldiv must fit in 8 bits, ckdiv must fit in 3 bits */
+		while ((cldiv > TWIHS_CLK_DIV_MAX) && (ckdiv < TWIHS_CLK_DIV_MIN)) {
+			/* Increase clock divider */
+			ckdiv++;
+			/* Divide cldiv value */
+			cldiv /= TWIHS_CLK_DIVIDER;
+		}
+		/* chdiv must fit in 8 bits, ckdiv must fit in 3 bits */
+		while ((chdiv > TWIHS_CLK_DIV_MAX) && (ckdiv < TWIHS_CLK_DIV_MIN)) {
+			/* Increase clock divider */
+			ckdiv++;
+			/* Divide cldiv value */
+			chdiv /= TWIHS_CLK_DIVIDER;
+		}
 
-	/* cldiv must fit in 8 bits, ckdiv must fit in 3 bits */
-	while ((c_lh_div > TWIHS_CLK_DIV_MAX) && (ckdiv < TWIHS_CLK_DIV_MIN)) {
-		/* Increase clock divider */
-		ckdiv++;
-		/* Divide cldiv value */
-		c_lh_div /= TWIHS_CLK_DIVIDER;
+		/* set clock waveform generator register */
+		p_twihs->TWIHS_CWGR =
+				TWIHS_CWGR_CLDIV(cldiv) | TWIHS_CWGR_CHDIV(chdiv) |
+				TWIHS_CWGR_CKDIV(ckdiv);
+	} else {
+		c_lh_div = ul_mck / (ul_speed * TWIHS_CLK_DIVIDER) - TWIHS_CLK_CALC_ARGU;
+
+		/* cldiv must fit in 8 bits, ckdiv must fit in 3 bits */
+		while ((c_lh_div > TWIHS_CLK_DIV_MAX) && (ckdiv < TWIHS_CLK_DIV_MIN)) {
+			/* Increase clock divider */
+			ckdiv++;
+			/* Divide cldiv value */
+			c_lh_div /= TWIHS_CLK_DIVIDER;
+		}
+
+		/* set clock waveform generator register */
+		p_twihs->TWIHS_CWGR =
+				TWIHS_CWGR_CLDIV(c_lh_div) | TWIHS_CWGR_CHDIV(c_lh_div) |
+				TWIHS_CWGR_CKDIV(ckdiv);
 	}
-
-	/* set clock waveform generator register */
-	p_twihs->TWIHS_CWGR =
-			TWIHS_CWGR_CLDIV(c_lh_div) | TWIHS_CWGR_CHDIV(c_lh_div) |
-			TWIHS_CWGR_CKDIV(ckdiv)|TWIHS_CWGR_HOLD(60);
 
 	return PASS;
 }
@@ -279,14 +299,14 @@ uint32_t twihs_master_read(Twihs *p_twihs, twihs_packet_t *p_packet)
 		if (!timeout--) {
 			return TWIHS_ERROR_TIMEOUT;
 		}
+		if (!(status & TWIHS_SR_RXRDY)) {
+			continue;
+		}
 		/* Last byte ? */
 		if (cnt == 1) {
 			p_twihs->TWIHS_CR = TWIHS_CR_STOP;
 		}
 
-		if (!(status & TWIHS_SR_RXRDY)) {
-			continue;
-		}
 		*buffer++ = p_twihs->TWIHS_RHR;
 
 		cnt--;
@@ -313,8 +333,7 @@ uint32_t twihs_master_read(Twihs *p_twihs, twihs_packet_t *p_packet)
  */
 uint32_t twihs_master_write(Twihs *p_twihs, twihs_packet_t *p_packet)
 {
-	volatile uint32_t status; 
-	uint32_t cnt = p_packet->length;
+	uint32_t status, cnt = p_packet->length;
 	uint8_t *buffer = p_packet->buffer;
 
 	/* Check argument */
@@ -323,7 +342,7 @@ uint32_t twihs_master_write(Twihs *p_twihs, twihs_packet_t *p_packet)
 	}
 
 	/* Set write mode, slave address and 3 internal address byte lengths */
-	p_twihs->TWIHS_MMR = 0; 
+	p_twihs->TWIHS_MMR = 0;
 	p_twihs->TWIHS_MMR = TWIHS_MMR_DADR(p_packet->chip) |
 			((p_packet->addr_length << TWIHS_MMR_IADRSZ_Pos) &
 			TWIHS_MMR_IADRSZ_Msk);
