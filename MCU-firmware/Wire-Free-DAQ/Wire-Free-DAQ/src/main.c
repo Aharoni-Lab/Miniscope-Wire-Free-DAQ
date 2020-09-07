@@ -187,7 +187,7 @@ int main (void)
 	sd_mmc_wait_end_of_write_blocks(false);
 	currentBlock = STARTING_BLOCK + 1; // Leaves space for end of recording meta data block at STARTING_BLOCK + 1
 	
-	mSleep(5000); // Sleep for 5s before recording begins
+	mSleep(1000); // Sleep for 5s before recording begins
 	
 	// This gets the next set of blocks ready to be written into
 	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
@@ -217,7 +217,7 @@ int main (void)
 			}
 			else {
 				// Actual writing of good buffers
-				bufferToWrite = dataBuffer + ((writeBufferCount + droppedBufferCount) % NUM_BUFFERS) * (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS);
+				bufferToWrite = (uint32_t)(&dataBuffer[((writeBufferCount + droppedBufferCount) % NUM_BUFFERS)]);
 				numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
 				sd_mmc_start_write_blocks(bufferToWrite, numBlocks);
 				
