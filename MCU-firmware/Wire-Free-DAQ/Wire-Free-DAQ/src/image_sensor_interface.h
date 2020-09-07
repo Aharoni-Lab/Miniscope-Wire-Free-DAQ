@@ -72,7 +72,7 @@ volatile uint32_t dataBuffer[NUM_BUFFERS][BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WO
 
 // ---------------- Variables
 volatile uint8_t	deviceState = DEVICE_STATE_IDLE;
-volatile lld_view1 linkedList[2];
+volatile lld_view1 linkedList[NUM_BUFFERS];
 
 volatile uint32_t frameNum = 0;
 volatile uint32_t bufferCount = 0;
@@ -384,23 +384,19 @@ void setEWL(uint32_t value) {
 }
 void linkedListInit(void) {
 	// We are using View 1 Structure for Linked Lists
-	linkedList[0].mbr_nda = (uint32_t)&linkedList[1]; //Next Descriptor Address
-	linkedList[0].mbr_ubc =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
-						XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
-						XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
-						XDMAC_UBC_NDE_FETCH_EN | // Next desc. enabled
-						XDMAC_UBC_UBLEN(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH); // Microblock Control Member
-	linkedList[0].mbr_sa = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
-	linkedList[0].mbr_da = (uint32_t)(&dataBuffer[0][BUFFER_HEADER_LENGTH]); // Destination Address
-
-	linkedList[1].mbr_nda = (uint32_t)&linkedList[0]; //Next Descriptor Address
-	linkedList[1].mbr_ubc =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
-						XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
-						XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
-						XDMAC_UBC_NDE_FETCH_EN | // Next desc. enabled
-						XDMAC_UBC_UBLEN(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH); // Microblock Control Member
-	linkedList[1].mbr_sa = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
-	linkedList[1].mbr_da = (uint32_t)(&dataBuffer[1][BUFFER_HEADER_LENGTH]); // Destination Address
+	for (uint8_t i = 0; i < NUM_BUFFERS; i++) {
+		if (i == (NUM_BUFFERS - 1)) 
+			linkedList[i].mbr_nda = (uint32_t)&linkedList[0]; //Next Descriptor Address
+		else
+			linkedList[i].mbr_nda = (uint32_t)&linkedList[i + 1]; //Next Descriptor Address
+		linkedList[i].mbr_ubc =	XDMAC_UBC_NVIEW_NDV1 | // Next Desc. View 1
+							XDMAC_UBC_NDEN_UPDATED | // Next Desc. destination Updated
+							XDMAC_UBC_NSEN_UNCHANGED | // Next Desc. source unchanged
+							XDMAC_UBC_NDE_FETCH_EN | // Next desc. enabled
+							XDMAC_UBC_UBLEN(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH); // Microblock Control Member
+		linkedList[i].mbr_sa = (uint32_t)&(PIOA->PIO_PCRHR); // Source Address
+		linkedList[i].mbr_da = (uint32_t)(&dataBuffer[i][BUFFER_HEADER_LENGTH]); // Destination Address	
+	}
 }
 
 void imageCaptureDMAStart(lld_view1 *linkedList) {
@@ -443,14 +439,14 @@ void imageCaptureDMAStop(void) {
 	XDMAC->XDMAC_GD |= XDMAC_GD_DI1;
 }
 
-void updateLinkedLists(void) {
+void updateLinkedLists(void) { // I don't think this is needed anymore due to us using NUM_BUFFERS of linked lists
 	// Updates the buffer address for the next linked list that will be used
 	// If bufferCount is even then we want to update linkedList[0][X]
 	// If bufferCount is off then we want to update linkedList[1][X]
 	
 	// TODO: Need to add in some space for buffer header
-	uint32_t numBuffer = (bufferCount+2)%NUM_BUFFERS;
-	linkedList[bufferCount&0x0001].mbr_da = (uint32_t)(&dataBuffer[numBuffer][BUFFER_HEADER_LENGTH]);
+	//uint32_t numBuffer = (bufferCount+2)%NUM_BUFFERS;
+	//linkedList[bufferCount&0x0001].mbr_da = (uint32_t)(&dataBuffer[numBuffer][BUFFER_HEADER_LENGTH]);
 	
 }
 
@@ -487,7 +483,7 @@ void handleEndOfFrame(void) {
 		if (deviceState == DEVICE_STATE_RECORDING) { // Keep recording
 			// Update Linked List
 		
-			imageCaptureDMAStart((uint32_t)&linkedList[bufferCount&0x0001]); // Pretty sure this is the correct Linked List to use
+			imageCaptureDMAStart((uint32_t)&linkedList[bufferCount % NUM_BUFFERS]); 
 			imageCaptureEnable();
 			updateLinkedLists();
 		}
@@ -536,7 +532,7 @@ void XDMAC_Handler(void)
 		// add header to current buffer
 		setBufferHeader();
 		bufferCount++;// increment counters
-		updateLinkedLists(); // update next linked list buffer address
+		//updateLinkedLists(); // update next linked list buffer address
 	}
 }
 
