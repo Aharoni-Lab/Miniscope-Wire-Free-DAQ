@@ -461,7 +461,9 @@ void setBufferHeader(void) {
 	bufferAddress[BUFFER_HEADER_FRAME_NUM_POS] = frameNum;
 	bufferAddress[BUFFER_HEADER_BUFFER_COUNT_POS] = bufferCount;
 	bufferAddress[BUFFER_HEADER_TIMESTAMP_POS] = time_tick_calc_delay(startTime, time_tick_get());
-	bufferAddress[BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS) * 4; // In bytes
+	
+	// TODO: Put the correct value for data length. This will change if it is a partially filled buffer
+	bufferAddress[BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH) * 4; // In bytes
 }
 void handleEndOfFrame(void) {
 	// TODO:
