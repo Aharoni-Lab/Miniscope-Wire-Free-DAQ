@@ -274,16 +274,110 @@ void miniscopeInit(void) {
 }
 
 void setExcitationLED(uint32_t value) {
+	twihs_packet_t twiPacket;
+	uint8_t twiBuffer[4];
+	twiPacket.buffer = twiBuffer;
 	
+#ifdef V4_Miniscope
+	uint16_t regVal;
+	regVal = ((100 - value) * 255)/100;
+	
+	twiPacket.chip = 0b00100000;
+	twiPacket.addr[0] = 0x01;
+	twiPacket.addr_length = 1;
+	twiBuffer[0] = (uint8_t)regVal&0x00FF;
+	twiPacket.length = 1;
+	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
+
+	twiPacket.chip = 0b01011000;
+	twiPacket.addr[0] = 0x00;
+	twiPacket.addr_length = 1;
+	twiBuffer[0] = 114;
+	twiBuffer[1] = (uint8_t)regVal&0x00FF;
+	twiPacket.length = 2;
+	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
+
+#endif
 }
 void setGain(uint32_t value) {
+	twihs_packet_t twiPacket;
+	uint8_t twiBuffer[4];
+	twiPacket.buffer = twiBuffer;
 	
+#ifdef V4_Miniscope
+	uint16_t regVal;
+	switch (value)
+	{
+		case (1):
+			regVal = 225;
+			break;
+		case (2):
+			regVal = 228;
+			break;
+	}
+	twiPacket.chip = 0b00100000;
+	twiPacket.addr[0] = 0x05;
+	twiPacket.addr_length = 1;
+	twiBuffer[0] = 0x00;
+	twiBuffer[1] = 0xCC;
+	twiBuffer[2] = (uint8_t)(regVal>>8)&0x00FF;
+	twiBuffer[3] = (uint8_t)(regVal&0x00FF);
+	twiPacket.length = 4;
+	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
+#endif	
 }
 void setFPS(uint32_t value) {
+	twihs_packet_t twiPacket;
+	uint8_t twiBuffer[4];
+	twiPacket.buffer = twiBuffer;
 	
+	#ifdef V4_Miniscope
+	uint16_t regVal;
+	switch (value)
+	{
+		case (10):
+			regVal = 10000;
+			break;
+		case (15):
+			regVal = 6667;
+			break;
+		case (20):
+			regVal = 5000;
+			break;
+		case (25):
+			regVal = 4000;
+			break;
+		case (30):
+			regVal = 3300;
+			break;
+	}
+	twiPacket.chip = 0b00100000;
+	twiPacket.addr[0] = 0x05;
+	twiPacket.addr_length = 1;
+	twiBuffer[0] = 0x00;
+	twiBuffer[1] = 0xC9;
+	twiBuffer[2] = (uint8_t)(regVal>>8)&0x00FF;
+	twiBuffer[3] = (uint8_t)(regVal&0x00FF);
+	twiPacket.length = 4;
+	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
+#endif
 }
 void setEWL(uint32_t value) {
+	twihs_packet_t twiPacket;
+	uint8_t twiBuffer[4];
+	twiPacket.buffer = twiBuffer;
 	
+#ifdef V4_Miniscope
+	uint16_t regVal;
+	regVal = value; //0 to 255
+	twiPacket.chip = 0b11101110;
+	twiPacket.addr[0] = 0x08;
+	twiPacket.addr_length = 1;
+	twiBuffer[0] = (uint8_t)regVal&0x00FF;
+	twiBuffer[1] = 0x02;
+	twiPacket.length = 2;
+	while (twihs_master_write(TWIHS1,&twiPacket) != TWIHS_SUCCESS) {}
+	#endif	
 }
 void linkedListInit(void) {
 	// We are using View 1 Structure for Linked Lists
