@@ -151,8 +151,14 @@ int main (void)
 	// Handle SD Card Init and checks
 	sd_mmc_init();
 	mSleep(100);
+	
+	setStatusLED('R',1);
+	
 	waitForCardDetect();
 	checkCardType(CARD_TYPE_SD|CARD_TYPE_HC); // returns true/false. Not really used here right now
+	
+	setStatusLED('R',0);
+	setStatusLED('G',1);
 
 	// Grabs image sensor configuration from sd card
 	loadSDCardHeader();
