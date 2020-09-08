@@ -59,14 +59,15 @@ COMPILER_ALIGNED(8)
 #define DEVICE_STATE_STOP_RECORDING		3
 
 // ---------- Buffer Header position definitions
-#define BUFFER_HEADER_LENGTH			6
+#define BUFFER_HEADER_LENGTH					7
 
-#define BUFFER_HEADER_BUFFER_LENGTH_POS	0
-#define BUFFER_HEADER_LINKED_LIST_POS	1
-#define BUFFER_HEADER_FRAME_NUM_POS		2
-#define BUFFER_HEADER_BUFFER_COUNT_POS	3
-#define BUFFER_HEADER_TIMESTAMP_POS		4
-#define BUFFER_HEADER_DATA_LENGTH_POS	5
+#define BUFFER_HEADER_BUFFER_LENGTH_POS			0
+#define BUFFER_HEADER_LINKED_LIST_POS			1
+#define BUFFER_HEADER_FRAME_NUM_POS				2
+#define BUFFER_HEADER_BUFFER_COUNT_POS			3
+#define BUFFER_HEADER_FRAME_BUFFER_COUNT_POS	4
+#define BUFFER_HEADER_TIMESTAMP_POS				5
+#define BUFFER_HEADER_DATA_LENGTH_POS			6
 
 // ------------ Allocate memory for DMA image buffer
 volatile uint32_t dataBuffer[NUM_BUFFERS][BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS];
@@ -77,6 +78,7 @@ volatile lld_view1 linkedList[NUM_BUFFERS];
 
 volatile uint32_t frameNum = 0;
 volatile uint32_t bufferCount = 0;
+volatile uint32_t frameBufferCount = 0;
 
 volatile uint32_t startTime;
 
@@ -447,16 +449,16 @@ void imageCaptureDMAStop(void) {
 }
 
 void setBufferHeader(void) {
-	uint32_t *bufferAddress;
-	bufferAddress = (uint32_t)(&dataBuffer[bufferCount % NUM_BUFFERS]);
-	bufferAddress[BUFFER_HEADER_BUFFER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
-	bufferAddress[BUFFER_HEADER_FRAME_NUM_POS] = frameNum;
-	bufferAddress[BUFFER_HEADER_BUFFER_COUNT_POS] = bufferCount;
-	bufferAddress[BUFFER_HEADER_TIMESTAMP_POS] = time_tick_calc_delay(startTime, time_tick_get());
+	uint32_t numBuffer = bufferCount % NUM_BUFFERS;
+	dataBuffer[numBuffer][BUFFER_HEADER_BUFFER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
+	dataBuffer[numBuffer][BUFFER_HEADER_FRAME_NUM_POS] = frameNum; 
+	dataBuffer[numBuffer][BUFFER_HEADER_BUFFER_COUNT_POS] = bufferCount;
+	dataBuffer[numBuffer][BUFFER_HEADER_FRAME_BUFFER_COUNT_POS] = frameBufferCount;
+	dataBuffer[numBuffer][BUFFER_HEADER_TIMESTAMP_POS] = time_tick_calc_delay(startTime, time_tick_get());
 	
 	// TODO: Put the correct value for data length. This will change if it is a partially filled buffer
 	// UBLEN in XDMAC_CUBC gets decremented by MBSIZE or CSIZE for each memory or chunk transfer. We can calculate from this
-	bufferAddress[BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH) * 4; // In bytes
+	dataBuffer[numBuffer][BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH) * 4; // In bytes
 }
 void handleEndOfFrame(void) {
 	// TODO:
@@ -473,7 +475,7 @@ void handleEndOfFrame(void) {
 		imageCaptureDMAStop();
 		
 		setBufferHeader();// Update buffer header
-		
+		frameBufferCount = 0;
 		bufferCount++; // A buffer has been filled (likely partially) and is ready for writing to SD card
 		frameNum++; // Zero-Indexed
 		
@@ -493,6 +495,7 @@ void handleEndOfFrame(void) {
 		
 		frameNum = 0;
 		bufferCount = 0;
+		frameBufferCount = 0;
 		linkedListInit();
 		imageCaptureDMAStart((uint32_t)&linkedList[0]); // Let's always start a new recording at the initialized Linked List 0
 		imageCaptureEnable();
@@ -528,6 +531,7 @@ void XDMAC_Handler(void)
 		// add header to current buffer
 		setBufferHeader();
 		bufferCount++;// increment counters
+		frameBufferCount++;
 	}
 }
 

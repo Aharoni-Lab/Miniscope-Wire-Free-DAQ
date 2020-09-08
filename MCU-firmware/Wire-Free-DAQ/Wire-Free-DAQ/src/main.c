@@ -169,7 +169,8 @@ int main (void)
 	miniscopeInit(); //I2C config sensor
 	
 	setExcitationLED(10);
-	setFPS(10);
+	setFPS(20);
+	setStatusLED('G',0);
 	setStatusLED('B',1);
 	//setExcitationLED(getPropFromHeader(HEADER_LED_POS));
 	//setGain(getPropFromHeader(HEADER_GAIN_POS));
