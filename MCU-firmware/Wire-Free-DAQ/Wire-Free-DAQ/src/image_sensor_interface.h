@@ -142,6 +142,7 @@ void imageCaptureDisable(void) {
 }
 
 void imageIntInit(void) {
+	//PIOA->PIO_PCIER |= PIO_PCIER_DRDY; //Enable Data Ready Interrupt
 	PIOA->PIO_PCIDR |= (PIO_PCIDR_DRDY)|(PIO_PCIDR_RXBUFF)|(PIO_PCIDR_ENDRX)|(PIO_PCIDR_OVRE); //Makes sure other interrupts are disabled
 }
 
@@ -410,8 +411,8 @@ void imageCaptureDMAStart(lld_view1 *llist) {
 	XDMAC->XDMAC_GD |= (XDMAC_GD_DI1); //disables DMA channel
 //	channelStatus = XDMAC->XDMAC_GS; //Global status of XDMAC channels. Should make sure IMAGING_SENSOR_XDMAC_CH is available
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CIS;//clears interrupt status bit
-	//XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CSA = linkedList->mbr_sa;
-	//XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CDA = linkedList->mbr_da;
+	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CSA = (uint32_t)&(PIOA->PIO_PCRHR);
+	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CDA = llist->mbr_da;
 	//XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CUBC = XDMAC_CUBC_UBLEN(linkedList->mbr_ubc & XDMAC_UBC_UBLEN_Msk);
 	
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CC = XDMAC_CC_TYPE_PER_TRAN |
@@ -434,7 +435,7 @@ void imageCaptureDMAStart(lld_view1 *llist) {
 
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CNDA = llist; // First descriptor address
 	XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CNDC = XDMAC_CNDC_NDE_DSCR_FETCH_EN |
-															XDMAC_CNDC_NDSUP_SRC_PARAMS_UPDATED |
+															XDMAC_CNDC_NDSUP_SRC_PARAMS_UNCHANGED |
 															XDMAC_CNDC_NDDUP_DST_PARAMS_UPDATED |
 															XDMAC_CNDC_NDVIEW_NDV1;
 	
