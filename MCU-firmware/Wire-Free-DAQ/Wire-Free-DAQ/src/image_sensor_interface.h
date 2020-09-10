@@ -61,7 +61,7 @@ COMPILER_ALIGNED(8)
 // ---------- Buffer Header position definitions
 #define BUFFER_HEADER_LENGTH					7
 
-#define BUFFER_HEADER_BUFFER_LENGTH_POS			0
+#define BUFFER_HEADER_HEADER_LENGTH_POS			0
 #define BUFFER_HEADER_LINKED_LIST_POS			1
 #define BUFFER_HEADER_FRAME_NUM_POS				2
 #define BUFFER_HEADER_BUFFER_COUNT_POS			3
@@ -451,7 +451,7 @@ void imageCaptureDMAStop(void) {
 
 void setBufferHeader(void) {
 	uint32_t numBuffer = bufferCount % NUM_BUFFERS;
-	dataBuffer[numBuffer][BUFFER_HEADER_BUFFER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
+	dataBuffer[numBuffer][BUFFER_HEADER_HEADER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
 	dataBuffer[numBuffer][BUFFER_HEADER_FRAME_NUM_POS] = frameNum; 
 	dataBuffer[numBuffer][BUFFER_HEADER_BUFFER_COUNT_POS] = bufferCount;
 	dataBuffer[numBuffer][BUFFER_HEADER_FRAME_BUFFER_COUNT_POS] = frameBufferCount;
