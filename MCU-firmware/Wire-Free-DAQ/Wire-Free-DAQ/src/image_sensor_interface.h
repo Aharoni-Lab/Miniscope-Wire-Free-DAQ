@@ -47,10 +47,12 @@ COMPILER_ALIGNED(8)
 #define HEADER_FRAME_RATE			8
 
 // ----------- Config block buffer position definitions
-#define CONFIG_BLOCK_WIDTH_POS			0
-#define CONFIG_BLOCK_HEIGHT_POS			1
-#define CONFIG_BLOCK_FRAME_RATE_POS		2
-#define CONFIG_BLOCK_BUFFER_SIZE_POS	3
+#define CONFIG_BLOCK_WIDTH_POS					0
+#define CONFIG_BLOCK_HEIGHT_POS					1
+#define CONFIG_BLOCK_FRAME_RATE_POS				2
+#define CONFIG_BLOCK_BUFFER_SIZE_POS			3
+#define CONFIG_BLOCK_NUM_BUFFERS_RECORDED_POS	4
+#define CONFIG_BLOCK_NUM_BUFFERS_DROPPED_POS	5
 
 // ---------- Device State Definitions
 #define DEVICE_STATE_IDLE				0
@@ -59,15 +61,17 @@ COMPILER_ALIGNED(8)
 #define DEVICE_STATE_STOP_RECORDING		3
 
 // ---------- Buffer Header position definitions
-#define BUFFER_HEADER_LENGTH					7
+#define BUFFER_HEADER_LENGTH					9
 
 #define BUFFER_HEADER_HEADER_LENGTH_POS			0
 #define BUFFER_HEADER_LINKED_LIST_POS			1
 #define BUFFER_HEADER_FRAME_NUM_POS				2
 #define BUFFER_HEADER_BUFFER_COUNT_POS			3
 #define BUFFER_HEADER_FRAME_BUFFER_COUNT_POS	4
-#define BUFFER_HEADER_TIMESTAMP_POS				5
-#define BUFFER_HEADER_DATA_LENGTH_POS			6
+#define BUFFER_HEADER_WRITE_BUFFER_COUNT_POS	5
+#define BUFFER_HEADER_DROPPED_BUFFER_COUNT_POS	6
+#define BUFFER_HEADER_TIMESTAMP_POS				7
+#define BUFFER_HEADER_DATA_LENGTH_POS			8
 
 // ------------ Allocate memory for DMA image buffer
 volatile uint32_t dataBuffer[NUM_BUFFERS][BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS];
@@ -103,7 +107,7 @@ void setFPS(uint32_t value);
 void setEWL(uint32_t value);
 
 void handleEndOfFrame(void);
-void setBufferHeader(void);
+void setBufferHeader(uint32_t dataWordLength);
 
 void setStartTime(void);
 uint32_t getStartTime(void);
@@ -449,7 +453,7 @@ void imageCaptureDMAStop(void) {
 	XDMAC->XDMAC_GD |= XDMAC_GD_DI1;
 }
 
-void setBufferHeader(void) {
+void setBufferHeader(uint32_t dataWordLength) {
 	uint32_t numBuffer = bufferCount % NUM_BUFFERS;
 	dataBuffer[numBuffer][BUFFER_HEADER_HEADER_LENGTH_POS] = BUFFER_HEADER_LENGTH;
 	dataBuffer[numBuffer][BUFFER_HEADER_FRAME_NUM_POS] = frameNum; 
@@ -459,7 +463,7 @@ void setBufferHeader(void) {
 	
 	// TODO: Put the correct value for data length. This will change if it is a partially filled buffer
 	// UBLEN in XDMAC_CUBC gets decremented by MBSIZE or CSIZE for each memory or chunk transfer. We can calculate from this
-	dataBuffer[numBuffer][BUFFER_HEADER_DATA_LENGTH_POS] = (BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH) * 4; // In bytes
+	dataBuffer[numBuffer][BUFFER_HEADER_DATA_LENGTH_POS] = dataWordLength * 4; // In bytes
 }
 void handleEndOfFrame(void) {
 	// TODO:
@@ -475,7 +479,7 @@ void handleEndOfFrame(void) {
 		imageCaptureDisable();
 		imageCaptureDMAStop();
 		
-		setBufferHeader();// Update buffer header
+		setBufferHeader(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH - (XDMAC->XDMAC_CHID[IMAGE_CAPTURE_XDMAC_CH].XDMAC_CUBC & XDMAC_CUBC_UBLEN_Msk));// Update buffer header
 		frameBufferCount = 0;
 		bufferCount++; // A buffer has been filled (likely partially) and is ready for writing to SD card
 		frameNum++; // Zero-Indexed
@@ -530,7 +534,7 @@ void XDMAC_Handler(void)
 		}
 				
 		// add header to current buffer
-		setBufferHeader();
+		setBufferHeader(BUFFER_BLOCK_LENGTH * BLOCK_SIZE_IN_WORDS - BUFFER_HEADER_LENGTH);
 		bufferCount++;// increment counters
 		frameBufferCount++;
 	}

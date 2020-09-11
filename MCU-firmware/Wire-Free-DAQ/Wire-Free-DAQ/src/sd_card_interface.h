@@ -14,7 +14,7 @@
 // -------------- SD card writing definitions
 #define SD_SLOT_NB					0
 #define SDMMC_BLOCK_SIZE			512 //Number of bytes in a single block (sector)
-#define NB_BUFFER_WRITES_PER_CHUNK	50 // Can be edited by user to optimize speed
+#define NB_BUFFER_WRITES_PER_CHUNK	100 // Can be edited by user to optimize speed
 #define NB_BLOCKS_PER_WRITE			BUFFER_BLOCK_LENGTH // TODO: move this and other definitions into a place that makes more sense
 #define NB_BLOCKS_PER_FRAME			NUM_PIXELS/SDMMC_BLOCK_SIZE
 #define STARTING_BLOCK				1024
@@ -35,7 +35,7 @@ volatile uint8_t headerBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the 512 bytes
 volatile uint8_t configBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the device config information to be written to the starting block
 	
 volatile uint32_t currentBlock = STARTING_BLOCK;
-volatile uint32_t lastInitBlock;
+volatile uint32_t initBlocksRemaining;
 
 // ------------ Functions
 void waitForCardDetect(void);
