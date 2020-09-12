@@ -218,7 +218,7 @@ int main (void)
 			}
 			else {
 				// Actual writing of good buffers
-				bufferToWrite = (uint32_t)(&dataBuffer[((writeBufferCount + droppedBufferCount) % NUM_BUFFERS)]);
+				bufferToWrite = (uint32_t)(&dataBuffer[(writeBufferCount + droppedBufferCount) % NUM_BUFFERS]);
 				numBlocks = (bufferToWrite[BUFFER_HEADER_DATA_LENGTH_POS] + (BUFFER_HEADER_LENGTH * 4) + (SDMMC_BLOCK_SIZE - 1)) / SDMMC_BLOCK_SIZE;
 				
 				bufferToWrite[BUFFER_HEADER_WRITE_BUFFER_COUNT_POS] = writeBufferCount;
@@ -232,13 +232,17 @@ int main (void)
 				}
 				else {
 					// TODO: error checking with LED showing status
-					setStatusLED('R',1);
+					
 					sd_mmc_start_write_blocks(bufferToWrite, initBlocksRemaining);
 					sd_mmc_wait_end_of_write_blocks(false);				
 					currentBlock += initBlocksRemaining;
-					sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
+					
+					if (sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK) == SD_MMC_OK)
+						setStatusLED('R',1);
+					
 					sd_mmc_start_write_blocks((uint32_t)(&bufferToWrite[initBlocksRemaining * SDMMC_BLOCK_SIZE / 4]), numBlocks - initBlocksRemaining);
-					initBlocksRemaining = (BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK) - (numBlocks - initBlocksRemaining);
+					initBlocksRemaining = (BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
+					initBlocksRemaining -= (numBlocks - initBlocksRemaining);
 					currentBlock += numBlocks - initBlocksRemaining;					
 				}
 				//writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
