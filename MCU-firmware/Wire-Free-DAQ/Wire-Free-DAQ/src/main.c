@@ -241,9 +241,9 @@ int main (void)
 						setStatusLED('R',1);
 					
 					sd_mmc_start_write_blocks((uint32_t)(&bufferToWrite[initBlocksRemaining * SDMMC_BLOCK_SIZE / 4]), numBlocks - initBlocksRemaining);
-					initBlocksRemaining = (BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK);
-					initBlocksRemaining -= (numBlocks - initBlocksRemaining);
-					currentBlock += numBlocks - initBlocksRemaining;					
+					currentBlock += numBlocks - initBlocksRemaining;
+					initBlocksRemaining = (BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK) - (numBlocks - initBlocksRemaining);
+										
 				}
 				//writeFrameNum = bufferToWrite[BUFFER_HEADER_FRAME_NUM_POS];
 				writeBufferCount++;
