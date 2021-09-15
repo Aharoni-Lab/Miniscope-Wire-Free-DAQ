@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L .Connector:SMA-J-P-H-RA-TH1 J?
+L Wire-Free-DAQ-rescue:SMA-J-P-H-RA-TH1-.Connector J?
 U 1 1 5F303416
 P 3905 1300
 AR Path="/5F303416" Ref="J?"  Part="1" 
@@ -28,7 +28,7 @@ F 4 "	CONSMA001-SMD-G-T" H 3905 1300 50  0001 C CNN "Part Number"
 	-1   0    0    -1  
 $EndComp
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F303443
 P 4955 1625
 AR Path="/5F303443" Ref="R?"  Part="1" 
@@ -42,7 +42,7 @@ F 4 "ERJ-2RKF2001X" H 4955 1625 50  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L .Inductor:ADL3225V-470MT-TL000 L?
+L Wire-Free-DAQ-rescue:ADL3225V-470MT-TL000-.Inductor L?
 U 1 1 5F30344C
 P 4955 1300
 AR Path="/5F30344C" Ref="L?"  Part="1" 
@@ -58,7 +58,7 @@ F 6 "ADL3225V-470MT-TL000" H 4955 1300 50  0001 C CNN "Part Number"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L .Inductor:BLM18PG471SN1D L?
+L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L?
 U 1 1 5F303455
 P 4455 1300
 AR Path="/5F303455" Ref="L?"  Part="1" 
@@ -141,7 +141,7 @@ F 3 "" H 3905 1675 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F3034B5
 P 5630 1475
 AR Path="/5F3034B5" Ref="C?"  Part="1" 
@@ -155,7 +155,7 @@ F 4 "GRM188R61A106KE69J" H 5630 1475 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F3034BC
 P 5305 1475
 AR Path="/5F3034BC" Ref="C?"  Part="1" 
@@ -179,7 +179,7 @@ Wire Wire Line
 	3755 6455 3955 6455
 Connection ~ 3755 6455
 $Comp
-L .Capacitor:GRM21BR61E106MA73L C?
+L Wire-Free-DAQ-rescue:GRM21BR61E106MA73L-.Capacitor C?
 U 1 1 5F35D760
 P 3505 5755
 AR Path="/5C92D29E/5F35D760" Ref="C?"  Part="1" 
@@ -208,7 +208,7 @@ Connection ~ 3755 6155
 Wire Wire Line
 	3755 6155 3755 6455
 $Comp
-L .Inductor:VLS3012HBX-2R2M L?
+L Wire-Free-DAQ-rescue:VLS3012HBX-2R2M-.Inductor L?
 U 1 1 5F35D76F
 P 5055 6355
 AR Path="/5C92D29E/5F35D76F" Ref="L?"  Part="1" 
@@ -225,7 +225,7 @@ F 5 "3mmx3mm" H 5205 6105 50  0001 C CNN "Size"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L .Inductor:VLS3012HBX-2R2M L?
+L Wire-Free-DAQ-rescue:VLS3012HBX-2R2M-.Inductor L?
 U 1 1 5F35D777
 P 5055 6755
 AR Path="/5C92D29E/5F35D777" Ref="L?"  Part="1" 
@@ -242,7 +242,7 @@ F 5 "3mmx3mm" H 5205 6505 50  0001 C CNN "Size"
 	0    -1   -1   0   
 $EndComp
 $Comp
-L .Capacitor:GRM21BR61C226ME44L C?
+L Wire-Free-DAQ-rescue:GRM21BR61C226ME44L-.Capacitor C?
 U 1 1 5F35D77F
 P 5405 6455
 AR Path="/5C92D29E/5F35D77F" Ref="C?"  Part="1" 
@@ -267,7 +267,7 @@ Wire Wire Line
 Wire Wire Line
 	5155 6555 5155 6755
 $Comp
-L .Capacitor:GRM21BR61C226ME44L C?
+L Wire-Free-DAQ-rescue:GRM21BR61C226ME44L-.Capacitor C?
 U 1 1 5F35D78B
 P 5405 6855
 AR Path="/5C92D29E/5F35D78B" Ref="C?"  Part="1" 
@@ -348,7 +348,7 @@ Wire Wire Line
 Connection ~ 5155 6355
 Connection ~ 5155 6755
 $Comp
-L .Regulator_Switching:TPS62402-Q1 U?
+L Wire-Free-DAQ-rescue:TPS62402-Q1-.Regulator_Switching U?
 U 1 1 5F35D7AF
 P 4455 6455
 AR Path="/5C92D29E/5F35D7AF" Ref="U?"  Part="1" 
@@ -410,9 +410,11 @@ F 3 "" H 5405 6555 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Regulator_Switching:TPS63030DSK U3
+L Wire-Free-DAQ-rescue:TPS63030DSK-Regulator_Switching U3
 U 1 1 5F365215
 P 4610 3770
+AR Path="/5F365215" Ref="U3"  Part="1" 
+AR Path="/5F2FDF24/5F365215" Ref="U3"  Part="1" 
 F 0 "U3" H 4610 4437 50  0000 C CNN
 F 1 "TPS63030DSK" H 4610 4346 50  0000 C CNN
 F 2 "Package_SON:WSON-10-1EP_2.5x2.5mm_P0.5mm_EP1.2x2mm" H 5460 3220 50  0001 C CNN
@@ -421,7 +423,7 @@ F 3 "http://www.ti.com/lit/ds/symlink/tps63030.pdf" H 4310 4320 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F365A81
 P 3480 3800
 AR Path="/5F365A81" Ref="C?"  Part="1" 
@@ -435,7 +437,7 @@ F 4 "GRM188R61A106KE69J" H 3480 3800 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F366044
 P 5580 3670
 AR Path="/5F366044" Ref="C?"  Part="1" 
@@ -449,7 +451,7 @@ F 4 "GRM188R61A106KE69J" H 5580 3670 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F366231
 P 5940 3670
 AR Path="/5F366231" Ref="C?"  Part="1" 
@@ -463,7 +465,7 @@ F 4 "GRM188R61A106KE69J" H 5940 3670 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F3663DC
 P 3850 3800
 AR Path="/5F3663DC" Ref="C?"  Part="1" 
@@ -477,7 +479,7 @@ F 4 "GRM188R61A106KE69J" H 3850 3800 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:L_Small L5
+L Wire-Free-DAQ-rescue:L_Small-.Device L5
 U 1 1 5F366CAD
 P 4610 2740
 F 0 "L5" V 4429 2740 50  0000 C CNN
@@ -488,7 +490,7 @@ F 3 "https://ds.yuden.co.jp/TYCOMPAS/ut/detail?pn=NR3015T1R5N%20%20&u=M" H 4610 
 	0    -1   -1   0   
 $EndComp
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F3692C5
 P 5260 3670
 AR Path="/5F3692C5" Ref="R?"  Part="1" 
@@ -502,7 +504,7 @@ F 4 "ERJ-2RKF2001X" H 5260 3670 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F369B5D
 P 5260 3970
 AR Path="/5F369B5D" Ref="R?"  Part="1" 

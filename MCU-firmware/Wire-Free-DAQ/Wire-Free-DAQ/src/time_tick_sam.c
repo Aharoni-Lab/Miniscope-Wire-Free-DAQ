@@ -50,7 +50,11 @@
 /** Counts for 1ms time ticks. */
 volatile uint32_t g_ms_ticks = 0;
 
-#define TICK_US 1000
+//---------------------------------------------Initial value is 1000, which is related to 1ms for timing
+#define TICK_US 10000
+//---------------------------------------------
+//---------------------------------------------The new time is set to be 0.1ms by Changliang Guo at 09072021
+//---------------------------------------------
 /**
  * \brief Handler for Sytem Tick interrupt.
  *
@@ -68,9 +72,11 @@ void time_tick_init(void)
 
 	/* Configure systick */
 	if (SysTick_Config(sysclk_get_cpu_hz() / TICK_US)) {
-		Assert(false);
+	//	Assert(false);
 	}
 }
+
+
 
 uint32_t time_tick_get(void)
 {
@@ -80,9 +86,9 @@ uint32_t time_tick_get(void)
 uint32_t time_tick_calc_delay(uint32_t tick_start, uint32_t tick_end)
 {
 	if (tick_end >= tick_start) {
-		return (tick_end - tick_start) * (1000 / TICK_US);
+		return (tick_end - tick_start) * (10000 / TICK_US);// changed to 10000/TICK_US, now the delay time is counted by number of 100us; added by changliang guo
 	} else {
 		/* In the case of 32-bit couter number overflow */
-		return (tick_end + (0xFFFFFFFF - tick_start)) * (1000 / TICK_US);
+		return (tick_end + (0xFFFFFFFF - tick_start)) * (10000 / TICK_US); // changed to 10000/TICK_US by changliang guo. Remember to check all the positions using this function!!!!!!!!!!!!!!!!!!!!!!1
 	}
 }

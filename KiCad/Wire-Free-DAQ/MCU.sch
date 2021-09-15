@@ -239,7 +239,7 @@ Wire Wire Line
 Wire Wire Line
 	4475 1995 3625 1995
 $Comp
-L .MCU:ATSAME70N21A-CN U4
+L Wire-Free-DAQ-rescue:ATSAME70N21A-CN-.MCU U4
 U 1 1 5D85AF53
 P 5725 4595
 F 0 "U4" H 5675 1606 50  0000 C CNN
@@ -316,7 +316,7 @@ VDDUTMII
 Text Label 8830 2050 0    50   ~ 0
 VDDIN
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E2A
 P 8355 2150
 AR Path="/5C92D296/5D8A9E2A" Ref="C?"  Part="1" 
@@ -333,7 +333,7 @@ F 5 "0201" H 8465 1970 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E32
 P 8355 1500
 AR Path="/5C92D296/5D8A9E32" Ref="C?"  Part="1" 
@@ -350,7 +350,7 @@ F 5 "0201" H 8465 1320 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E3A
 P 9355 1500
 AR Path="/5C92D296/5D8A9E3A" Ref="C?"  Part="1" 
@@ -367,7 +367,7 @@ F 5 "0201" H 9465 1320 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E42
 P 9555 2125
 AR Path="/5C92D296/5D8A9E42" Ref="C?"  Part="1" 
@@ -384,7 +384,7 @@ F 5 "0201" H 9665 1945 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E4A
 P 10355 1500
 AR Path="/5C92D296/5D8A9E4A" Ref="C?"  Part="1" 
@@ -406,7 +406,7 @@ Connection ~ 10355 1400
 Wire Wire Line
 	10355 1400 10755 1400
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E56
 P 9955 1500
 AR Path="/5C92D296/5D8A9E56" Ref="C?"  Part="1" 
@@ -423,7 +423,7 @@ F 5 "0201" H 10065 1320 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E5E
 P 8355 900
 AR Path="/5C92D296/5D8A9E5E" Ref="C?"  Part="1" 
@@ -444,7 +444,7 @@ Wire Wire Line
 Wire Wire Line
 	8355 1000 8755 1000
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E69
 P 8755 900
 AR Path="/5C92D296/5D8A9E69" Ref="C?"  Part="1" 
@@ -467,7 +467,7 @@ Wire Wire Line
 Wire Wire Line
 	8755 1000 9155 1000
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E75
 P 9155 900
 AR Path="/5C92D296/5D8A9E75" Ref="C?"  Part="1" 
@@ -490,7 +490,7 @@ Connection ~ 9155 1000
 Wire Wire Line
 	9155 1000 9505 1000
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D8A9E81
 P 9955 900
 AR Path="/5C92D296/5D8A9E81" Ref="C?"  Part="1" 
@@ -507,7 +507,7 @@ F 5 "0201" H 10065 720 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R60J105MEA2D C?
+L Wire-Free-DAQ-rescue:GRM033R60J105MEA2D-.Capacitor C?
 U 1 1 5D8A9E8A
 P 10355 900
 AR Path="/5C92D296/5D8A9E8A" Ref="C?"  Part="1" 
@@ -615,7 +615,7 @@ Wire Wire Line
 	8355 1400 8280 1400
 Connection ~ 8355 1400
 $Comp
-L .Inductor:BLM18PG471SN1D L?
+L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L?
 U 1 1 5D8B882E
 P 8180 1400
 AR Path="/5C92D296/5D8B882E" Ref="L?"  Part="1" 
@@ -636,7 +636,7 @@ Wire Wire Line
 	9355 1400 9305 1400
 Connection ~ 9355 1400
 $Comp
-L .Inductor:BLM18PG471SN1D L?
+L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L?
 U 1 1 5D8C0560
 P 9205 1400
 AR Path="/5C92D296/5D8C0560" Ref="L?"  Part="1" 
@@ -676,7 +676,7 @@ F 3 "" H 9055 1400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM155R60J475ME87D C?
+L Wire-Free-DAQ-rescue:GRM155R60J475ME87D-.Capacitor C?
 U 1 1 5D8C7EB3
 P 8755 2150
 AR Path="/5C92D296/5D8C7EB3" Ref="C?"  Part="1" 
@@ -693,7 +693,7 @@ F 5 "0402" H 8865 1970 50  0001 C CNN "Size"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Oscillator:ABM8G-12.000MHZ-4Y-T3 Y?
+L Wire-Free-DAQ-rescue:ABM8G-12.000MHZ-4Y-T3-.Oscillator Y?
 U 1 1 5D8D378D
 P 1565 6650
 AR Path="/5C92D296/5D8D378D" Ref="Y?"  Part="1" 
@@ -776,7 +776,7 @@ F 3 "" H 1315 6875 50  0001 C CNN
 $EndComp
 Connection ~ 1315 6875
 $Comp
-L .Capacitor:GRM1555C1H120JA01D C?
+L Wire-Free-DAQ-rescue:GRM1555C1H120JA01D-.Capacitor C?
 U 1 1 5D91389E
 P 1965 6850
 AR Path="/5C92D296/5D91389E" Ref="C?"  Part="1" 
@@ -793,7 +793,7 @@ F 5 "0402" H 2075 6670 50  0001 C CNN "Size"
 	1    0    0    1   
 $EndComp
 $Comp
-L .Capacitor:GRM1555C1H120JA01D C?
+L Wire-Free-DAQ-rescue:GRM1555C1H120JA01D-.Capacitor C?
 U 1 1 5D914418
 P 2315 6850
 AR Path="/5C92D296/5D914418" Ref="C?"  Part="1" 
@@ -842,7 +842,7 @@ Connection ~ 8355 2250
 Wire Wire Line
 	8355 2250 8755 2250
 $Comp
-L .Connector:0475710001 J?
+L Wire-Free-DAQ-rescue:0475710001-.Connector J?
 U 1 1 5D9AB199
 P 10400 4000
 AR Path="/5C92D2A1/5D9AB199" Ref="J?"  Part="1" 
@@ -892,7 +892,7 @@ F 3 "" H 9650 3000 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM033R61A104ME15D C?
+L Wire-Free-DAQ-rescue:GRM033R61A104ME15D-.Capacitor C?
 U 1 1 5D9AB221
 P 9650 3100
 AR Path="/5C92D2A1/5D9AB221" Ref="C?"  Part="1" 
@@ -936,7 +936,7 @@ Connection ~ 10600 4800
 Wire Wire Line
 	9950 3000 9950 3550
 $Comp
-L .Connector:Conn_01x01 J?
+L Wire-Free-DAQ-rescue:Conn_01x01-.Connector J?
 U 1 1 5DA3FB45
 P 1785 3445
 AR Path="/5C92D2A9/5DA3FB45" Ref="J?"  Part="1" 
@@ -951,7 +951,7 @@ F 3 "~" H 1785 3445 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Connector:Conn_01x01 J?
+L Wire-Free-DAQ-rescue:Conn_01x01-.Connector J?
 U 1 1 5DA3FB4B
 P 1785 3545
 AR Path="/5C92D2A9/5DA3FB4B" Ref="J?"  Part="1" 
@@ -966,7 +966,7 @@ F 3 "~" H 1785 3545 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Connector:Conn_01x01 J?
+L Wire-Free-DAQ-rescue:Conn_01x01-.Connector J?
 U 1 1 5DA3FB51
 P 1785 3645
 AR Path="/5C92D2A9/5DA3FB51" Ref="J?"  Part="1" 
@@ -981,7 +981,7 @@ F 3 "~" H 1785 3645 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Connector:Conn_01x01 J?
+L Wire-Free-DAQ-rescue:Conn_01x01-.Connector J?
 U 1 1 5DA3FB57
 P 1785 3745
 AR Path="/5C92D2A9/5DA3FB57" Ref="J?"  Part="1" 
@@ -1266,7 +1266,7 @@ LED_R
 Text Label 7725 2995 2    50   ~ 0
 LED_G
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F2DA28C
 P 9470 5420
 AR Path="/5F2DA28C" Ref="R?"  Part="1" 
@@ -1300,7 +1300,7 @@ Wire Wire Line
 Wire Wire Line
 	9570 5420 9715 5420
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F2DA29C
 P 9470 5620
 AR Path="/5F2DA29C" Ref="R?"  Part="1" 
@@ -1319,7 +1319,7 @@ Wire Wire Line
 Wire Wire Line
 	9570 5620 9715 5620
 $Comp
-L .Device:R_Small_US R?
+L Wire-Free-DAQ-rescue:R_Small_US-.Device R?
 U 1 1 5F2DA2A5
 P 9470 5820
 AR Path="/5F2DA2A5" Ref="R?"  Part="1" 
@@ -1338,7 +1338,7 @@ Wire Wire Line
 Wire Wire Line
 	9570 5820 9715 5820
 $Comp
-L .LED:APHF1608SEEQBDZGKC D?
+L Wire-Free-DAQ-rescue:APHF1608SEEQBDZGKC-.LED D?
 U 1 1 5F2DA2AD
 P 9085 5620
 AR Path="/5F2FDF24/5F2DA2AD" Ref="D?"  Part="1" 
@@ -1434,7 +1434,7 @@ F 3 "" H 3970 6595 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Capacitor:GRM1555C1H120JA01D C?
+L Wire-Free-DAQ-rescue:GRM1555C1H120JA01D-.Capacitor C?
 U 1 1 5F2E689B
 P 3835 6465
 AR Path="/5C92D296/5F2E689B" Ref="C?"  Part="1" 
@@ -1458,7 +1458,7 @@ Connection ~ 3970 6595
 Wire Wire Line
 	3970 6595 4145 6595
 $Comp
-L Connector:USB_B_Micro J2
+L Wire-Free-DAQ-rescue:USB_B_Micro-Connector J2
 U 1 1 5F322B51
 P 985 1265
 F 0 "J2" H 1042 1732 50  0000 C CNN
@@ -1518,7 +1518,7 @@ D-
 Text Label 4270 6095 0    50   ~ 0
 D+
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F36EBD6
 P 3480 1245
 AR Path="/5F36EBD6" Ref="C?"  Part="1" 
@@ -1533,7 +1533,7 @@ F 4 "GRM188R61A106KE69J" H 3480 1245 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F3784D5
 P 1910 995
 AR Path="/5F3784D5" Ref="C?"  Part="1" 
@@ -1688,7 +1688,7 @@ $EndComp
 Text Notes 1730 1785 0    50   ~ 0
 I_charge = 1kV/R
 $Comp
-L .Device:L_Small L11
+L Wire-Free-DAQ-rescue:L_Small-.Device L11
 U 1 1 5F474913
 P 7205 795
 F 0 "L11" V 7390 795 50  0000 C CNN
@@ -1720,7 +1720,7 @@ Wire Wire Line
 Wire Wire Line
 	7815 795  7815 750 
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F4AF93B
 P 6870 895
 AR Path="/5F4AF93B" Ref="C?"  Part="1" 
@@ -1753,7 +1753,7 @@ F 3 "" H 6870 1060 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L .Device:C_Small C?
+L Wire-Free-DAQ-rescue:C_Small-.Device C?
 U 1 1 5F4FD1C0
 P 9360 3100
 AR Path="/5F4FD1C0" Ref="C?"  Part="1" 
@@ -1912,10 +1912,10 @@ F 3 "" H 10260 5420 50  0001 C CNN
 	1    10260 5420
 	0    -1   -1   0   
 $EndComp
-Wire Bus Line
-	3525 2095 3525 2995
 Text Notes 10200 5860 0    50   ~ 0
 Pads for TSOP38238
 Text Label 3625 4995 0    50   ~ 0
 IR_OUT
+Wire Bus Line
+	3525 2095 3525 2995
 $EndSCHEMATC

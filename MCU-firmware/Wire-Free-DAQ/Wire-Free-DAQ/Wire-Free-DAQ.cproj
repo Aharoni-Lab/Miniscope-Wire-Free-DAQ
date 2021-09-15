@@ -263,7 +263,7 @@
       </framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.atmelice</avrtool>
-    <avrtoolserialnumber>J42700024173</avrtoolserialnumber>
+    <avrtoolserialnumber>J42700024341</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0xA1020E01</avrdeviceexpectedsignature>
     <com_atmel_avrdbg_tool_atmelice>
       <ToolOptions>
@@ -273,7 +273,7 @@
         <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.atmelice</ToolType>
-      <ToolNumber>J42700024173</ToolNumber>
+      <ToolNumber>J42700024341</ToolNumber>
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <avrtoolinterface>SWD</avrtoolinterface>
@@ -281,10 +281,9 @@
     <custom>
       <ToolOptions>
         <InterfaceProperties>
-          <SwdClock>2000000</SwdClock>
+          <SwdClock>0</SwdClock>
         </InterfaceProperties>
-        <InterfaceName>
-        </InterfaceName>
+        <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
       <ToolType>custom</ToolType>
       <ToolNumber>
@@ -604,6 +603,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\sd_card_interface.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\tc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\tc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\time_tick.h">
