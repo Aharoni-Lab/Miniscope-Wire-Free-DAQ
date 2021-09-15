@@ -160,12 +160,9 @@ int main (void)
    	waitForCardDetect();
     checkCardType(CARD_TYPE_SD|CARD_TYPE_HC); // returns true/false. Not really used here right now
     
-
-	 //Grabs image sensor configuration from sd card
+	//Grabs image sensor configuration from sd card
 	loadSDCardHeader();
-	//Activated by Changliang Guo at 10142020
-	setStatusLED('R',0);
-	setStatusLED('G',1);
+	//Activated by Changliang Guo at 10142020	
 	
 	mSleep(2*1000); // Sleep for 2s before recording begins
 	
@@ -174,10 +171,12 @@ int main (void)
 		
 	//----------------------Initial PB2 for IR Remote by Changliang Guo at 09102021
 	IRControlPB2Init();
-	//-----------------------------------------------------------------------------
-		
+	//-----------------------------------------------------------------------------		
 	miniscopeInit(); //I2C config sensor	
-
+	
+	setStatusLED('R',0);
+	setStatusLED('G',1);
+	
 	setFPS(FRAME_RATE);
 	
 	
@@ -204,19 +203,20 @@ int main (void)
 	sd_mmc_start_write_blocks(configBlock, 1); // We will re-write this block at the end of recording too
 	sd_mmc_wait_end_of_write_blocks(false);
 	currentBlock = STARTING_BLOCK + 1; 
-   	setStatusLED('G',0);
-   	setStatusLED('B',1);
+   
    	
-	mSleep(headerBlock[64]*1000); // Sleep for 5s before recording begins
+   	setStatusLED('G',0);
+	//mSleep(headerBlock[64]*1000); // Sleep for 5s before recording begins
+	mSleep(1*1000); // Sleep for 5s before recording begins
 
 	// This gets the next set of blocks ready to be written into
 	sd_mmc_init_write_blocks(SD_SLOT_NB, currentBlock, BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK); //125X100? why 100?125 is the block size of this buffer, which is 125X512=64000 bytes
 	initBlocksRemaining = BUFFER_BLOCK_LENGTH * NB_BUFFER_WRITES_PER_CHUNK;//125X100; One buffer takes 125 blocks; one block is 512 bytes; each frame takes around 6 buffers;
-	setStatusLED('B',0);
-	setStatusLED('R',1);
+	
+	
 	//ioport_set_pin_level(LED_R_PIN, 0);	
-	mSleep(headerBlock[65]*1000); // Sleep for 2s before recording begins
-	setStatusLED('R',0);
+	
+	
 	//mSleep(headerBlock[65]*1000); // Sleep for 2s before recording begins
 	setStartTime();
 	deviceState = DEVICE_STATE_IDLE; // This lets everyone know we want to begin recording
@@ -225,13 +225,18 @@ int main (void)
 	droppedBufferCount = 0;
 	droppedFrameCount = 0;
 	framesToDrop = 0;
-
+	
+	if (~IR_START){
+	setStatusLED('B',1);		
+	}
+	
 	while (1) {
 		//---------------------------------------------------------------------------------------Added  by Changliang Guo
 		if (IR_START){
 			if(deviceState==DEVICE_STATE_IDLE)
 			{
 				deviceState=DEVICE_STATE_START_RECORDING;
+				setStatusLED('B',0);
 				setStatusLED('R',1);
 				IR_START=0;
 			}
@@ -240,6 +245,8 @@ int main (void)
 				deviceState=DEVICE_STATE_STOP_RECORDING;
 				setStatusLED('R',0);	
 				setStatusLED('B',1);	
+				mSleep(1*1000); 
+				setStatusLED('B',0);
 				IR_STOP=0;	
 		}
 		//---------------------------------------------------------------------------------------------------------------
