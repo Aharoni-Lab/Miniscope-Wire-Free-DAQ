@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Wire-Free-DAQ-rescue:DS90UB934-Q1-.SERDES U1
+L .SERDES:DS90UB934-Q1 U1
 U 1 1 5F2F6C9C
 P 3105 1760
 F 0 "U1" H 3480 -1515 50  0000 C CNN
@@ -74,7 +74,7 @@ Wire Wire Line
 Wire Wire Line
 	2305 2160 2155 2160
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C2
+L .Device:C_Small C2
 U 1 1 5F2F6CBC
 P 1680 2060
 F 0 "C2" V 1451 2060 50  0000 C CNN
@@ -87,7 +87,7 @@ F 5 "CC0201KRX5R6BB104" H 1680 2060 50  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C3
+L .Device:C_Small C3
 U 1 1 5F2F6CC4
 P 2055 2160
 F 0 "C3" V 1826 2160 50  0000 C CNN
@@ -100,7 +100,7 @@ F 5 "CC0201KRX5R5BB473" H 2055 2160 50  0001 C CNN "Part Number"
 	0    1    1    0   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R5
+L .Device:R_Small_US R5
 U 1 1 5F2F6CCC
 P 1755 2360
 F 0 "R5" H 1823 2406 50  0000 L CNN
@@ -287,7 +287,7 @@ ROUT10
 Text Label 4530 3710 0    50   ~ 0
 ROUT11
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C1
+L .Device:C_Small C1
 U 1 1 5F2F6D2D
 P 1330 6560
 F 0 "C1" H 1238 6514 50  0000 R CNN
@@ -300,7 +300,7 @@ F 5 "CC0402MRX5R5BB106" H 1330 6560 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R4
+L .Device:R_Small_US R4
 U 1 1 5F2F6D35
 P 1330 6235
 F 0 "R4" H 1398 6281 50  0000 L CNN
@@ -348,7 +348,7 @@ $EndComp
 Text Label 1705 6385 2    50   ~ 0
 PDB
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R6
+L .Device:R_Small_US R6
 U 1 1 5F2F6D50
 P 1905 6235
 F 0 "R6" H 1973 6281 50  0000 L CNN
@@ -361,7 +361,7 @@ F 5 "ERJ-1GNF1002C" H 1905 6235 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R7
+L .Device:R_Small_US R7
 U 1 1 5F2F6D58
 P 2355 6235
 F 0 "R7" H 2423 6281 50  0000 L CNN
@@ -412,7 +412,7 @@ OEN
 Text Label 2755 6385 2    50   ~ 0
 OSS_SEL
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R8
+L .Device:R_Small_US R8
 U 1 1 5F2F6D74
 P 3155 6235
 F 0 "R8" H 3223 6281 50  0000 L CNN
@@ -425,7 +425,7 @@ F 5 "ERJ-1GNF1002C" H 3155 6235 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R9
+L .Device:R_Small_US R9
 U 1 1 5F2F6D7C
 P 3155 6585
 F 0 "R9" H 3223 6631 50  0000 L CNN
@@ -449,7 +449,7 @@ Wire Wire Line
 Text Label 3405 6410 2    50   ~ 0
 MODE
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C4
+L .Device:C_Small C4
 U 1 1 5F2F6D8A
 P 3705 6585
 F 0 "C4" H 3613 6539 50  0000 R CNN
@@ -482,7 +482,7 @@ Wire Wire Line
 Wire Wire Line
 	3705 6685 3705 6785
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C20
+L .Device:C_Small C20
 U 1 1 5F2F6D9D
 P 9025 1800
 F 0 "C20" H 8933 1754 50  0000 R CNN
@@ -495,7 +495,7 @@ F 5 "CC0201KRX5R6BB104" H 9025 1800 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C13
+L .Device:C_Small C13
 U 1 1 5F2F6DA5
 P 8575 1800
 F 0 "C13" H 8483 1754 50  0000 R CNN
@@ -508,7 +508,7 @@ F 5 "CC0201KRX7R7BB103" H 8575 1800 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C27
+L .Device:C_Small C27
 U 1 1 5F2F6DAD
 P 9475 1800
 F 0 "C27" H 9383 1754 50  0000 R CNN
@@ -548,7 +548,7 @@ Wire Wire Line
 	8575 1700 8250 1700
 Connection ~ 8575 1700
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C21
+L .Device:C_Small C21
 U 1 1 5F2F6DC5
 P 9025 2325
 F 0 "C21" H 8933 2279 50  0000 R CNN
@@ -561,7 +561,7 @@ F 5 "CC0201KRX5R6BB104" H 9025 2325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C14
+L .Device:C_Small C14
 U 1 1 5F2F6DCD
 P 8575 2325
 F 0 "C14" H 8483 2279 50  0000 R CNN
@@ -574,7 +574,7 @@ F 5 "CC0201KRX7R7BB103" H 8575 2325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C28
+L .Device:C_Small C28
 U 1 1 5F2F6DD5
 P 9475 2325
 F 0 "C28" H 9383 2279 50  0000 R CNN
@@ -614,7 +614,7 @@ Wire Wire Line
 	8575 2225 8150 2225
 Connection ~ 8575 2225
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C22
+L .Device:C_Small C22
 U 1 1 5F2F6DED
 P 9025 2850
 F 0 "C22" H 8933 2804 50  0000 R CNN
@@ -627,7 +627,7 @@ F 5 "CC0201KRX5R6BB104" H 9025 2850 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C15
+L .Device:C_Small C15
 U 1 1 5F2F6DF5
 P 8575 2850
 F 0 "C15" H 8483 2804 50  0000 R CNN
@@ -640,7 +640,7 @@ F 5 "CC0201KRX7R7BB103" H 8575 2850 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C29
+L .Device:C_Small C29
 U 1 1 5F2F6DFD
 P 9475 2850
 F 0 "C29" H 9383 2804 50  0000 R CNN
@@ -680,7 +680,7 @@ Wire Wire Line
 	8575 2750 8150 2750
 Connection ~ 8575 2750
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C23
+L .Device:C_Small C23
 U 1 1 5F2F6E15
 P 9025 3325
 F 0 "C23" H 8933 3279 50  0000 R CNN
@@ -693,7 +693,7 @@ F 5 "CC0201KRX5R6BB104" H 9025 3325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C16
+L .Device:C_Small C16
 U 1 1 5F2F6E1D
 P 8575 3325
 F 0 "C16" H 8483 3279 50  0000 R CNN
@@ -706,7 +706,7 @@ F 5 "CC0201KRX7R7BB103" H 8575 3325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C30
+L .Device:C_Small C30
 U 1 1 5F2F6E25
 P 9475 3325
 F 0 "C30" H 9383 3279 50  0000 R CNN
@@ -746,7 +746,7 @@ Wire Wire Line
 	8575 3225 8150 3225
 Connection ~ 8575 3225
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C8
+L .Device:C_Small C8
 U 1 1 5F2F6E3D
 P 8150 3325
 F 0 "C8" H 8058 3279 50  0000 R CNN
@@ -767,7 +767,7 @@ Wire Wire Line
 	8575 3425 8150 3425
 Connection ~ 8575 3425
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C24
+L .Device:C_Small C24
 U 1 1 5F2F6E50
 P 9025 3825
 F 0 "C24" H 8933 3779 50  0000 R CNN
@@ -780,7 +780,7 @@ F 5 "CC0201MRX5R5BB105" H 9025 3825 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C17
+L .Device:C_Small C17
 U 1 1 5F2F6E58
 P 8575 3825
 F 0 "C17" H 8483 3779 50  0000 R CNN
@@ -793,7 +793,7 @@ F 5 "CC0201KRX5R6BB104" H 8575 3825 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C31
+L .Device:C_Small C31
 U 1 1 5F2F6E60
 P 9475 3825
 F 0 "C31" H 9383 3779 50  0000 R CNN
@@ -822,7 +822,7 @@ Wire Wire Line
 	8575 3725 8150 3725
 Connection ~ 8575 3725
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C9
+L .Device:C_Small C9
 U 1 1 5F2F6E72
 P 8150 3825
 F 0 "C9" H 8058 3779 50  0000 R CNN
@@ -850,7 +850,7 @@ F 3 "" H 7425 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C6
+L .Device:C_Small C6
 U 1 1 5F2F6E83
 P 7800 3825
 F 0 "C6" H 7708 3779 50  0000 R CNN
@@ -865,7 +865,7 @@ $EndComp
 Wire Wire Line
 	7800 3725 8150 3725
 $Comp
-L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L1
+L .Inductor:BLM18PG471SN1D L1
 U 1 1 5F2F6E8E
 P 7625 3725
 F 0 "L1" V 7725 3725 50  0000 C CNN
@@ -898,7 +898,7 @@ F 3 "" H 9475 3925 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C25
+L .Device:C_Small C25
 U 1 1 5F2F6EA0
 P 9025 4325
 F 0 "C25" H 8933 4279 50  0000 R CNN
@@ -911,7 +911,7 @@ F 5 "CC0201MRX5R5BB105" H 9025 4325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C18
+L .Device:C_Small C18
 U 1 1 5F2F6EA8
 P 8575 4325
 F 0 "C18" H 8483 4279 50  0000 R CNN
@@ -924,7 +924,7 @@ F 5 "CC0201KRX5R6BB104" H 8575 4325 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C32
+L .Device:C_Small C32
 U 1 1 5F2F6EB0
 P 9475 4325
 F 0 "C32" H 9383 4279 50  0000 R CNN
@@ -953,7 +953,7 @@ Wire Wire Line
 	8575 4225 8150 4225
 Connection ~ 8575 4225
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C10
+L .Device:C_Small C10
 U 1 1 5F2F6EC2
 P 8150 4325
 F 0 "C10" H 8058 4279 50  0000 R CNN
@@ -981,7 +981,7 @@ F 3 "" H 7425 4200 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C7
+L .Device:C_Small C7
 U 1 1 5F2F6ED3
 P 7800 4325
 F 0 "C7" H 7708 4279 50  0000 R CNN
@@ -996,7 +996,7 @@ $EndComp
 Wire Wire Line
 	7800 4225 8150 4225
 $Comp
-L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L2
+L .Inductor:BLM18PG471SN1D L2
 U 1 1 5F2F6EDE
 P 7625 4225
 F 0 "L2" V 7725 4225 50  0000 C CNN
@@ -1039,7 +1039,7 @@ F 3 "" H 9475 4425 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C26
+L .Device:C_Small C26
 U 1 1 5F2F6EF6
 P 9025 4825
 F 0 "C26" H 8933 4779 50  0000 R CNN
@@ -1052,7 +1052,7 @@ F 5 "CC0201MRX5R5BB105" H 9025 4825 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C19
+L .Device:C_Small C19
 U 1 1 5F2F6EFE
 P 8575 4825
 F 0 "C19" H 8483 4779 50  0000 R CNN
@@ -1065,7 +1065,7 @@ F 5 "CC0201KRX5R6BB104" H 8575 4825 50  0001 C CNN "Part Number"
 	-1   0    0    1   
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C33
+L .Device:C_Small C33
 U 1 1 5F2F6F06
 P 9475 4825
 F 0 "C33" H 9383 4779 50  0000 R CNN
@@ -1105,7 +1105,7 @@ Wire Wire Line
 	8575 4725 8150 4725
 Connection ~ 8575 4725
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C11
+L .Device:C_Small C11
 U 1 1 5F2F6F1E
 P 8150 4825
 F 0 "C11" H 8058 4779 50  0000 R CNN
@@ -1133,7 +1133,7 @@ F 3 "" H 7425 4700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:BLM18PG471SN1D-.Inductor L3
+L .Inductor:BLM18PG471SN1D L3
 U 1 1 5F2F6F31
 P 7625 4725
 F 0 "L3" V 7725 4725 50  0000 C CNN
@@ -1158,7 +1158,7 @@ VDD18
 Wire Wire Line
 	3155 6060 2905 6060
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R10
+L .Device:R_Small_US R10
 U 1 1 5F2F6F3E
 P 4330 6260
 F 0 "R10" H 4398 6306 50  0000 L CNN
@@ -1171,7 +1171,7 @@ F 5 "ERJ-1GNF1002C" H 4330 6260 50  0001 C CNN "Part Number"
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R11
+L .Device:R_Small_US R11
 U 1 1 5F2F6F46
 P 4330 6610
 F 0 "R11" H 4398 6656 50  0000 L CNN
@@ -1195,7 +1195,7 @@ Wire Wire Line
 Text Label 4580 6435 2    50   ~ 0
 IDX
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C5
+L .Device:C_Small C5
 U 1 1 5F2F6F54
 P 4880 6610
 F 0 "C5" H 4788 6564 50  0000 R CNN
@@ -1256,7 +1256,7 @@ GPIO3
 Text Label 4530 3860 0    50   ~ 0
 PCLK
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R14
+L .Device:R_Small_US R14
 U 1 1 5F2F6F9A
 P 8050 2750
 F 0 "R14" V 7950 2700 50  0000 L CNN
@@ -1275,7 +1275,7 @@ Wire Wire Line
 Text Notes 7450 2825 0    50   ~ 0
 934: DNL\n914: 0
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R13
+L .Device:R_Small_US R13
 U 1 1 5F2F6FAB
 P 8050 2225
 F 0 "R13" V 7950 2175 50  0000 L CNN
@@ -1303,7 +1303,7 @@ F 3 "" H 7850 2175 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Wire-Free-DAQ-rescue:R_Small_US-.Device R12
+L .Device:R_Small_US R12
 U 1 1 5F2F6FBB
 P 8050 1700
 F 0 "R12" V 7950 1650 50  0000 L CNN
@@ -1335,7 +1335,7 @@ Text Notes 7450 2300 0    50   ~ 0
 Text Notes 7475 1825 0    50   ~ 0
 934: DNL\n914: 10K
 $Comp
-L Wire-Free-DAQ-rescue:C_Small-.Device C12
+L .Device:C_Small C12
 U 1 1 5F2F6FCD
 P 8250 1800
 F 0 "C12" H 8158 1754 50  0000 R CNN
