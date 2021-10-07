@@ -69,4 +69,5 @@ uint32_t time_tick_get(void);
  */
 uint32_t time_tick_calc_delay(uint32_t tick_start, uint32_t tick_end);
 
+
 #endif /* TIME_TICK_H_INCLUDED */

@@ -14,7 +14,7 @@
 // -------------- SD card writing definitions
 #define SD_SLOT_NB					0
 #define SDMMC_BLOCK_SIZE			512 //Number of bytes in a single block (sector)
-#define NB_BUFFER_WRITES_PER_CHUNK	100 // Can be edited by user to optimize speed
+#define NB_BUFFER_WRITES_PER_CHUNK	99 // Can be edited by user to optimize speed
 #define NB_BLOCKS_PER_WRITE			BUFFER_BLOCK_LENGTH // TODO: move this and other definitions into a place that makes more sense
 #define NB_BLOCKS_PER_FRAME			NUM_PIXELS/SDMMC_BLOCK_SIZE
 #define STARTING_BLOCK				1024
@@ -60,8 +60,8 @@ uint32_t getSDCardCapacity(void) {
 }
 
 void loadSDCardHeader(void){	
-	sd_mmc_init_read_blocks(SD_SLOT_NB,HEADER_BLOCK,1);
-	sd_mmc_start_read_blocks(headerBlock,1);
+	sd_mmc_init_read_blocks(SD_SLOT_NB,HEADER_BLOCK,1); //SD_SLOT_NB=0£»HEADER_BLOCK=1023
+	sd_mmc_start_read_blocks(headerBlock,1);//volatile uint8_t headerBlock[SDMMC_BLOCK_SIZE] = {0}; // Will hold the 512 bytes from the header block of sd card
 	sd_mmc_wait_end_of_read_blocks(false);
 }
 
@@ -70,6 +70,7 @@ uint32_t getPropFromHeader(uint8_t headerPos) {
 	
 	return header32bit[headerPos];
 }
+
 
 void setConfigBlockProp(uint8_t position, uint32_t value) {
 	uint32_t *configBlock32bit = (uint32_t *)configBlock;

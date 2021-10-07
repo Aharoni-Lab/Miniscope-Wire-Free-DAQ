@@ -4,14 +4,13 @@
  * Created: 9/4/2020 6:43:30 AM
  *  Author: dbaha
  */ 
+// ----------- Wire-Free-DAQ Configuration to use
 
 
 #ifndef DEFINITIONS_H_
 #define DEFINITIONS_H_
 
-// ----------- Wire-Free-DAQ Configuration to use
-// #define LFOV_Miniscope
-#define V4_Miniscope
+
 
 // ----------- GPIO Definitions
 #define SERDES_LOCK_PIN			PIO_PD7_IDX
@@ -36,6 +35,7 @@
 
 #define TWI_SPEED	100000 //100KHz
 
+//#define TWI_SPEED	200000 //100KHz Change to 400KHz by chang
 // ------------ DMA and Parallel Cap Definitions
 #define D_SIZE					2
 #define ALWYS					0
@@ -50,5 +50,8 @@
 #define HSYNC_MASK				PIO_PA21X1_PIODCEN2 //HSync pin
 #define HSYNC_ID				PIO_PA21_IDX
 
+//----------------------PB0 added by Changliang Guo at 09072021
+#define IRREMOTE_MASK               PIO_PB2
+//-------------------------------------------------------------
 
 #endif /* DEFINITIONS_H_ */
