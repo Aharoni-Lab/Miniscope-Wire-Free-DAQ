@@ -178,8 +178,7 @@ int main (void)
 	setStatusLED('G',1);
 	
 	setFPS(FRAME_RATE);
-	
-	
+		
 	
 	// Get the parameters from SD card!-Added by Changliang Guo at 10142020
 	setExcitationLED( getPropFromHeader(HEADER_LED_POS) ); //led=20
