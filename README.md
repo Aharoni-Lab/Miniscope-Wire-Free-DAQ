@@ -16,7 +16,7 @@ Make sure to click Watch and Star in the upper right corner of this page to get 
 </p>
 
 ## How to cite
-A paper discussing the Miniscope Wire-Free DAQ can be found [here](). Please use the following citation information.
+A paper discussing the Miniscope Wire-Free DAQ can be found [here](https://www.biorxiv.org/content/10.1101/2021.11.21.469394v1). Please use the following citation information.
 
 ```
 @article {Guo2021.11.21.469394,
