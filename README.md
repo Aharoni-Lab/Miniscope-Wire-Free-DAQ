@@ -5,6 +5,11 @@ Wire-free DAQ is compatible with all previous generations of wired open-source U
   <img width="400" src="https://github.com/Aharoni-Lab/Miniscope-Wire-Free-DAQ/blob/master/img/Miniscope-Wire-Free-DAQ-render.png">
 </p>
 
+## Schematic
+<p align="center">
+  <img width="400" src="https://github.com/Aharoni-Lab/Miniscope-Wire-Free-DAQ/blob/master/img/Miniscope-Wire-Free-DAQ-Block-Schematic.PNG">
+</p>
+
 ## How to cite
 A paper discussing the Miniscope Wire-Free DAQ can be found [here](). Please use the following citation information.
 
